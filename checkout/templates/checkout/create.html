@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="profile-wrapper">
+  <h1>Завърши поръчката</h1>
+
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <h2>Количка</h2>
+    <ul>
+      {% for item in cart %}
+        <li>{{ item.product.name }} – {{ item.quantity }} бр. – {{ item.total_price }} лв.</li>
+      {% endfor %}
+    </ul>
+
+    <p><strong>Обща сума:</strong> {{ cart.get_total_price }} лв.</p>
+
+    <button type="submit">Изпрати поръчка</button>
+  </form>
+</div>
+{% endblock %}

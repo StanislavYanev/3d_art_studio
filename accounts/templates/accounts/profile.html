@@ -1,0 +1,14 @@
+{% extends "accounts/profile_base.html" %}
+
+{% block dashboard_content %}
+<h2>Здравей, {{ user.first_name|default:user.username }}!</h2>
+
+<p><strong>Имейл:</strong> {{ user.email }}</p>
+<p><strong>Дата на регистрация:</strong> {{ user.date_joined|date:"d.m.Y" }}</p>
+
+<ul>
+  <li>📦 Брой качени модели: {{ model_count }}</li>
+  <li>🛒 Активни поръчки: {{ active_orders_count }}</li>
+  <li>📬 Известия: —</li>
+</ul>
+{% endblock %}

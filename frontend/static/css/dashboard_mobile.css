@@ -1,0 +1,53 @@
+/* Стилове за мобилни устройства */
+@media (max-width: 768px) {
+    .profile-wrapper {
+      display: flex;
+      flex-direction: column;
+    }
+  
+    .toggle-sidebar-btn {
+        display: block;
+        background-color: #444;
+        color: #fff;
+        padding: 12px 20px;
+        font-size: 17px;
+        font-weight: 500;
+        border: none;
+        border-radius: 12px;
+        margin: 15px auto;
+        cursor: pointer;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: background-color 0.3s ease, transform 0.2s ease;
+      }
+      
+      .toggle-sidebar-btn:hover {
+        background-color: #333;
+        transform: scale(1.03);
+      }
+  
+    .responsive-sidebar-wrapper .sidebar {
+      display: none;
+    }
+  
+    .responsive-sidebar-wrapper .sidebar.show-on-mobile {
+      display: flex;
+      flex-direction: column;
+    }
+  
+    .sidebar a {
+      margin: 5px 10px;
+      display: inline-block;
+    }
+  
+    .main-content {
+      padding: 15px;
+    }
+  
+    .avatar {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      margin-bottom: 10px;
+    }
+  }
+  

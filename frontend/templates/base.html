@@ -1,0 +1,73 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="bg">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+    {% block title %} 
+      3D Print Studio
+    {% endblock %}
+    </title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/auth.css' %}">
+    <link rel="stylesheet" href="{% static 'css/store.css' %}">
+
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <div class="logo">3D Print Studio</div>
+        <div class="menu-toggle" id="menu-toggle">
+          <span></span><span></span><span></span>
+        </div>
+        <nav>
+          <ul id="menu">
+            <li><a href="{% url 'home:home'%}">Начало</a></li>
+            <li><a href="#about">За нас</a></li>
+            <li><a href="#services">Услуги</a></li>
+            <li><a href="#contact">Контакт</a></li>
+            <li><a href="{% url 'products:product_list' %}">Продукти</a></li>
+            <li><a href="{% url 'cart:cart_detail' %}">🛒 Количка</a></li>
+            {% if user.is_authenticated %}
+              <a href="{% url 'profile' %}">Профил</a> 
+            {% else %}
+              <a href="{% url 'login' %}">Вход</a> 
+              <a href="{% url 'register' %}">Регистрация</a>
+            {% endif %}
+          
+          </ul>
+        </nav>
+        <div class="language-switch">
+          <button data-lang="bg">BG</button>
+          <button data-lang="en">EN</button>
+        </div>
+      </div>
+    </header>
+    {% block content %}
+
+
+    {% endblock %}
+    {% if not hide_footer %}
+    <footer>
+      <div class="container">
+        <p>&copy; 2025 3D Print Studio. Всички права запазени.</p>
+      </div>
+    </footer>
+    {% endif %}
+    <div class="menu-overlay" id="menu-overlay"></div>
+    <script src="{% static 'js/script.js' %}"></script>
+    <script src="{% static 'js/store.js' %}"></script>
+
+  </body>
+</html>  
+
+

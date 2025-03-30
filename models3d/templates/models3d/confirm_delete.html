@@ -1,0 +1,14 @@
+{% extends "accounts/profile_base.html" %}
+
+{% block dashboard_content %}
+<div class="confirm-delete">
+  <h2>Потвърди изтриване</h2>
+  <p>Сигурни ли сте, че искате да изтриете модела <strong>{{ model.title }}</strong>?</p>
+
+  <form method="post" style="margin-top: 20px;">
+    {% csrf_token %}
+    <button type="submit" class="btn danger">🗑️ Изтрий</button>
+    <a href="{% url 'models3d:my_models' %}" class="btn">Отказ</a>
+  </form>
+</div>
+{% endblock %}

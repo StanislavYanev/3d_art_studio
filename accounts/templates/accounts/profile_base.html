@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% with hide_footer=True %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+<link rel="stylesheet" href="{% static 'css/dashboard_mobile.css' %}">
+<link rel="stylesheet" href="{% static 'css/upload_model.css' %}">
+
+<div class="profile-wrapper">
+  <!-- Sidebar с responsive wrapper -->
+  <div class="responsive-sidebar-wrapper">
+    <!-- Бутон за мобилни устройства -->
+    <button class="toggle-sidebar-btn" onclick="toggleResponsiveSidebar()">☰ Меню</button>
+
+    <div class="sidebar" id="responsiveSidebar">
+      <img src="{{ user.profile.avatar.url }}" alt="Аватар" class="avatar">
+      <h3>{{ user.username }}</h3>
+      <a href="{% url 'profile' %}">🏠 Начало</a>
+      <a href="{% url 'models3d:my_models' %}">📁 Моите 3D модели</a>
+      <a href="{% url 'orders:my_orders'%}">🧾 Моите поръчки</a>
+      <a href="{% url 'edit_profile' %}">⚙️ Профил настройки</a>
+      <a href="{% url 'logout' %}">🚪 Изход</a>
+    </div>
+  </div> <!-- responsive-sidebar-wrapper -->
+
+  <!-- Main content -->
+  <div class="main-content">
+    {% block dashboard_content %}
+    {% endblock %}
+  </div>
+</div>
+{% if messages %}
+  <ul class="messages">
+    {% for message in messages %}
+      <li class="alert {{ message.tags }}">{{ message }}</li>
+    {% endfor %}
+  </ul>
+{% endif %}
+<!-- JavaScript за toggle -->
+<script src="https://cdn.jsdelivr.net/npm/three@0.154.0/build/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.154.0/examples/js/loaders/STLLoader.min.js"></script>
+
+
+<script>
+  function toggleResponsiveSidebar() {
+    const sidebar = document.getElementById("responsiveSidebar");
+    sidebar.classList.toggle("show-on-mobile");
+  }
+</script>
+
+{% endblock %}
+{% endwith %}

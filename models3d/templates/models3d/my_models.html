@@ -1,0 +1,50 @@
+{% extends "accounts/profile_base.html" %}
+ {% load static %}
+{%block dashboard_content %}
+
+<h2>Моите 3D модели</h2>
+<a href="{% url 'models3d:upload_model' %}" class="btn-upload"
+  >➕ Качи нов модел</a
+>
+
+<div class="model-list">
+  {% for model in models %}
+  <div class="model-card">
+    <h3>{{ model.title }}</h3>
+    <p><strong>Категория:</strong> {{ model.get_category_display }}</p>
+
+    {% if model.preview_image %}
+    <img
+      src="{{ model.preview_image.url }}"
+      alt="Превю"
+      style="max-width: 150px; border-radius: 6px"
+    />
+    {% endif %}
+
+    {% if model.id in model_prices %}
+    <p><strong>Цена:</strong> {{ model_prices.model.id }} лв/бр</p>
+    {% endif %} 
+
+    <p><strong>Описание:</strong>{{ model.description|default:"(Без описание)" }}</p>
+
+
+
+    <a href="{{ model.model_file.url }}" download>⬇️ Изтегли</a><br /><br />
+    <a href="{% url 'orders:create_order' model.pk %}" class="btn small"
+      >Заяви принтиране</a
+    >
+    <a href="{% url 'models3d:edit_model' model.pk %}" class="btn small"
+      >✏️ Редактирай</a
+    >
+    <a
+      href="{% url 'models3d:delete_model' model.pk %}"
+      class="btn small danger"
+      >🗑️ Изтрий</a
+    >
+  </div>
+  {% empty %}
+  <p>Нямате качени 3D модели.</p>
+  {% endfor %}
+</div>
+
+{% endblock %}

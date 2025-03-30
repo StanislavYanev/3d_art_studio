@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+<link rel="stylesheet" href="{% static 'css/dashboard_mobile.css' %}">
+<link rel="stylesheet" href="{% static 'css/shop.css' %}">
+
+<div class="profile-wrapper">
+  <h1>🛍 Каталог продукти</h1>
+  <div class="product-list">
+    {% for product in products %}
+      <div class="product-card">
+        <h3>{{ product.name }}</h3>
+        {% if product.image %}
+          <img src="{{ product.image.url }}">
+        {% endif %}
+        <p><strong>{{ product.price }} лв.</strong></p>
+        <p><a class="button" href="{% url 'products:product_detail' product.pk %}">Детайли</a></p>
+        <p><a class="button" href="{% url 'cart:cart_add' product.pk %}">Добави в количката</a></p>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

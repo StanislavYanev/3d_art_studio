@@ -1,0 +1,43 @@
+{% extends "base.html" %} 
+{% load static %}
+ {% block title %} 3D Print Studio |
+Иновативен 3D Печат
+ {% endblock %} 
+
+
+{% block content %}
+<section id="home" class="hero">
+  <div class="container">
+    <h1>Открий потенциала на 3D печата</h1>
+    <p>Създай нещо уникално с нашето модерно 3D студио.</p>
+    <a href="#contact" class="btn">Започни проект</a>
+  </div>
+</section>
+
+<section id="about" class="placeholder">
+  <div class="container">
+    <h2>За нас</h2>
+    <p>Тук ще има информация за нашия екип, мисия и технология.</p>
+  </div>
+</section>
+
+<section id="services" class="placeholder">
+  <div class="container">
+    <h2>Нашите услуги</h2>
+    <p>Описание на услугите като прототипиране, моделиране, дизайн и др.</p>
+  </div>
+</section>
+
+<section id="contact" class="contact">
+  <div class="container">
+    <h2>Свържи се с нас</h2>
+    <form>
+      <input type="text" placeholder="Вашето име" required />
+      <input type="email" placeholder="Имейл адрес" required />
+      <textarea placeholder="Вашето съобщение" required></textarea>
+      <button type="submit">Изпрати</button>
+    </form>
+  </div>
+</section>
+
+{% endblock %}

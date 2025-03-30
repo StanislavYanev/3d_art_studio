@@ -1,0 +1,47 @@
+{% extends "accounts/profile_base.html" %}
+{% load static %}
+
+{% block dashboard_content %}
+<h2 class="form-title">Качи нов 3D модел</h2>
+
+{% if messages %}
+  <ul class="messages">
+    {% for message in messages %}
+      <li class="alert {{ message.tags }}">{{ message }}</li>
+    {% endfor %}
+  </ul>
+{% endif %}
+
+<div class="form-container">
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    
+    <div class="form-group">
+      {{ form.title.label_tag }}
+      {{ form.title }}
+    </div>
+
+    <div class="form-group">
+      {{ form.description.label_tag }}
+      {{ form.description }}
+    </div>
+
+    <div class="form-group">
+      {{ form.category.label_tag }}
+      {{ form.category }}
+    </div>
+
+    <div class="form-group">
+      {{ form.model_file.label_tag }}
+      {{ form.model_file }}
+    </div>
+
+    <div class="form-group">
+      {{ form.preview_image.label_tag }}
+      {{ form.preview_image }}
+    </div>
+
+    <button type="submit" class="btn">📤 Качи модел</button>
+  </form>
+</div>
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="profile-wrapper">
+  <h1>Вашата количка</h1>
+
+  {% if cart|length == 0 %}
+    <p>Количката ви е празна.</p>
+  {% else %}
+    <ul>
+      {% for item in cart %}
+        <li>
+          {{ item.product.name }} – {{ item.quantity }} бр. – {{ item.total_price }} лв.
+          <a href="{% url 'cart:cart_remove' item.product.id %}">🗑 Премахни</a>
+        </li>
+      {% endfor %}
+    </ul>
+    <p><strong>Общо:</strong> {{ cart.get_total_price }} лв.</p>
+    <a href="{% url 'checkout:order_create' %}">🛒 Завърши поръчка</a>
+  {% endif %}
+</div>
+{% endblock %}

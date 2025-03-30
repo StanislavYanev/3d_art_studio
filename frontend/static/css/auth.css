@@ -1,0 +1,124 @@
+body {
+  background-size: cover;
+}
+
+.login-wrapper {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 70px; /* изместване нагоре */
+}
+
+.login-card {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 40px;
+  max-width: 400px;
+  width: 100%;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  color: #322;
+}
+
+.login-card h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #322;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  color: #322;
+  font-weight: bold;
+}
+
+.form-group input {
+  width: 85%;
+  padding: 8px 12px;
+  border-radius: 10px;
+  border: 1.5px solid rgba(23, 23, 23, 0.6);
+  background-color: rgba(255, 255, 255, 0.2);
+  color: #322;
+  outline: none;
+  transition: border-color 0.3s ease;
+  text-align: left;
+}
+
+.form-group input::placeholder {
+  color: #322;
+  font-style: italic;
+}
+
+.form-group input:focus {
+  border-color: #3d72fc; /* цвят на основната тема */
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+.btn {
+  display: block;
+  width: 85%;
+  margin: 10px auto;
+  padding: 10px 14px;
+  text-align: center;
+  font-size: 14px;
+  background-color: #3d72fc;
+  border: none;
+  color: #fff;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #1e4ee5;
+}
+
+.form-links {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.social-login {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.social-login a {
+  display: inline-block;
+  margin: 5px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  color: #fff;
+  text-decoration: none;
+}
+
+.google {
+  background-color: #1e4ee5;
+}
+
+.facebook {
+  background-color: #3b5998;
+}
+
+.error-message {
+  color: #ffb3b3;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.google-icon {
+  width: 18px;
+  height: 18px;
+  /* vertical-align: middle; */
+  margin-right: 6px;
+  margin-top: -2px;
+}
