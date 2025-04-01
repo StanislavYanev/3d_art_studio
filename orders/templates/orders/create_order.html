@@ -1,12 +1,31 @@
 {% extends "accounts/profile_base.html" %}
-{% block dashboard_content %}
-<h2>Заяви принтиране на "{{ model.title }}"</h2>
 
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit" class="btn btn-primary">Изпрати поръчка</button>
+{% block title %}Заяви принтиране | 3D Print Studio{% endblock %}
+
+{% block dashboard_content %}
+<h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-6">
+  Заяви принтиране на "{{ model.title }}"
+</h2>
+
+<form method="post" class="space-y-6">
+  {% csrf_token %}
+  {% for field in form %}
+    <div>
+      <label class="block text-sm text-gray-700 dark:text-gray-300 mb-1">{{ field.label }}</label>
+      {{ field }}
+      {% if field.errors %}
+        <p class="text-sm text-red-600">{{ field.errors.0 }}</p>
+      {% endif %}
+    </div>
+  {% endfor %}
+
+  <button type="submit"
+          class="bg-indigo-600 text-white px-6 py-2 rounded-lg hover:bg-indigo-700 transition">
+    Изпрати поръчка
+  </button>
 </form>
 
-<a href="{% url 'orders:my_orders' %}">⬅ Назад към моите модели</a>
+<a href="{% url 'orders:my_orders' %}" class="inline-block mt-6 text-indigo-600 hover:underline text-sm">
+  ⟵ Назад към моите поръчки
+</a>
 {% endblock %}

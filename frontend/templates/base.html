@@ -1,73 +1,140 @@
-{% load static %}
-
 <!DOCTYPE html>
 <html lang="bg">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>
-    {% block title %} 
-      3D Print Studio
-    {% endblock %}
-    </title>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
-    <link rel="stylesheet" href="{% static 'css/auth.css' %}">
-    <link rel="stylesheet" href="{% static 'css/store.css' %}">
-
-
-    <link
-      href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <title>{% block title %}3D Print Studio{% endblock %}</title>
+    <style>
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
     
+      .animate-fade-in-up {
+        animation: fadeInUp 0.8s ease-out forwards;
+      }
+    
+      .delay-100 { animation-delay: 0.1s; }
+      .delay-200 { animation-delay: 0.2s; }
+      .delay-300 { animation-delay: 0.3s; }
+    </style>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+      };
+    </script>
   </head>
-  <body>
-    <header>
-      <div class="container">
-        <div class="logo">3D Print Studio</div>
-        <div class="menu-toggle" id="menu-toggle">
-          <span></span><span></span><span></span>
+
+  <body class="bg-gray-50 text-gray-800 font-sans transition-colors duration-300 dark:bg-gray-900 dark:text-gray-100">
+
+    <!-- Header -->
+    <header class="bg-white dark:bg-gray-800 shadow-md sticky top-0 z-50">
+      <div class="container mx-auto px-4 py-4 flex items-center justify-between">
+        <div class="text-2xl font-bold text-indigo-600 dark:text-indigo-400">3D Print Studio</div>
+        <div class="md:hidden">
+          <button id="menu-toggle" class="text-gray-600 dark:text-gray-300 focus:outline-none">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor"
+              viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+          </button>
         </div>
-        <nav>
-          <ul id="menu">
-            <li><a href="{% url 'home:home'%}">Начало</a></li>
-            <li><a href="#about">За нас</a></li>
-            <li><a href="#services">Услуги</a></li>
-            <li><a href="#contact">Контакт</a></li>
-            <li><a href="{% url 'products:product_list' %}">Продукти</a></li>
-            <li><a href="{% url 'cart:cart_detail' %}">🛒 Количка</a></li>
-            {% if user.is_authenticated %}
-              <a href="{% url 'profile' %}">Профил</a> 
-            {% else %}
-              <a href="{% url 'login' %}">Вход</a> 
-              <a href="{% url 'register' %}">Регистрация</a>
-            {% endif %}
-          
-          </ul>
+        <nav class="hidden md:flex space-x-6 items-center" id="main-menu">
+          <a href="{% url 'home:home' %}" class="hover:text-indigo-600 dark:hover:text-indigo-400">Начало</a>
+          <a href="#services" class="hover:text-indigo-600 dark:hover:text-indigo-400">Услуги</a>
+          <a href="{% url 'products:product_list' %}" class="hover:text-indigo-600 dark:hover:text-indigo-400">Продукти</a>
+          <a href="#contact" class="hover:text-indigo-600 dark:hover:text-indigo-400">Контакт</a>
+          <a href="{% url 'login' %}" class="hover:text-indigo-600 dark:hover:text-indigo-400">Вход</a>
+          <a href="{% url 'register' %}" class=class="hover:text-indigo-600 dark:hover:text-indigo-400">Регистрация</a>
+          <!-- Theme Toggle Button with Heroicons -->
+          <button id="theme-toggle" class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition">
+            <!-- Sun icon -->
+            <svg id="icon-sun" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M12 3v1m0 16v1m8.66-8.66h-1M4.34 12H3.33m14.14 6.36l-.7-.7M6.22 6.22l-.7-.7m0 12.96l.7-.7m12.96-12.96l.7.7M12 8a4 4 0 100 8 4 4 0 000-8z" />
+            </svg>
+            <!-- Moon icon -->
+            <svg id="icon-moon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M21 12.79A9 9 0 1111.21 3a7 7 0 009.79 9.79z" />
+            </svg>
+          </button>
         </nav>
-        <div class="language-switch">
-          <button data-lang="bg">BG</button>
-          <button data-lang="en">EN</button>
-        </div>
+      </div>
+
+      <!-- Mobile Menu -->
+      <div class="md:hidden hidden px-4 pb-4 space-y-2" id="mobile-menu">
+        <a href="{% url 'home:home' %}" class="block py-2">Начало</a>
+        <a href="#services" class="block py-2">Услуги</a>
+        <a href="{% url 'products:product_list' %}" class="block py-2">Продукти</a>
+        <a href="#contact" class="block py-2">Контакт</a>
+        <a href="{% url 'login' %}" class="block py-2">Вход</a>
+        <a href="{% url 'register' %}" class="block py-2">Регистрация</a>
       </div>
     </header>
-    {% block content %}
 
+    <!-- Main Content -->
+    <main>
+      {% block content %}
+      {% endblock %}
+    </main>
 
-    {% endblock %}
-    {% if not hide_footer %}
-    <footer>
-      <div class="container">
-        <p>&copy; 2025 3D Print Studio. Всички права запазени.</p>
+    <!-- Footer -->
+    <footer class="bg-white dark:bg-gray-800 border-t dark:border-gray-700 mt-12">
+      <div class="container mx-auto px-4 py-6 text-center text-sm text-gray-500 dark:text-gray-400">
+        © 2025 3D Print Studio • Всички права запазени • BG | EN
       </div>
     </footer>
-    {% endif %}
-    <div class="menu-overlay" id="menu-overlay"></div>
-    <script src="{% static 'js/script.js' %}"></script>
-    <script src="{% static 'js/store.js' %}"></script>
 
+    <!-- Scripts -->
+    <script>
+      // Mobile menu toggle
+      const toggle = document.getElementById('menu-toggle');
+      const mobileMenu = document.getElementById('mobile-menu');
+      toggle.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+      });
+
+      // Dark mode toggle
+      const html = document.documentElement;
+      const sunIcon = document.getElementById('icon-sun');
+      const moonIcon = document.getElementById('icon-moon');
+      const themeToggle = document.getElementById('theme-toggle');
+
+      function updateThemeIcons() {
+        const isDark = html.classList.contains('dark');
+        if (isDark) {
+          sunIcon.classList.remove('hidden');
+          moonIcon.classList.add('hidden');
+        } else {
+          sunIcon.classList.add('hidden');
+          moonIcon.classList.remove('hidden');
+        }
+      }
+
+      // Initial load
+      if (localStorage.theme === 'dark' ||
+         (!localStorage.theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        html.classList.add('dark');
+      }
+
+      updateThemeIcons();
+
+      themeToggle.addEventListener('click', () => {
+        html.classList.toggle('dark');
+        localStorage.theme = html.classList.contains('dark') ? 'dark' : 'light';
+        updateThemeIcons();
+      });
+    </script>
   </body>
-</html>  
-
-
+</html>

@@ -1,26 +1,118 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block title %}Каталог продукти | 3D Print Studio{% endblock %}
 
 {% block content %}
-<link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
-<link rel="stylesheet" href="{% static 'css/dashboard_mobile.css' %}">
-<link rel="stylesheet" href="{% static 'css/shop.css' %}">
+<section class="bg-white dark:bg-gray-900 py-12">
+  <div class="container mx-auto px-4">
 
-<div class="profile-wrapper">
-  <h1>🛍 Каталог продукти</h1>
-  <div class="product-list">
-    {% for product in products %}
-      <div class="product-card">
-        <h3>{{ product.name }}</h3>
-        {% if product.image %}
-          <img src="{{ product.image.url }}">
-        {% endif %}
-        <p><strong>{{ product.price }} лв.</strong></p>
-        <p><a class="button" href="{% url 'products:product_detail' product.pk %}">Детайли</a></p>
-        <p><a class="button" href="{% url 'cart:cart_add' product.pk %}">Добави в количката</a></p>
+    <!-- Заглавие -->
+    <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-8 gap-4">
+      <h1 class="text-3xl font-bold text-gray-800 dark:text-white flex items-center gap-2">
+        🛍 Каталог продукти
+      </h1>
+
+      <!-- Филтри и сортиране -->
+      <form method="GET" class="flex flex-col md:flex-row items-start md:items-center gap-4">
+        <!-- Категория -->
+        <select name="category" class="px-3 py-2 rounded-lg border dark:bg-gray-800 dark:text-white dark:border-gray-700">
+          <option value="">Всички категории</option>
+          <option value="accessories">Аксесоари</option>
+          <option value="figurines">Фигурки</option>
+          <option value="tools">Инструменти</option>
+          <!-- още -->
+        </select>
+
+        <!-- Сортиране -->
+        <select name="sort" class="px-3 py-2 rounded-lg border dark:bg-gray-800 dark:text-white dark:border-gray-700">
+          <option value="">Сортирай по...</option>
+          <option value="price_asc">Цена ↑</option>
+          <option value="price_desc">Цена ↓</option>
+          <option value="name">Име</option>
+          <option value="latest">Най-нови</option>
+        </select>
+
+        <button type="submit" class="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition">
+          Филтрирай
+        </button>
+      </form>
+    </div>
+
+    <!-- Продуктова решетка -->
+    {% if products %}
+      <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        {% for product in products %}
+          <div class="bg-gray-50 dark:bg-gray-800 rounded-xl shadow transform hover:scale-[1.03] hover:shadow-xl transition duration-300 overflow-hidden flex flex-col">
+            {% if product.image %}
+              <img src="{{ product.image.url }}" alt="{{ product.name }}" class="w-full h-48 object-cover">
+            {% else %}
+              <div class="w-full h-48 bg-gray-200 dark:bg-gray-700 flex items-center justify-center text-gray-400 dark:text-gray-500 text-sm">
+                Без изображение
+              </div>
+            {% endif %}
+
+            <div class="p-4 flex-1 flex flex-col justify-between">
+              <h3 class="text-lg font-semibold text-gray-800 dark:text-white mb-2">{{ product.name }}</h3>
+              <p class="text-indigo-600 dark:text-indigo-400 font-bold text-lg mb-4">{{ product.price }} лв.</p>
+
+              <div class="mt-auto space-y-2">
+                <a href="{% url 'products:product_detail' product.pk %}"
+                   class="block w-full text-center bg-white dark:bg-gray-700 border border-indigo-600 dark:border-indigo-400 text-indigo-600 dark:text-indigo-400 px-4 py-2 rounded-lg hover:bg-indigo-50 dark:hover:bg-indigo-900 transition">
+                  Детайли
+                </a>
+                <a href="{% url 'cart:cart_add' product.pk %}"
+                   class="block w-full text-center bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition">
+                  Добави в количката
+                </a>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
       </div>
-    {% endfor %}
+    {% else %}
+      <p class="text-center text-gray-500 dark:text-gray-400 mt-12">Няма налични продукти.</p>
+    {% endif %}
+
+    <!-- Пагинация -->
+    {% if page_obj.has_other_pages %}
+      <div class="flex justify-center mt-12">
+        <nav class="inline-flex rounded-md shadow-sm overflow-hidden border dark:border-gray-700">
+          {% if page_obj.has_previous %}
+            <a href="?page={{ page_obj.previous_page_number }}{{ request.GET.urlencode|cut:'page='|yesno:'&,' }}"
+               class="px-4 py-2 bg-white dark:bg-gray-800 text-gray-700 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 border-r">
+              ⟵ Предишна
+            </a>
+          {% endif %}
+
+          {% for num in page_obj.paginator.page_range %}
+            {% if page_obj.number == num %}
+              <span class="px-4 py-2 bg-indigo-600 text-white">{{ num }}</span>
+            {% elif num > page_obj.number|add:"-3" and num < page_obj.number|add:"3" %}
+              <a href="?page={{ num }}{{ request.GET.urlencode|cut:'page='|yesno:'&,' }}"
+                 class="px-4 py-2 bg-white dark:bg-gray-800 text-gray-700 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                {{ num }}
+              </a>
+            {% endif %}
+          {% endfor %}
+
+          {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}{{ request.GET.urlencode|cut:'page='|yesno:'&,' }}"
+               class="px-4 py-2 bg-white dark:bg-gray-800 text-gray-700 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 border-l">
+              Следваща ⟶
+            </a>
+          {% endif %}
+        </nav>
+      </div>
+    {% endif %}
   </div>
-</div>
+</section>
 {% endblock %}
+
+{% comment %} 
+Следващата стъпка ще е да добавим:
+
+Django логика за филтриране по GET
+
+Сортиране и Paginator backend
+ {% endcomment %}

@@ -1,3 +1,29 @@
-<h1>Благодарим!</h1>
-<p>Вашата поръчка №{{ order.id }} беше приета успешно.</p>
-<a href="{% url 'products:product_list' %}">← Обратно към продуктите</a>
+{% extends "base.html" %}
+
+{% block title %}Благодарим! | 3D Print Studio{% endblock %}
+
+{% block content %}
+<section class="bg-white dark:bg-gray-900 py-20">
+  <div class="container mx-auto px-4 max-w-xl text-center">
+    <div class="flex justify-center mb-6">
+      <svg class="w-16 h-16 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+      </svg>
+    </div>
+
+    <h1 class="text-2xl md:text-3xl font-bold text-gray-800 dark:text-white mb-4">
+      Благодарим!
+    </h1>
+
+    <p class="text-gray-600 dark:text-gray-300 mb-6">
+      Вашата поръчка №{{ order.id }} беше приета успешно.
+    </p>
+
+    <a href="{% url 'products:product_list' %}"
+       class="inline-block bg-indigo-600 text-white px-6 py-3 rounded-lg hover:bg-indigo-700 transition">
+      ← Обратно към продуктите
+    </a>
+  </div>
+</section>
+{% endblock %}

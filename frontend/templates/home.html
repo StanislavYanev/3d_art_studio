@@ -1,41 +1,117 @@
-{% extends "base.html" %} 
-{% load static %}
- {% block title %} 3D Print Studio |
-Иновативен 3D Печат
- {% endblock %} 
-
+{% extends "base.html" %}
+{% block title %}Начало | 3D Print Studio{% endblock %}
 
 {% block content %}
-<section id="home" class="hero">
-  <div class="container">
-    <h1>Открий потенциала на 3D печата</h1>
-    <p>Създай нещо уникално с нашето модерно 3D студио.</p>
-    <a href="#contact" class="btn">Започни проект</a>
-  </div>
-</section>
 
-<section id="about" class="placeholder">
-  <div class="container">
-    <h2>За нас</h2>
-    <p>Тук ще има информация за нашия екип, мисия и технология.</p>
+<!-- Hero Section -->
+<section id="hero" class="bg-white dark:bg-gray-900 py-20">
+  <div class="container mx-auto px-4 text-center">
+    <h1 class="text-4xl md:text-5xl font-bold mb-6">
+      Вашата идея. <span class="text-indigo-600 dark:text-indigo-400">Нашият 3D принт.</span>
+    </h1>
+    <p class="text-lg mb-8">Персонализирани решения за 3D принтиране и дизайн.</p>
+    <a href="#services" class="bg-indigo-600 text-white px-6 py-3 rounded-xl hover:bg-indigo-700 transition">
+      Виж нашите услуги
+    </a>
   </div>
-</section>
+</section> 
 
-<section id="services" class="placeholder">
-  <div class="container">
-    <h2>Нашите услуги</h2>
-    <p>Описание на услугите като прототипиране, моделиране, дизайн и др.</p>
-  </div>
-</section>
+<!-- Services Section -->
+<section id="services" class="bg-gray-50 dark:bg-gray-800 py-16">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-semibold text-center mb-12">Нашите услуги</h2>
+      <div class="grid md:grid-cols-3 gap-8 text-center">
+        
+        <!-- 3D Моделиране -->
+        <div class="bg-white dark:bg-gray-700 p-6 rounded-xl shadow transform transition duration-500 hover:scale-105 opacity-0 animate-fade-in-up delay-100">
+          <div class="flex justify-center mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4v6l8 4 8-4V7z" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7l8 4 8-4" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold mb-2">3D Моделиране</h3>
+          <p>Създаваме 3D модели по ваша идея или чертеж.</p>
+        </div>
+  
+        <!-- 3D Принтиране -->
+        <div class="bg-white dark:bg-gray-700 p-6 rounded-xl shadow transform transition duration-500 hover:scale-105 opacity-0 animate-fade-in-up delay-200">
+          <div class="flex justify-center mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M4 12h16M12 4v8m0 0l3-3m-3 3L9 9" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold mb-2">3D Принтиране</h3>
+          <p>Принтираме с висока прецизност и качествени материали.</p>
+        </div>
+  
+        <!-- Консултации -->
+        <div class="bg-white dark:bg-gray-700 p-6 rounded-xl shadow transform transition duration-500 hover:scale-105 opacity-0 animate-fade-in-up delay-300">
+          <div class="flex justify-center mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M13 10V3L4 14h7v7l9-11h-7z" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold mb-2">Консултации</h3>
+          <p>Помагаме с избор на технологии, материали и дизайн.</p>
+        </div>
+  
+      </div>
+    </div>
+  </section>
+  
 
-<section id="contact" class="contact">
-  <div class="container">
-    <h2>Свържи се с нас</h2>
-    <form>
-      <input type="text" placeholder="Вашето име" required />
-      <input type="email" placeholder="Имейл адрес" required />
-      <textarea placeholder="Вашето съобщение" required></textarea>
-      <button type="submit">Изпрати</button>
+
+
+<!-- Products Section -->
+<section id="products" class="py-16 bg-white dark:bg-gray-900">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-semibold text-center mb-12">Избрани продукти</h2>
+      <div class="grid md:grid-cols-3 gap-6">
+  
+        <!-- Продукт 1 -->
+        <div class="bg-gray-50 dark:bg-gray-800 p-4 rounded-xl shadow transform transition duration-500 hover:scale-105 opacity-0 animate-fade-in-up delay-100">
+          <img src="https://via.placeholder.com/300x200" alt="Продукт 1" class="rounded mb-4 h-48 w-full object-cover" />
+          <h3 class="text-xl font-bold">Продукт 1</h3>
+          <p class="mb-2">Описание на продукта...</p>
+          <div class="text-indigo-600 font-semibold mb-4">25.00 лв.</div>
+          <a href="#" class="text-indigo-600 hover:underline">Детайли</a>
+        </div>
+  
+        <!-- Продукт 2 -->
+        <div class="bg-gray-50 dark:bg-gray-800 p-4 rounded-xl shadow transform transition duration-500 hover:scale-105 opacity-0 animate-fade-in-up delay-200">
+          <img src="https://via.placeholder.com/300x200" alt="Продукт 2" class="rounded mb-4 h-48 w-full object-cover" />
+          <h3 class="text-xl font-bold">Продукт 2</h3>
+          <p class="mb-2">Описание на продукта...</p>
+          <div class="text-indigo-600 font-semibold mb-4">39.00 лв.</div>
+          <a href="#" class="text-indigo-600 hover:underline">Детайли</a>
+        </div>
+  
+        <!-- Продукт 3 -->
+        <div class="bg-gray-50 dark:bg-gray-800 p-4 rounded-xl shadow transform transition duration-500 hover:scale-105 opacity-0 animate-fade-in-up delay-300">
+          <img src="https://via.placeholder.com/300x200" alt="Продукт 3" class="rounded mb-4 h-48 w-full object-cover" />
+          <h3 class="text-xl font-bold">Продукт 3</h3>
+          <p class="mb-2">Описание на продукта...</p>
+          <div class="text-indigo-600 font-semibold mb-4">49.00 лв.</div>
+          <a href="#" class="text-indigo-600 hover:underline">Детайли</a>
+        </div>
+  
+      </div>
+    </div>
+  </section>
+
+<!-- Contact Section -->
+<section id="contact" class="bg-white dark:bg-gray-900 py-16">
+  <div class="container mx-auto px-4 max-w-2xl">
+    <h2 class="text-3xl font-semibold text-center mb-8">Свържи се с нас</h2>
+    <form class="space-y-4">
+      <input type="text" placeholder="Вашето име" class="w-full border rounded-xl px-4 py-3 dark:bg-gray-800" />
+      <input type="email" placeholder="Имейл" class="w-full border rounded-xl px-4 py-3 dark:bg-gray-800" />
+      <textarea rows="4" placeholder="Съобщение" class="w-full border rounded-xl px-4 py-3 dark:bg-gray-800"></textarea>
+      <button class="bg-indigo-600 text-white px-6 py-3 rounded-xl hover:bg-indigo-700 transition">
+        Изпрати съобщение
+      </button>
     </form>
   </div>
 </section>

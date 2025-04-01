@@ -7,8 +7,10 @@ class Order(models.Model):
     address = models.CharField("Адрес", max_length=250)
     postal_code = models.CharField("Пощенски код", max_length=20)
     city = models.CharField("Град", max_length=100)
+    phone_number = models.CharField("Телефонен номер", max_length=10)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
+    comment = models.TextField(blank=True, null=True)
 
     def __str__(self):
         return f'Поръчка #{self.id}'

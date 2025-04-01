@@ -1,14 +1,41 @@
 {% extends "accounts/profile_base.html" %}
 
+{% block title %}Моят профил | 3D Print Studio{% endblock %}
+
 {% block dashboard_content %}
-<h2>Здравей, {{ user.first_name|default:user.username }}!</h2>
+<h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-4">
+  Здравей, {{ user.first_name|default:user.username }}!
+</h2>
 
-<p><strong>Имейл:</strong> {{ user.email }}</p>
-<p><strong>Дата на регистрация:</strong> {{ user.date_joined|date:"d.m.Y" }}</p>
+<div class="space-y-4 text-gray-700 dark:text-gray-300 text-sm">
 
-<ul>
-  <li>📦 Брой качени модели: {{ model_count }}</li>
-  <li>🛒 Активни поръчки: {{ active_orders_count }}</li>
-  <li>📬 Известия: —</li>
-</ul>
+  <p><span class="font-medium">Имейл:</span> {{ user.email }}</p>
+  <p><span class="font-medium">Дата на регистрация:</span> {{ user.date_joined|date:"d.m.Y" }}</p>
+
+  <ul class="divide-y divide-gray-200 dark:divide-gray-700 pt-2">
+    <li class="py-2 flex items-center gap-2">
+      <!-- Икона -->
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-indigo-600 dark:text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v4a1 1 0 001 1h3v6h4v-6h3a1 1 0 001-1V7h-2a2 2 0 01-2-2V4H7v1a2 2 0 01-2 2H3z" />
+      </svg>
+      <span>Брой качени модели: <strong>{{ model_count }}</strong></span>
+    </li>
+
+    <li class="py-2 flex items-center gap-2">
+      <!-- Икона -->
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-indigo-600 dark:text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h18M9 3v18m6-18v18M4 21h16" />
+      </svg>
+      <span>Активни поръчки: <strong>{{ active_orders_count }}</strong></span>
+    </li>
+
+    <li class="py-2 flex items-center gap-2">
+      <!-- Икона -->
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-indigo-600 dark:text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6 6 0 00-9.33-5.003M13 17h-1" />
+      </svg>
+      <span>Известия: <em class="text-gray-400 dark:text-gray-500">—</em></span>
+    </li>
+  </ul>
+</div>
 {% endblock %}

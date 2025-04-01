@@ -1,23 +1,55 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block content %}
-<div class="profile-wrapper">
-  <h1>Вашата количка</h1>
+{% block title %}Вашата количка | 3D Print Studio{% endblock %}
 
-  {% if cart|length == 0 %}
-    <p>Количката ви е празна.</p>
-  {% else %}
-    <ul>
-      {% for item in cart %}
-        <li>
-          {{ item.product.name }} – {{ item.quantity }} бр. – {{ item.total_price }} лв.
-          <a href="{% url 'cart:cart_remove' item.product.id %}">🗑 Премахни</a>
-        </li>
-      {% endfor %}
-    </ul>
-    <p><strong>Общо:</strong> {{ cart.get_total_price }} лв.</p>
-    <a href="{% url 'checkout:order_create' %}">🛒 Завърши поръчка</a>
-  {% endif %}
-</div>
+{% block content %}
+<section class="bg-white dark:bg-gray-900 py-12">
+  <div class="container mx-auto px-4">
+    <h1 class="text-3xl font-bold text-gray-800 dark:text-white mb-6 text-center">🛒 Вашата количка</h1>
+
+    {% if cart|length == 0 %}
+      <p class="text-center text-gray-500 dark:text-gray-400">Количката ви е празна.</p>
+    {% else %}
+      <div class="overflow-x-auto">
+        <table class="min-w-full table-auto bg-white dark:bg-gray-800 shadow rounded-xl overflow-hidden">
+          <thead class="bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 text-sm uppercase">
+            <tr>
+              <th class="px-4 py-3 text-left">Продукт</th>
+              <th class="px-4 py-3 text-left">Брой</th>
+              <th class="px-4 py-3 text-left">Обща цена</th>
+              <th class="px-4 py-3"></th>
+            </tr>
+          </thead>
+          <tbody class="text-gray-700 dark:text-gray-200 text-sm">
+            {% for item in cart %}
+              <tr class="border-b dark:border-gray-700">
+                <td class="px-4 py-3 font-medium">{{ item.product.name }}</td>
+                <td class="px-4 py-3">{{ item.quantity }}</td>
+                <td class="px-4 py-3">{{ item.total_price }} лв.</td>
+                <td class="px-4 py-3 text-right">
+                  <a href="{% url 'cart:cart_remove' item.product.id %}"
+                     class="text-red-600 hover:text-red-800 dark:hover:text-red-400 transition">
+                    🗑 Премахни
+                  </a>
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Total & Checkout -->
+      <div class="mt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+        <p class="text-xl font-semibold text-gray-800 dark:text-white">
+          Общо: {{ cart.get_total_price }} лв.
+        </p>
+        <a href="{% url 'checkout:order_create' %}"
+           class="bg-indigo-600 text-white px-6 py-3 rounded-lg hover:bg-indigo-700 transition">
+          ✅ Завърши поръчка
+        </a>
+      </div>
+    {% endif %}
+  </div>
+</section>
 {% endblock %}

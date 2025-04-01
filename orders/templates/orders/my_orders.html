@@ -1,24 +1,41 @@
-{% extends "accounts/profile_base.html" %} {% block dashboard_content %}
-<h2>Моите поръчки</h2>
-{% if orders %} {% for order in orders %}
-<div style="margin-bottom: 1em">
-  <strong>{{ order.model.name }}</strong><br />
-  Статус: <span>{{ order.get_status_display }}</span><br />
-  Дата: {{ order.created_at|date:"d.m.Y H:i" }}<br />
-  {% if order.status == 'pending' %}
-  <form
-    action="{% url 'orders:cancel_order' order.id %}"
-    method="post"
-    style="display: inline"
-  >
-    {% csrf_token %}
-    <button type="submit" class="btn btn-sm btn-danger">Откажи</button>
-  </form>
-  {% endif %} {% if order.price %} Цена: {{ order.price }} лв.<br />
-  {% endif %} {% if order.comment %}
-  <em>Инструкции: {{ order.comment }}</em><br />
-  {% endif %}
-</div>
-{% endfor %} {% else %}
-<p>Нямате активни поръчки.</p>
-{% endif %} {% endblock %}
+{% extends "accounts/profile_base.html" %}
+
+{% block title %}Моите поръчки | 3D Print Studio{% endblock %}
+
+{% block dashboard_content %}
+<h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-6">Моите поръчки</h2>
+
+{% if orders %}
+  <div class="space-y-6">
+    {% for order in orders %}
+      <div class="bg-gray-50 dark:bg-gray-800 p-4 rounded-xl shadow">
+        <h3 class="text-lg font-semibold text-gray-800 dark:text-white mb-1">
+          {{ order.model.name }}
+        </h3>
+
+        <p class="text-sm text-gray-600 dark:text-gray-300">
+          Статус:
+          <span class="font-medium">{{ order.get_status_display }}</span><br>
+          Дата: {{ order.created_at|date:"d.m.Y H:i" }}<br>
+          {% if order.price %}Цена: {{ order.price }} лв.<br>{% endif %}
+          {% if order.comment %}
+            <span class="italic text-gray-500 dark:text-gray-400">Инструкции: {{ order.comment }}</span><br>
+          {% endif %}
+        </p>
+
+        {% if order.status == 'pending' %}
+          <form action="{% url 'orders:cancel_order' order.id %}" method="post" class="mt-4">
+            {% csrf_token %}
+            <button type="submit"
+                    class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 text-sm">
+              Откажи поръчка
+            </button>
+          </form>
+        {% endif %}
+      </div>
+    {% endfor %}
+  </div>
+{% else %}
+  <p class="text-gray-500 dark:text-gray-400">Нямате активни поръчки.</p>
+{% endif %}
+{% endblock %}

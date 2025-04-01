@@ -1,13 +1,15 @@
 {% extends "accounts/profile_base.html" %}
 
-{% block dashboard_content %}
-<h2 class="form-title">Редакция на профил</h2>
+{% block title %}Редакция на профил | 3D Print Studio{% endblock %}
 
-<form method="POST" enctype="multipart/form-data" class="edit-form">
+{% block dashboard_content %}
+<h2 class="text-2xl font-bold mb-6 text-gray-800 dark:text-white">Редакция на профил</h2>
+
+<form method="POST" enctype="multipart/form-data" class="space-y-6">
   {% csrf_token %}
 
   {% if form.errors %}
-    <div class="form-errors">
+    <div class="bg-red-100 text-red-800 p-3 rounded-lg text-sm space-y-1">
       {% for field in form %}
         {% for error in field.errors %}
           <p>{{ field.label }}: {{ error }}</p>
@@ -16,42 +18,60 @@
     </div>
   {% endif %}
 
-  <div class="form-group">
-    <label for="id_username">Потребителско име</label>
-    <input type="text" name="username" id="id_username" value="{{ user.username }}" required>
+  <!-- Username -->
+  <div>
+    <label for="id_username" class="block text-sm text-gray-700 dark:text-gray-300 mb-1">Потребителско име</label>
+    <input type="text" name="username" id="id_username" value="{{ user.username }}" required
+           class="w-full px-4 py-2 border rounded-lg dark:bg-gray-700 dark:text-white dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-500" />
   </div>
 
-  <div class="form-group">
-    <label for="id_email">Имейл</label>
-    <input type="email" name="email" id="id_email" value="{{ user.email }}" required>
+  <!-- Email -->
+  <div>
+    <label for="id_email" class="block text-sm text-gray-700 dark:text-gray-300 mb-1">Имейл</label>
+    <input type="email" name="email" id="id_email" value="{{ user.email }}" required
+           class="w-full px-4 py-2 border rounded-lg dark:bg-gray-700 dark:text-white dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-500" />
   </div>
 
-  <div class="form-group">
-    <label>Снимка (по избор)</label><br>
-  
-    <!-- Скрити input -->
-    <input type="file" name="avatar" id="id_avatar" style="display: none;" onchange="showFileName(this)">
-  
-    <!-- Видим бутон с икона -->
-    <label for="id_avatar" class="file-btn">
-      <i class="fa-solid fa-folder-open"></i> Избери файл
+  <!-- Аватар -->
+  <div>
+    <label class="block text-sm text-gray-700 dark:text-gray-300 mb-2">Снимка (по избор)</label>
+    
+    <!-- Скрит input -->
+    <input type="file" name="avatar" id="id_avatar" class="hidden" onchange="showFileName(this)">
+
+    <!-- Видим бутон -->
+    <label for="id_avatar" class="inline-flex items-center gap-2 px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 cursor-pointer transition">
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+      </svg>
+      Избери файл
     </label>
-  
-    <!-- Показване на избрано име -->
-    <p id="file-name" class="file-name-text">Няма избран файл</p>
+
+    <p id="file-name" class="mt-2 text-sm text-gray-500 dark:text-gray-400">Няма избран файл</p>
   </div>
 
-  <div class="form-group">
-    <label for="id_bio">Биография</label>
-    <textarea name="bio" id="id_bio" rows="4">{{ user.profile.bio }}</textarea>
+  <!-- Биография -->
+  <div>
+    <label for="id_bio" class="block text-sm text-gray-700 dark:text-gray-300 mb-1">Биография</label>
+    <textarea name="bio" id="id_bio" rows="4"
+              class="w-full px-4 py-2 border rounded-lg dark:bg-gray-700 dark:text-white dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-500">{{ user.profile.bio }}</textarea>
   </div>
 
-  <button type="submit" class="btn-save">Запази промените</button>
-  <div style="margin-top: 20px; text-align: left;">
-    <a href="{% url 'change_password' %}" class="link-change-password">Смени паролата</a>
+  <!-- Submit -->
+  <button type="submit"
+          class="w-full bg-indigo-600 text-white py-2 rounded-lg hover:bg-indigo-700 transition">
+    Запази промените
+  </button>
+
+  <!-- Смени парола -->
+  <div class="mt-6 text-left">
+    <a href="{% url 'change_password' %}" class="text-sm text-indigo-600 hover:underline">
+      Смени паролата
+    </a>
   </div>
-  
 </form>
+
+<!-- Показване на име на избран файл -->
 <script>
   function showFileName(input) {
     const fileName = input.files.length > 0 ? input.files[0].name : "Няма избран файл";

@@ -1,53 +1,63 @@
 {% extends "base.html" %}
-{% load static %}
-
 {% with hide_footer=True %}
+{% block title %}Профил | 3D Print Studio{% endblock %}
+
 {% block content %}
-<link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
-<link rel="stylesheet" href="{% static 'css/dashboard_mobile.css' %}">
-<link rel="stylesheet" href="{% static 'css/upload_model.css' %}">
+<section class="min-h-screen bg-gray-100 dark:bg-gray-900 px-4 py-8">
+  <div class="flex flex-col md:flex-row gap-6 max-w-7xl mx-auto">
 
-<div class="profile-wrapper">
-  <!-- Sidebar с responsive wrapper -->
-  <div class="responsive-sidebar-wrapper">
-    <!-- Бутон за мобилни устройства -->
-    <button class="toggle-sidebar-btn" onclick="toggleResponsiveSidebar()">☰ Меню</button>
+    <!-- Sidebar -->
+    <aside class="w-full md:w-64 bg-white dark:bg-gray-800 rounded-xl shadow p-4 md:sticky md:top-6 h-fit">
+      <!-- Mobile toggle button -->
+      <button class="md:hidden mb-4 text-sm text-indigo-600 hover:underline" onclick="document.getElementById('sidebarMenu').classList.toggle('hidden')">
+        ☰ Меню
+      </button>
 
-    <div class="sidebar" id="responsiveSidebar">
-      <img src="{{ user.profile.avatar.url }}" alt="Аватар" class="avatar">
-      <h3>{{ user.username }}</h3>
-      <a href="{% url 'profile' %}">🏠 Начало</a>
-      <a href="{% url 'models3d:my_models' %}">📁 Моите 3D модели</a>
-      <a href="{% url 'orders:my_orders'%}">🧾 Моите поръчки</a>
-      <a href="{% url 'edit_profile' %}">⚙️ Профил настройки</a>
-      <a href="{% url 'logout' %}">🚪 Изход</a>
-    </div>
-  </div> <!-- responsive-sidebar-wrapper -->
+      <div id="sidebarMenu" class="space-y-4 hidden md:block">
+        <div class="flex items-center gap-4">
+          <img src="{{ user.profile.avatar.url }}" alt="Аватар" class="w-14 h-14 rounded-full object-cover border-2 border-indigo-500">
+          <div>
+            <h3 class="text-lg font-semibold text-gray-800 dark:text-white">{{ user.username }}</h3>
+            <p class="text-sm text-gray-500 dark:text-gray-400">Моят профил</p>
+          </div>
+        </div>
 
-  <!-- Main content -->
-  <div class="main-content">
-    {% block dashboard_content %}
-    {% endblock %}
+        <nav class="flex flex-col gap-2 mt-6">
+          <a href="{% url 'profile' %}" class="px-4 py-2 rounded-lg hover:bg-indigo-100 dark:hover:bg-indigo-900 text-gray-700 dark:text-gray-200">🏠 Начало</a>
+          <a href="{% url 'models3d:my_models' %}" class="px-4 py-2 rounded-lg hover:bg-indigo-100 dark:hover:bg-indigo-900 text-gray-700 dark:text-gray-200">📁 Моите 3D модели</a>
+          <a href="{% url 'orders:my_orders' %}" class="px-4 py-2 rounded-lg hover:bg-indigo-100 dark:hover:bg-indigo-900 text-gray-700 dark:text-gray-200">🧾 Моите поръчки</a>
+          <a href="{% url 'edit_profile' %}" class="px-4 py-2 rounded-lg hover:bg-indigo-100 dark:hover:bg-indigo-900 text-gray-700 dark:text-gray-200">⚙️ Настройки на профила</a>
+          <a href="{% url 'logout' %}" class="px-4 py-2 rounded-lg hover:bg-red-100 dark:hover:bg-red-900 text-red-600 dark:text-red-400">🚪 Изход</a>
+        </nav>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 bg-white dark:bg-gray-800 rounded-xl shadow p-6">
+      {% block dashboard_content %}
+      {% endblock %}
+    </main>
   </div>
-</div>
-{% if messages %}
-  <ul class="messages">
-    {% for message in messages %}
-      <li class="alert {{ message.tags }}">{{ message }}</li>
-    {% endfor %}
-  </ul>
-{% endif %}
-<!-- JavaScript за toggle -->
+
+  <!-- Messages -->
+  {% if messages %}
+    <ul class="mt-6 space-y-2">
+      {% for message in messages %}
+        <li class="p-3 rounded-lg text-sm 
+          {% if message.tags == 'error' %}bg-red-100 text-red-800 dark:bg-red-800 dark:text-white
+          {% elif message.tags == 'success' %}bg-green-100 text-green-800 dark:bg-green-800 dark:text-white
+          {% else %}bg-blue-100 text-blue-800 dark:bg-blue-800 dark:text-white
+          {% endif %}">
+          {{ message }}
+        </li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+</section>
+
+<!-- Three.js (ако го ползваш в dashboard_content) -->
 <script src="https://cdn.jsdelivr.net/npm/three@0.154.0/build/three.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/three@0.154.0/examples/js/loaders/STLLoader.min.js"></script>
-
-
-<script>
-  function toggleResponsiveSidebar() {
-    const sidebar = document.getElementById("responsiveSidebar");
-    sidebar.classList.toggle("show-on-mobile");
-  }
-</script>
 
 {% endblock %}
 {% endwith %}
