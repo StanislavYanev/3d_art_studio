@@ -63,6 +63,8 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
+                'cart.context_processors.cart_context',
+
 
             ],
         },
@@ -161,3 +163,6 @@ HAYSTACK_CONNECTIONS = {
         "PATH": os.path.join(BASE_DIR, "whoosh_index"),
     },
 }
+# За тестове: изпраща имейли в конзолата
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+DEFAULT_FROM_EMAIL = 'noreply@3dprintstudio.bg'
