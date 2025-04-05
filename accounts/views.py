@@ -12,7 +12,7 @@ def register_view(request):
         form = RegisterForm(request.POST)
         if form.is_valid():
             user = form.save()
-            login(request, user)  # Автоматичен логин след регистрация
+            login(request, user)
             return redirect('profile')
     else:
         form = RegisterForm()

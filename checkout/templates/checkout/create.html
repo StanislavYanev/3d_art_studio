@@ -9,7 +9,7 @@
     <h1
       class="text-2xl font-bold text-text-base dark:text-text-dark mb-2 text-center"
     >
-      Последна стъпка към твоя 3D проект
+      Последна стъпка от твоята поръчка
     </h1>
     <p class="text-center text-text-muted dark:text-text-muted mb-6">
       Моля, попълни информацията по-долу, за да завършим твоята поръчка.
@@ -207,12 +207,12 @@
         <h2
           class="text-lg font-semibold text-text-base dark:text-text-dark mb-2"
         >
-          🧾 Детайли на поръчката
+          Детайли на поръчката
         </h2>
         <ul class="text-sm text-text-muted dark:text-text-muted space-y-1">
           {% for item in cart %}
           <li>
-            • {{ item.product.name }} — {{ item.quantity }} бр. —
+            {{ item.product.name }} — {{ item.quantity }} бр. —
             <strong>{{ item.total_price }} лв.</strong>
           </li>
           {% endfor %}

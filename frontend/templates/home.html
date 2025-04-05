@@ -107,50 +107,120 @@
   </div>
 </section>
 
-<!-- Products Section -->
+<style>
+  input[type=number]::-webkit-inner-spin-button,
+  input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  input[type=number] {
+    -moz-appearance: textfield;
+  }
+
+  #cart-count {
+    display: none !important;
+  }
+</style>
+
 <section id="products" class="py-16 bg-white dark:bg-gray-900">
   <div class="container mx-auto px-4">
     <h2 class="text-3xl font-semibold text-center mb-12">Избрани продукти</h2>
 
-    {% if featured_products %}
     <div class="grid md:grid-cols-3 gap-6">
       {% for product in featured_products %}
-      <div
-        class="bg-gray-50 dark:bg-gray-800 p-4 rounded-xl shadow transform transition duration-500 hover:scale-105 opacity-0 animate-fade-in-up delay-{{ forloop.counter0 }}00"
-      >
-        {% if product.image %}
-        <img
-          src="{{ product.image.url }}"
-          alt="{{ product.name }}"
-          class="rounded mb-4 h-48 w-full object-cover"
-        />
-        {% else %}
-        <div
-          class="h-48 w-full flex items-center justify-center bg-gray-200 dark:bg-gray-700 rounded mb-4 text-gray-500 dark:text-gray-400"
-        >
-          Без изображение
-        </div>
+      <div class="w-full aspect-[3/4] bg-white dark:bg-gray-700 p-2 rounded-lg shadow-sm relative">
+        {% if product.is_new %}
+          <span class="absolute top-2 right-2 bg-green-500 text-white text-xs px-2 py-1 rounded-full shadow z-10">НОВО</span>
         {% endif %}
-        <h3 class="text-xl font-bold">{{ product.name }}</h3>
-        <p class="mb-2">{{ product.description|truncatechars:80 }}</p>
-        <div class="text-indigo-600 font-semibold mb-4">
-          {{ product.price }} лв.
+
+        <div class="w-full aspect-[3/4] p-1 cursor-pointer" onclick="openModal({{ product.id }})">
+          {% if product.image %}
+            <img src="{{ product.image.url }}" alt="{{ product.name }}" class="w-full h-full object-cover rounded-md">
+          {% else %}
+            <div class="w-full h-full bg-gray-200 dark:bg-gray-600 flex items-center justify-center text-gray-400 dark:text-gray-500 text-sm rounded-md">Без изображение</div>
+          {% endif %}
         </div>
-        <a
-          href="{% url 'products:product_detail' product.pk %}"
-          class="text-indigo-600 hover:underline"
-          >Детайли</a
-        >
+
+        <div class="p-4 flex-1 flex flex-col justify-between">
+          <div>
+            <h3 class="text-lg font-semibold text-gray-800 dark:text-white mb-1">{{ product.name }}</h3>
+            <p class="text-sm text-gray-600 dark:text-gray-300 mb-2 line-clamp-2">{{ product.description|truncatechars:80 }}</p>
+            <p class="text-indigo-600 dark:text-indigo-400 font-bold text-lg mb-2 text-center">{{ product.price }} лв.</p>
+            <p class="text-sm text-center {{ product.in_stock|yesno:'text-green-500,text-red-500' }}">
+              {% if product.in_stock %} В наличност {% else %} Изчерпан {% endif %}
+            </p>
+          </div>
+
+          <form method="post" action="{% url 'cart:cart_add' product.pk %}" class="space-y-2" onsubmit="return submitCartForm(event, this)">
+            {% csrf_token %}
+            <div class="flex items-center justify-center gap-2">
+              <label for="quantity-{{ product.id }}" class="sr-only">Количество</label>
+              <div class="flex items-center border rounded-lg overflow-hidden w-28 dark:border-gray-700">
+                <button type="button" onclick="decreaseQty('quantity-{{ product.id }}')" class="px-2 text-gray-500 hover:text-indigo-600">−</button>
+                <input id="quantity-{{ product.id }}" name="quantity" type="number" min="1" value="1" class="w-12 text-center bg-transparent outline-none dark:bg-gray-800 text-sm text-gray-700 dark:text-white">
+                <button type="button" onclick="increaseQty('quantity-{{ product.id }}')" class="px-2 text-gray-500 hover:text-indigo-600">+</button>
+              </div>
+            </div>
+            <button type="submit" class="w-full bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition flex items-center justify-center gap-2">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4" />
+              </svg>
+              Добави в количката
+            </button>
+          </form>
+
+          <button type="button" onclick="openModal({{ product.id }})" class="mt-3 w-full bg-white dark:bg-gray-700 border border-indigo-500 text-indigo-600 dark:text-indigo-400 hover:bg-indigo-100 dark:hover:bg-gray-800 font-medium py-2 px-4 rounded-lg transition text-center">
+            Виж детайли
+          </button>
+        </div>
+      </div>
+
+      <!-- 🔍 МОДАЛ ЗА ПРОДУКТА -->
+      <div id="modal-{{ product.id }}" class="fixed inset-0 z-50 hidden items-center justify-center bg-black bg-opacity-70 overflow-y-auto">
+        <div class="bg-white dark:bg-gray-900 rounded-xl shadow-lg p-10 w-full max-w-5xl mx-auto relative mt-20 mb-20 transition-all transform scale-95 opacity-0" id="modal-content-{{ product.id }}">
+          <button onclick="closeModal({{ product.id }})" class="absolute top-4 right-4 text-gray-500 hover:text-red-600 text-3xl font-bold">&times;</button>
+          <div class="flex flex-col lg:flex-row gap-8">
+            <div class="flex-1">
+              {% if product.image %}
+                <img src="{{ product.image.url }}" alt="{{ product.name }}" class="w-full h-auto object-cover rounded">
+              {% else %}
+                <div class="w-full h-64 bg-gray-200 dark:bg-gray-700 flex items-center justify-center text-gray-400 dark:text-gray-500">Без изображение</div>
+              {% endif %}
+            </div>
+            <div class="flex-1">
+              <h2 class="text-3xl font-bold mb-4 text-gray-800 dark:text-white">{{ product.name }}</h2>
+              <p class="text-base text-gray-600 dark:text-gray-300 mb-4">{{ product.description }}</p>
+              <p class="text-base mb-2"><strong>Цена:</strong> {{ product.price }} лв.</p>
+              <p class="text-base mb-2">
+                <strong>Наличност:</strong>
+                <span class="{{ product.in_stock|yesno:'text-green-500,text-red-500' }}">
+                  {% if product.in_stock %} В наличност {% else %} Изчерпан {% endif %}
+                </span>
+              </p>
+              <form method="post" action="{% url 'cart:cart_add' product.pk %}" onsubmit="return submitCartForm(event, this)">
+                {% csrf_token %}
+                <div class="flex items-center gap-4 mb-4">
+                  <div class="flex items-center border rounded-lg overflow-hidden w-32 dark:border-gray-700">
+                    <button type="button" onclick="decreaseQty('modal-quantity-featured-{{ product.id }}')" class="px-2 text-gray-500 hover:text-indigo-600">−</button>
+                    <input id="modal-quantity-featured-{{ product.id }}" name="quantity" type="number" min="1" value="1" class="w-12 text-center bg-transparent outline-none dark:bg-gray-800 text-sm text-gray-700 dark:text-white">
+                    <button type="button" onclick="increaseQty('modal-quantity-featured-{{ product.id }}')" class="px-2 text-gray-500 hover:text-indigo-600">+</button>
+                  </div>
+                </div>
+                <button type="submit" class="w-full bg-indigo-600 text-white px-6 py-3 rounded-lg hover:bg-indigo-700 transition font-medium">
+                  Добави в количката
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
       </div>
       {% endfor %}
     </div>
-    {% else %}
-    <p class="text-center text-gray-500 dark:text-gray-400">
-      Няма налични продукти.
-    </p>
-    {% endif %}
   </div>
 </section>
+
+
+
 
 {% if messages %}
   <div id="toast-wrapper" class="fixed bottom-6 right-6 z-50 space-y-2">
@@ -220,15 +290,191 @@
       <p class="text-sm text-red-600">{{ form.message.errors.0 }}</p>
       {% endif %}
 
-      <button
-        type="submit"
-        class="bg-indigo-600 text-white px-6 py-3 rounded-xl hover:bg-indigo-700 transition"
-      >
-        Изпрати съобщение
-      </button>
+      <div class="flex justify-center">
+        <button
+          type="submit"
+          class="bg-indigo-600 text-white px-6 py-3 rounded-xl hover:bg-indigo-700 transition"
+        >
+          Изпрати съобщение
+        </button>
+      </div>
     </form>
 
   </div>
 </section>
+
+<script>
+  // Увеличаване/намаляване на количество
+  function increaseQty(id) {
+    const input = document.getElementById(id);
+    input.value = parseInt(input.value || 1) + 1;
+  }
+
+  function decreaseQty(id) {
+    const input = document.getElementById(id);
+    if (parseInt(input.value) > 1) {
+      input.value = parseInt(input.value) - 1;
+    }
+  }
+
+  // Отваряне на продукт модал
+  function openModal(id) {
+    const modal = document.getElementById(`modal-${id}`);
+    const content = document.getElementById(`modal-content-${id}`);
+    if (!modal || !content) return;
+
+    modal.classList.remove("hidden");
+    modal.classList.add("flex");
+
+    setTimeout(() => {
+      content.classList.remove("scale-95", "opacity-0");
+      content.classList.add("scale-100", "opacity-100");
+    }, 10);
+
+    document.body.classList.add("overflow-hidden");
+
+    // ESC за затваряне
+    function handleEsc(e) {
+      if (e.key === "Escape") {
+        closeModal(id);
+        document.removeEventListener("keydown", handleEsc);
+      }
+    }
+    document.addEventListener("keydown", handleEsc);
+  }
+
+  // Затваряне на продукт модал
+  function closeModal(id) {
+    const modal = document.getElementById(`modal-${id}`);
+    const content = document.getElementById(`modal-content-${id}`);
+    if (!modal || !content) return;
+
+    content.classList.remove("scale-100", "opacity-100");
+    content.classList.add("scale-95", "opacity-0");
+
+    setTimeout(() => {
+      modal.classList.remove("flex");
+      modal.classList.add("hidden");
+      document.body.classList.remove("overflow-hidden");
+    }, 300);
+  }
+
+  // Изпращане на форма за количка
+  async function submitCartForm(e, form) {
+    e.preventDefault();
+
+    const url = form.action;
+    const formData = new FormData(form);
+
+    // Намираме изображението за анимация
+    let image = form.closest(".p-4")?.previousElementSibling?.querySelector("img");
+    if (!image) {
+      image = form.closest(".flex-1")?.previousElementSibling?.querySelector("img");
+    }
+    flyToCart(image);
+
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        "X-Requested-With": "XMLHttpRequest"
+      },
+      body: formData
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      showToast("Продуктът е добавен в количката!");
+      if (data.cart_count !== undefined) {
+        updateCartCount(data.cart_count);
+      }
+    } else {
+      showToast("❌ Грешка при добавяне!");
+    }
+
+    return false;
+  }
+
+  // Летяща анимация
+  function flyToCart(imgElement) {
+    if (!imgElement) return;
+    const cartIcon = document.getElementById("cart-icon");
+    if (!cartIcon) return;
+
+    const imgRect = imgElement.getBoundingClientRect();
+    const cartRect = cartIcon.getBoundingClientRect();
+
+    const flyingImg = imgElement.cloneNode(true);
+    flyingImg.classList.add("flying-img");
+    flyingImg.style.position = "fixed";
+    flyingImg.style.top = imgRect.top + "px";
+    flyingImg.style.left = imgRect.left + "px";
+    flyingImg.style.width = imgRect.width + "px";
+    flyingImg.style.height = imgRect.height + "px";
+    flyingImg.style.transition = "transform 0.7s ease-in-out, opacity 0.7s ease-in-out";
+    flyingImg.style.zIndex = "1000";
+    flyingImg.style.pointerEvents = "none";
+
+    document.body.appendChild(flyingImg);
+
+    requestAnimationFrame(() => {
+      flyingImg.style.transform = `translate(${cartRect.left - imgRect.left}px, ${cartRect.top - imgRect.top}px) scale(0.1)`;
+      flyingImg.style.opacity = "0";
+    });
+
+    setTimeout(() => flyingImg.remove(), 700);
+  }
+
+  // Toast известие
+  function showToast(message) {
+    let toast = document.getElementById("toast");
+    if (!toast) {
+      toast = document.createElement("div");
+      toast.id = "toast";
+      toast.className = "fixed top-[80px] right-6 z-50 hidden bg-green-600 text-white px-6 py-4 rounded-lg shadow-lg flex items-center gap-3 opacity-0 scale-95 transition-all duration-300";
+      toast.innerHTML = `
+        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+        </svg>
+        <span id="toast-message" class="font-medium">Продуктът е добавен!</span>
+        <button onclick="hideToast()" class="ml-auto text-xl font-bold text-white hover:text-gray-200">&times;</button>
+      `;
+      document.body.appendChild(toast);
+    }
+
+    document.getElementById("toast-message").innerText = message;
+    toast.classList.remove("hidden", "opacity-0", "scale-95");
+    toast.classList.add("opacity-100", "scale-100");
+
+    setTimeout(() => hideToast(), 5000);
+  }
+
+  function hideToast() {
+    const toast = document.getElementById("toast");
+    toast.classList.remove("opacity-100", "scale-100");
+    toast.classList.add("opacity-0", "scale-95");
+    setTimeout(() => toast.classList.add("hidden"), 300);
+  }
+
+  // Обновяване броя в иконата на количката
+  function updateCartCount(count) {
+    const cartCount = document.getElementById("cart-count");
+    if (cartCount) {
+      cartCount.innerText = count;
+      cartCount.classList.remove("hidden");
+    }
+
+    const modal = document.getElementById("cart-modal");
+    if (modal?.classList.contains("flex")) {
+      fetch('{% url "cart:cart_detail" %}', {
+        headers: { 'X-Requested-With': 'XMLHttpRequest' }
+      })
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById('cart-content').innerHTML = html;
+      });
+    }
+  }
+</script>
+
 
 {% endblock %}

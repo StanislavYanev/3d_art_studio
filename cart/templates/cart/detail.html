@@ -1,12 +1,11 @@
-{% extends "base.html" %}
 {% load static %}
 
-{% block title %}Вашата количка | 3D Print Studio{% endblock %}
+{% block title %}{% endblock %}
 
 {% block content %}
 <section class="bg-white dark:bg-gray-900 py-12">
   <div class="container mx-auto px-4">
-    <h1 class="text-3xl font-bold text-gray-800 dark:text-white mb-6 text-center">🛒 Вашата количка</h1>
+    <h1 class="text-3xl font-bold text-gray-800 dark:text-white mb-6 text-center"></h1>
 
     {% if cart|length == 0 %}
       <p class="text-center text-gray-500 dark:text-gray-400">Количката ви е празна.</p>
@@ -17,7 +16,8 @@
             <tr>
               <th class="px-4 py-3 text-left">Продукт</th>
               <th class="px-4 py-3 text-left">Брой</th>
-              <th class="px-4 py-3 text-left">Обща цена</th>
+              <th class="px-4 py-3 text-right">Ед. цена</th>
+              <th class="px-4 py-3 text-right">Обща цена</th>
               <th class="px-4 py-3"></th>
             </tr>
           </thead>
@@ -25,13 +25,13 @@
             {% for item in cart %}
               <tr class="border-b dark:border-gray-700">
                 <td class="px-4 py-3 font-medium">{{ item.product.name }}</td>
-                <td class="px-4 py-3">{{ item.quantity }}</td>
-                <td class="px-4 py-3">{{ item.total_price }} лв.</td>
+                <td class="px-4 py-3 text-center">{{ item.quantity }}</td>
+                <td class="px-4 py-3 text-right">{{ item.price }}</td>
+                <td class="px-4 py-3 text-right">{{ item.total_price }} лв.</td>
                 <td class="px-4 py-3 text-right">
-                  <a href="{% url 'cart:cart_remove' item.product.id %}"
-                     class="text-red-600 hover:text-red-800 dark:hover:text-red-400 transition">
-                    🗑 Премахни
-                  </a>
+                  <button onclick="removeFromCart('{{ item.product.id }}')" class="text-red-500 hover:text-red-700">
+                    Премахни
+                  </button>
                 </td>
               </tr>
             {% endfor %}
@@ -46,7 +46,7 @@
         </p>
         <a href="{% url 'checkout:order_create' %}"
            class="bg-indigo-600 text-white px-6 py-3 rounded-lg hover:bg-indigo-700 transition">
-          ✅ Завърши поръчка
+           Завърши поръчка
         </a>
       </div>
     {% endif %}
