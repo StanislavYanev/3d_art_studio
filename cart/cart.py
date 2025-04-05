@@ -47,3 +47,6 @@ class Cart:
     def clear(self):
         self.session['cart'] = {}
         self.save()
+
+    def count(self):
+        return sum(item['quantity'] for item in self.cart.values())
