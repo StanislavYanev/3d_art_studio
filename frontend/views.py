@@ -10,7 +10,7 @@ from .models import ContactMessage
 def home(request):
     products = list(Product.objects.filter(in_stock=True))
     random.shuffle(products)
-    featured_products = products[:3]
+    featured_products = products[:4]
 
     if request.method == "POST":
         form = ContactForm(request.POST)

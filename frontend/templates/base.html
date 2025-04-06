@@ -55,7 +55,7 @@
         <img
           src="{% static 'images/logo3.png' %}"
           alt="3D Print Studio"
-          class="h-20"
+          class="h-20 md:h-12 lg:h-14 w-auto max-w-full object-contain inline-block"
         />
       </a>
         <div class="md:hidden">
@@ -294,6 +294,29 @@
       function getCSRFToken() {
         return document.querySelector('[name=csrfmiddlewaretoken]')?.value;
       }  
+      function scrollCarouselLeft(btn) {
+        const carousel = btn.nextElementSibling;
+        carousel.scrollBy({ left: -200, behavior: 'smooth' });
+      }
+    
+      function scrollCarouselRight(btn) {
+        const carousel = btn.previousElementSibling;
+        carousel.scrollBy({ left: 200, behavior: 'smooth' });
+      }
+    
+      function openLightbox(url) {
+        const modal = document.getElementById("lightbox-modal");
+        const img = document.getElementById("lightbox-img");
+        img.src = url;
+        modal.classList.remove("hidden");
+      }
+    
+      function closeLightbox() {
+        const modal = document.getElementById("lightbox-modal");
+        const img = document.getElementById("lightbox-img");
+        img.src = "";
+        modal.classList.add("hidden");
+      }
     </script>
   </body>
 </html>

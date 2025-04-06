@@ -3,6 +3,13 @@
 
 {% block title %}Каталог продукти | 3D Print Studio{% endblock %}
 
+<div id="lightbox-modal" class="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center hidden z-50">
+  <div class="max-w-4xl w-full px-4 relative">
+    <button onclick="closeLightbox()" class="absolute top-4 right-4 text-white text-3xl font-bold">&times;</button>
+    <img id="lightbox-img" src="" class="w-full h-auto object-contain rounded-lg transition-transform duration-300 transform hover:scale-110 cursor-zoom-out" onclick="closeLightbox()" />
+  </div>
+</div>
+
 {% block content %}
 <style>
   input[type=number]::-webkit-inner-spin-button,
@@ -39,7 +46,6 @@
         🛍 Каталог продукти
       </h1>
       <form method="GET" class="flex flex-wrap items-center gap-4">
-        <input type="text" name="search" placeholder="Търси продукт..." value="{{ search_query }}" class="h-11 px-3 py-2 rounded-lg border dark:bg-gray-800 dark:text-white dark:border-gray-700" />
         <select name="category" class="h-11 px-3 py-2 rounded-lg border dark:bg-gray-800 dark:text-white dark:border-gray-700">
           <option value="">Всички категории</option>
           <option value="accessories">Аксесоари</option>
@@ -62,87 +68,7 @@
     {% if products %}
       <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {% for product in products %}
-        <div class="w-full aspect-[4/3] bg-white dark:bg-gray-700 p-2 relative">
-          {% if product.is_new %}
-            <span class="absolute top-2 right-2 bg-green-500 text-white text-xs px-2 py-1 rounded-full shadow z-10">НОВО</span>
-          {% endif %}
-
-          <div class="w-full aspect-[4/3] p-2 cursor-pointer" onclick="openModal({{ product.id }})">
-            {% if product.image %}
-              <img src="{{ product.image.url }}" alt="{{ product.name }}" class="w-full h-full object-cover rounded-lg">
-            {% else %}
-              <div class="w-full h-full bg-gray-200 dark:bg-gray-600 flex items-center justify-center text-gray-400 dark:text-gray-500 text-sm rounded-lg">Без изображение</div>
-            {% endif %}
-          </div>
-
-          <div class="p-4 flex-1 flex flex-col justify-between">
-            <div>
-              <h3 class="text-lg font-semibold text-gray-800 dark:text-white mb-1">{{ product.name }}</h3>
-              <p class="text-sm text-gray-600 dark:text-gray-300 mb-2 line-clamp-2">{{ product.description|truncatechars:80 }}</p>
-              <p class="text-indigo-600 dark:text-indigo-400 font-bold text-lg mb-2 text-center">{{ product.price }} лв.</p>
-              <p class="text-sm text-center {{ product.in_stock|yesno:'text-green-500,text-red-500' }}">
-                {% if product.in_stock %} В наличност {% else %} Изчерпан {% endif %}
-              </p>
-            </div>
-            <form method="post" action="{% url 'cart:cart_add' product.pk %}" class="space-y-2" onsubmit="return submitCartForm(event, this)">
-              {% csrf_token %}
-              <div class="flex items-center justify-center gap-2">
-                <label for="quantity-{{ product.id }}" class="sr-only">Количество</label>
-                <div class="flex items-center border rounded-lg overflow-hidden w-28 dark:border-gray-700">
-                  <button type="button" onclick="decreaseQty('quantity-{{ product.id }}')" class="px-2 text-gray-500 hover:text-indigo-600">−</button>
-                  <input id="quantity-{{ product.id }}" name="quantity" type="number" min="1" value="1" class="w-12 text-center bg-transparent outline-none dark:bg-gray-800 text-sm text-gray-700 dark:text-white">
-                  <button type="button" onclick="increaseQty('quantity-{{ product.id }}')" class="px-2 text-gray-500 hover:text-indigo-600">+</button>
-                </div>
-              </div>
-              <button type="submit" class="w-full bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition flex items-center justify-center gap-2">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4" />
-                </svg>
-                Добави в количката
-              </button>
-            </form>
-            <button type="button" onclick="openModal({{ product.id }})" class="mt-3 w-full bg-white dark:bg-gray-700 border border-indigo-500 text-indigo-600 dark:text-indigo-400 hover:bg-indigo-100 dark:hover:bg-gray-800 font-medium py-2 px-4 rounded-lg transition text-center">
-              Виж детайли
-            </button>
-          </div>
-        </div>
-
-        <!-- Модал -->
-        <div id="modal-{{ product.id }}" class="fixed inset-0 z-50 hidden items-center justify-center bg-black bg-opacity-70 overflow-y-auto">
-          <div class="bg-white dark:bg-gray-900 rounded-xl shadow-lg p-10 w-full max-w-5xl mx-auto relative mt-20 mb-20 transition-all transform scale-95 opacity-0" id="modal-content-{{ product.id }}">
-            <button onclick="closeModal({{ product.id }})" class="absolute top-4 right-4 text-gray-500 hover:text-red-600 text-3xl font-bold">&times;</button>
-            <div class="flex flex-col lg:flex-row gap-8">
-              <div class="flex-1">
-                <img src="{{ product.image.url }}" alt="{{ product.name }}" class="w-full h-auto object-cover rounded">
-              </div>
-              <div class="flex-1">
-                <h2 class="text-3xl font-bold mb-4 text-gray-800 dark:text-white">{{ product.name }}</h2>
-                <p class="text-base text-gray-600 dark:text-gray-300 mb-4">{{ product.description }}</p>
-                <p class="text-base mb-2"><strong>Цена:</strong> {{ product.price }} лв.</p>
-                <p class="text-base mb-2">
-                  <strong>Наличност:</strong>
-                  <span class="{{ product.in_stock|yesno:'text-green-500,text-red-500' }}">
-                    {% if product.in_stock %} В наличност {% else %} Изчерпан {% endif %}
-                  </span>
-                </p>
-                <form method="post" action="{% url 'cart:cart_add' product.pk %}" onsubmit="return submitCartForm(event, this)">
-                  {% csrf_token %}
-                  <div class="flex items-center gap-4 mb-4">
-                    <label for="modal-quantity-{{ product.id }}" class="text-sm font-medium text-gray-700 dark:text-white">Количество:</label>
-                    <div class="flex items-center border rounded-lg overflow-hidden w-32 dark:border-gray-700">
-                      <button type="button" onclick="decreaseQty('modal-quantity-{{ product.id }}')" class="px-2 text-gray-500 hover:text-indigo-600">−</button>
-                      <input id="modal-quantity-{{ product.id }}" name="quantity" type="number" min="1" value="1" class="w-12 text-center bg-transparent outline-none dark:bg-gray-800 text-sm text-gray-700 dark:text-white">
-                      <button type="button" onclick="increaseQty('modal-quantity-{{ product.id }}')" class="px-2 text-gray-500 hover:text-indigo-600">+</button>
-                    </div>
-                  </div>
-                  <button type="submit" class="w-full bg-indigo-600 text-white px-6 py-3 rounded-lg hover:bg-indigo-700 transition font-medium">
-                    Добави в количката
-                  </button>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
+        {% include "products/product_detail.html" with product=product %}
         {% endfor %}
       </div>
     {% else %}
@@ -261,6 +187,46 @@
       flyingImg.style.opacity = "0";
     });
     setTimeout(() => flyingImg.remove(), 700);
-  }
+    }
+    function prevImage(productId) {
+      const imgs = window.productImages[productId];
+      let index = window.currentImageIndex[productId];
+  
+      index = (index - 1 + imgs.length) % imgs.length;
+      window.currentImageIndex[productId] = index;
+  
+      const imgEl = document.getElementById(`product-image-${productId}`);
+      imgEl.src = imgs[index];
+    }
+  
+    function nextImage(productId) {
+      const imgs = window.productImages[productId];
+      let index = window.currentImageIndex[productId];
+  
+      index = (index + 1) % imgs.length;
+      window.currentImageIndex[productId] = index;
+  
+      const imgEl = document.getElementById(`product-image-${productId}`);
+      imgEl.src = imgs[index];
+    }
+  
+    function openLightbox(url) {
+      // Можеш да добавиш lightbox функция тук, ако искаш да отваря голяма снимка
+      // Пример: show modal, insert url into <img>
+    }
+    document.addEventListener("click", function (event) {
+      // Проверка дали кликваме върху модалния overlay
+      const modalOverlay = event.target.closest("[id^='modal-']");
+      if (!modalOverlay) return;
+    
+      const modalContent = modalOverlay.querySelector("[id^='modal-content-']");
+      if (!modalContent) return;
+    
+      // Ако кликът е извън съдържанието на модала, затваряме
+      if (!modalContent.contains(event.target)) {
+        const productId = modalOverlay.dataset.modalId;
+        closeModal(productId);
+      }
+    });
 </script>
 {% endblock %}
