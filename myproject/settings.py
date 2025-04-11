@@ -28,6 +28,7 @@ INSTALLED_APPS = [
     "allauth.socialaccount",
     "allauth.socialaccount.providers.google",
     "allauth.socialaccount.providers.facebook",
+    'tailwind',
     "frontend",
     "accounts",
     "models3d",
@@ -35,6 +36,8 @@ INSTALLED_APPS = [
     'products',
     'cart',
     'checkout',
+    'blog' ,
+
 ]
 
 MIDDLEWARE = [
@@ -166,3 +169,6 @@ HAYSTACK_CONNECTIONS = {
 # За тестове: изпраща имейли в конзолата
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 DEFAULT_FROM_EMAIL = 'noreply@3dprintstudio.bg'
+
+
+TAILWIND_APP_NAME = 'theme'
