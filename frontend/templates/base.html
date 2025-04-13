@@ -7,6 +7,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{% block title %}3D Print Studio{% endblock %}</title>
 
+    <meta name="description" content="3D Print Studio предлага моделиране, консултации и 3D печат на световно ниво.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="{{ request.build_absolute_uri }}">
+    <link rel="icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+    
+    <!-- Open Graph (Facebook, LinkedIn) -->
+    <meta property="og:title" content="3D Print Studio">
+    <meta property="og:description" content="Професионални услуги за 3D моделиране и печат.">
+    <meta property="og:image" content="{% static 'images/og-preview.jpg' %}">
+    <meta property="og:url" content="{{ request.build_absolute_uri }}">
+    <meta property="og:type" content="website">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="3D Print Studio">
+    <meta name="twitter:description" content="Професионални услуги за 3D моделиране и печат.">
+    <meta name="twitter:image" content="{% static 'images/og-preview.jpg' %}">
+
+
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -32,6 +51,26 @@
     <script src="{% static 'js/cart.js' %}" defer></script>
     <script src="{% static 'js/ui.js' %}" defer></script>
     <script src="{% static 'js/main.js' %}" defer></script>
-
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "3D Print Studio",
+        "url": "{{ request.build_absolute_uri|slice:':-1' }}",
+        "logo": "{% static 'images/logo.svg' %}",
+        "contactPoint": {
+          "@type": "ContactPoint", # да се добави
+          "telephone": "+359 88 123 4567", # да се добави
+          "contactType": "customer service", # да се добави
+          "areaServed": "BG",
+          "availableLanguage": ["Bulgarian", "English"]
+        },
+        "sameAs": [
+          "https://www.facebook.com/3dprintstudio", # да се добави 
+          "https://www.instagram.com/3dprintstudio", # да се добави 
+          "https://www.linkedin.com/company/3dprintstudio" # да се добави 
+        ]
+      }
+      </script>
   </body>
 </html>
