@@ -1,11 +1,12 @@
-<section id="products" class="py-16 bg-white dark:bg-gray-900">
-    <div class="container mx-auto px-4">
-      <h2 class="text-3xl font-semibold text-center mb-12">Избрани продукти</h2>
-      <div class="grid sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-6">
-        {% for product in featured_products %}
-          {% include "products/product_detail.html" with product=product %}
-        {% endfor %}
-      </div>
+<section id="products" class="py-12 sm:py-16 bg-white dark:bg-gray-900">
+  <div class="max-w-screen-xl mx-auto px-4 sm:px-6">
+    <h2 class="text-2xl sm:text-3xl font-semibold text-center mb-8 sm:mb-12">
+      Избрани продукти
+    </h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      {% for product in featured_products %}
+        {% include "products/product_detail.html" with product=product %}
+      {% endfor %}
     </div>
-  </section>
-  
+  </div>
+</section>

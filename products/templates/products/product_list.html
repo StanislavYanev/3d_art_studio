@@ -3,9 +3,11 @@
 
 {% block title %}Каталог продукти | 3D Print Studio{% endblock %}
 
-<div id="lightbox-modal" class="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center hidden z-50">
-  <div class="max-w-4xl w-full px-4 relative">
-    <button onclick="closeLightbox()" class="absolute top-4 right-4 text-white text-3xl font-bold">&times;</button>
+<div id="lightbox-modal" class="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center hidden z-50 px-4">
+  <div class="max-w-4xl w-full relative">
+    <button onclick="closeLightbox()" class="absolute top-3 right-3 text-white text-2xl sm:text-3xl font-bold">
+      &times;
+    </button>
     <img id="lightbox-img" src="" class="w-full h-auto object-contain rounded-lg transition-transform duration-300 transform hover:scale-110 cursor-zoom-out" onclick="closeLightbox()" />
   </div>
 </div>
@@ -28,37 +30,37 @@
   }
 </style>
 
-<section class="bg-white dark:bg-gray-900 py-12">
-  <div class="container mx-auto px-4 relative z-0">
+<section class="bg-white dark:bg-gray-900 py-10 sm:py-12">
+  <div class="max-w-screen-xl mx-auto px-4 sm:px-6 relative z-0">
     <!-- Заглавие и филтри -->
-    <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-8 gap-4">
-      <h1 class="text-3xl font-bold text-gray-800 dark:text-white flex items-center gap-2">
+    <div class="flex flex-col gap-4 sm:gap-6 md:flex-row md:items-center md:justify-between mb-8">
+      <h1 class="text-2xl sm:text-3xl font-bold text-gray-800 dark:text-white flex items-center gap-2">
         🛍 Каталог продукти
       </h1>
-      <form method="GET" class="flex flex-wrap items-center gap-4">
-        <select name="category" class="h-11 px-3 py-2 rounded-lg border dark:bg-gray-800 dark:text-white dark:border-gray-700">
+      <form method="GET" class="flex flex-col sm:flex-row flex-wrap items-stretch gap-3 sm:gap-4">
+        <select name="category" class="min-w-[180px] h-11 px-3 py-2 rounded-lg border dark:bg-gray-800 dark:text-white dark:border-gray-700 text-sm sm:text-base">
           <option value="">Всички категории</option>
           <option value="accessories">Аксесоари</option>
           <option value="figurines">Фигурки</option>
           <option value="tools">Инструменти</option>
         </select>
-        <select name="sort" class="h-11 px-3 py-2 rounded-lg border dark:bg-gray-800 dark:text-white dark:border-gray-700">
+        <select name="sort" class="min-w-[160px] h-11 px-3 py-2 rounded-lg border dark:bg-gray-800 dark:text-white dark:border-gray-700 text-sm sm:text-base">
           <option value="">Сортирай по...</option>
           <option value="price_asc">Цена ↑</option>
           <option value="price_desc">Цена ↓</option>
           <option value="name">Име</option>
           <option value="latest">Най-нови</option>
         </select>
-        <button type="submit" class="h-11 bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition">
+        <button type="submit" class="h-11 bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition text-sm sm:text-base">
           Филтрирай
         </button>
       </form>
     </div>
 
     {% if products %}
-      <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {% for product in products %}
-        {% include "products/product_detail.html" with product=product %}
+          {% include "products/product_detail.html" with product=product %}
         {% endfor %}
       </div>
     {% else %}

@@ -1,53 +1,54 @@
-<section id="contact" class="bg-white dark:bg-gray-900 py-16">
-    <div class="container mx-auto px-4 max-w-2xl">
-      <h2 class="text-3xl font-semibold text-center mb-8">Свържи се с нас</h2>
-      <form method="post" class="space-y-4">
-        {% csrf_token %} {{ form.non_field_errors }}
-  
-        <input
-          type="text"
-          name="name"
-          placeholder="Вашето име"
-          value="{{ form.name.value|default_if_none:'' }}"
-          class="w-full border rounded-xl px-4 py-3 dark:bg-gray-800"
-          required
-        />
-        {% if form.name.errors %}
+<section id="contact" class="bg-white dark:bg-gray-900 py-12 sm:py-16">
+  <div class="max-w-xl sm:max-w-2xl mx-auto px-4 sm:px-6">
+    <h2 class="text-2xl sm:text-3xl font-semibold text-center mb-6 sm:mb-8">
+      Свържи се с нас
+    </h2>
+    <form method="post" class="space-y-4">
+      {% csrf_token %} {{ form.non_field_errors }}
+
+      <input
+        type="text"
+        name="name"
+        placeholder="Вашето име"
+        value="{{ form.name.value|default_if_none:'' }}"
+        class="w-full border border-gray-300 dark:border-gray-700 rounded-xl px-4 py-2.5 sm:py-3 text-sm sm:text-base dark:bg-gray-800 dark:text-white"
+        required
+      />
+      {% if form.name.errors %}
         <p class="text-sm text-red-600">{{ form.name.errors.0 }}</p>
-        {% endif %}
-  
-        <input
-          type="email"
-          name="email"
-          placeholder="Имейл"
-          value="{{ form.email.value|default_if_none:'' }}"
-          class="w-full border rounded-xl px-4 py-3 dark:bg-gray-800"
-          required
-        />
-        {% if form.email.errors %}
+      {% endif %}
+
+      <input
+        type="email"
+        name="email"
+        placeholder="Имейл"
+        value="{{ form.email.value|default_if_none:'' }}"
+        class="w-full border border-gray-300 dark:border-gray-700 rounded-xl px-4 py-2.5 sm:py-3 text-sm sm:text-base dark:bg-gray-800 dark:text-white"
+        required
+      />
+      {% if form.email.errors %}
         <p class="text-sm text-red-600">{{ form.email.errors.0 }}</p>
-        {% endif %}
-  
-        <textarea
-          name="message"
-          rows="4"
-          placeholder="Съобщение"
-          class="w-full border rounded-xl px-4 py-3 dark:bg-gray-800"
-          required
-        >{{ form.message.value|default_if_none:'' }}</textarea>
-        {% if form.message.errors %}
+      {% endif %}
+
+      <textarea
+        name="message"
+        rows="4"
+        placeholder="Съобщение"
+        class="w-full border border-gray-300 dark:border-gray-700 rounded-xl px-4 py-2.5 sm:py-3 text-sm sm:text-base dark:bg-gray-800 dark:text-white"
+        required
+      >{{ form.message.value|default_if_none:'' }}</textarea>
+      {% if form.message.errors %}
         <p class="text-sm text-red-600">{{ form.message.errors.0 }}</p>
-        {% endif %}
-  
-        <div class="flex justify-center">
-          <button
-            type="submit"
-            class="bg-indigo-600 text-white px-6 py-3 rounded-xl hover:bg-indigo-700 transition"
-          >
-            Изпрати съобщение
-          </button>
-        </div>
-      </form>
-    </div>
-  </section>
-  
+      {% endif %}
+
+      <div class="flex justify-center">
+        <button
+          type="submit"
+          class="bg-indigo-600 text-white px-5 sm:px-6 py-2.5 sm:py-3 rounded-xl hover:bg-indigo-700 transition text-sm sm:text-base font-medium"
+        >
+          Изпрати съобщение
+        </button>
+      </div>
+    </form>
+  </div>
+</section>

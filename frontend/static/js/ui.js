@@ -27,3 +27,4 @@ function closeLightbox() {
   img.src = "";
   modal.classList.add("hidden");
 }
+

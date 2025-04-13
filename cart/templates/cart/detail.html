@@ -1,51 +1,107 @@
 {% load static %}
+<meta name="csrf-token" content="{{ csrf_token }}">
 
 {% block title %}{% endblock %}
 
 {% block content %}
-<section class="bg-white dark:bg-gray-900 py-12">
-  <div class="container mx-auto px-4">
-    <h1 class="text-3xl font-bold text-gray-800 dark:text-white mb-6 text-center"></h1>
+<section class="bg-white dark:bg-gray-900 py-10 sm:py-12">
+  <div class="max-w-screen-xl mx-auto px-4 sm:px-6">
 
     {% if cart|length == 0 %}
       <p class="text-center text-gray-500 dark:text-gray-400">Количката ви е празна.</p>
     {% else %}
-      <div class="overflow-x-auto">
-        <table class="min-w-full table-auto bg-white dark:bg-gray-800 shadow rounded-xl overflow-hidden">
-          <thead class="bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 text-sm uppercase">
-            <tr>
-              <th class="px-4 py-3 text-left">Продукт</th>
-              <th class="px-4 py-3 text-left">Брой</th>
-              <th class="px-4 py-3 text-right">Ед. цена</th>
-              <th class="px-4 py-3 text-right">Обща цена</th>
-              <th class="px-4 py-3"></th>
-            </tr>
-          </thead>
-          <tbody class="text-gray-700 dark:text-gray-200 text-sm">
-            {% for item in cart %}
-              <tr class="border-b dark:border-gray-700">
-                <td class="px-4 py-3 font-medium">{{ item.product.name }}</td>
-                <td class="px-4 py-3 text-center">{{ item.quantity }}</td>
-                <td class="px-4 py-3 text-right">{{ item.price }}</td>
-                <td class="px-4 py-3 text-right">{{ item.total_price }} лв.</td>
-                <td class="px-4 py-3 text-right">
-                  <button onclick="removeFromCart('{{ item.product.id }}')" class="text-red-500 hover:text-red-700">
-                    Премахни
-                  </button>
-                </td>
-              </tr>
-            {% endfor %}
-          </tbody>
-        </table>
-      </div>
+      
+{% if not is_mobile %}
+<!-- DESKTOP TABLE -->
+<div class="overflow-x-auto rounded-xl shadow ring-1 ring-gray-100 dark:ring-gray-700">
+  <table class="min-w-full table-auto bg-white dark:bg-gray-800 text-sm sm:text-base">
+    <thead class="bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 uppercase">
+      <tr>
+        <th class="px-3 sm:px-4 py-3 text-left whitespace-nowrap">Продукт</th>
+        <th class="px-3 sm:px-4 py-3 text-center">Брой</th>
+        <th class="px-3 sm:px-4 py-3 text-right">Ед. цена</th>
+        <th class="px-3 sm:px-4 py-3 text-right">Общо</th>
+        <th class="px-3 sm:px-4 py-3 text-right"></th>
+      </tr>
+    </thead>
+    <tbody class="text-gray-700 dark:text-gray-200 divide-y divide-gray-200 dark:divide-gray-700">
+      {% for item in cart %}
+        <tr class="hover:bg-gray-50 dark:hover:bg-gray-700 transition">
+          <td class="px-3 sm:px-4 py-3 flex items-center gap-4">
+            <img src="" alt="{{ item.product.name }}" class="w-12 h-12 object-cover rounded-md shadow-sm">
+            <span class="font-medium">{{ item.product.name }}</span>
+          </td>
+          <td class="px-3 sm:px-4 py-3 text-center">
+<div class="flex items-center gap-2">
+  <button onclick="updateQuantity('{{ item.product.id }}', {{ item.quantity|add:'-1' }})"
+          class="px-2 py-1 bg-gray-200 rounded hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600">-</button>
 
-      <!-- Total & Checkout -->
-      <div class="mt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-        <p class="text-xl font-semibold text-gray-800 dark:text-white">
+  <span id="qty-{{ item.product.id }}" class="min-w-[2rem] text-center">{{ item.quantity }}</span>
+
+  <button onclick="updateQuantity('{{ item.product.id }}', {{ item.quantity|add:'1' }})"
+          class="px-2 py-1 bg-gray-200 rounded hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600">+</button>
+</div>
+</td>
+          <td class="px-3 sm:px-4 py-3 text-right">{{ item.price }}</td>
+          <td class="px-3 sm:px-4 py-3 text-right">{{ item.total_price }}</td>
+          <td class="px-3 sm:px-4 py-3 text-right">
+            <button onclick="removeFromCart('{{ item.product.id }}')" class="text-red-500 hover:text-red-700 flex items-center gap-1">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+              <span class="text-sm">Премахни</span>
+            </button>
+          </td>
+        </tr>
+      {% endfor %}
+      <tr class="bg-gray-50 dark:bg-gray-800 font-semibold">
+        <td colspan="3" class="px-4 py-3 text-right">Общо:</td>
+        <td class="px-4 py-3 text-right">{{ cart.get_total_price }} лв.</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+{% endif %}
+
+{% if is_mobile %}
+<!-- MOBILE CARD VIEW -->
+<div class="space-y-4 px-4 py-2">
+  {% for item in cart %}
+    <div class="flex items-center justify-between p-3 bg-white dark:bg-gray-800 rounded-xl shadow-sm">
+      <div class="flex items-center gap-3">
+        <img src="" alt="{{ item.product.name }}" class="w-14 h-14 object-cover rounded-md shadow-sm">
+        <div>
+          <p class="font-medium text-gray-800 dark:text-white">{{ item.product.name }}</p>
+          
+<div class="flex items-center gap-2">
+  <button onclick="updateQuantity('{{ item.product.id }}', {{ item.quantity|add:'-1' }})"
+          class="px-2 py-1 bg-gray-200 rounded hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600">-</button>
+
+  <span id="qty-{{ item.product.id }}" class="min-w-[2rem] text-center">{{ item.quantity }}</span>
+
+  <button onclick="updateQuantity('{{ item.product.id }}', {{ item.quantity|add:'1' }})"
+          class="px-2 py-1 bg-gray-200 rounded hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600">+</button>
+</div>
+<br><p class="text-sm text-gray-500 dark:text-gray-400"> {{ item.total_price }} лв.</p>
+        </div>
+      </div>
+      <button onclick="removeFromCart('{{ item.product.id }}')" class="text-red-500 hover:text-red-700 text-lg leading-none">
+        ✕
+      </button>
+    </div>
+  {% endfor %}
+</div>
+{% endif %}
+
+
+<!-- Total & Checkout for larger screens -->
+      <div class="mt-8 hidden sm:flex justify-between items-center gap-4">
+        <p class="text-lg sm:text-xl font-semibold text-gray-800 dark:text-white">
           Общо: {{ cart.get_total_price }} лв.
         </p>
         <a href="{% url 'checkout:order_create' %}"
-           class="bg-indigo-600 text-white px-6 py-3 rounded-lg hover:bg-indigo-700 transition">
+           class="bg-indigo-600 text-white px-5 sm:px-6 py-2.5 sm:py-3 rounded-lg hover:bg-indigo-700 transition text-sm sm:text-base">
            Завърши поръчка
         </a>
       </div>
@@ -53,4 +109,37 @@
   </div>
 </section>
 
+<!-- Sticky checkout bar for mobile -->
+{% if cart|length > 0 %}
+  <div class="fixed bottom-0 inset-x-0 bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700 p-4 sm:hidden z-50">
+    <a href="{% url 'checkout:order_create' %}"
+       class="block w-full text-center bg-indigo-600 text-white py-3 rounded-xl font-semibold hover:bg-indigo-700 transition">
+      Завърши поръчка – {{ cart.get_total_price }} лв.
+    </a>
+  </div>
+{% endif %}
+{% comment %} <script>
+  function updateQuantity(productId, newQty) {
+    if (newQty < 1) return;
+
+    fetch(`/cart/update/${productId}/`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-CSRFToken": getCSRFToken()
+      },
+      body: JSON.stringify({ quantity: newQty })
+    })
+    .then(response => {
+      if (response.ok) {
+        window.location.reload();
+      }
+    });
+  }
+
+  function getCSRFToken() {
+    return document.querySelector('[name=csrf-token]').content;
+  }
+</script> {% endcomment %}
 {% endblock %}
+

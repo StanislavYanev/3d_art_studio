@@ -1,104 +1,101 @@
 {% load static %}
-<header class="bg-white dark:bg-gray-800 shadow-md sticky top-0 z-50">
-    <div class="container mx-auto px-4 py-4 flex items-center justify-between">
-      <a href="{% url 'home:home' %}" class="block">
-        <img
-          src="{% static 'images/logo3.png' %}"
-          alt="3D Print Studio"
-          class="h-20 md:h-12 lg:h-14 w-auto max-w-full object-contain inline-block"
-        />
-      </a>
-      <div class="md:hidden">
-        <button
-          id="menu-toggle"
-          class="text-gray-600 dark:text-gray-300 focus:outline-none"
-        >
-          <svg
-            class="w-6 h-6"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M4 6h16M4 12h16M4 18h16"
-            />
-          </svg>
-        </button>
-      </div>
-      <nav class="hidden md:flex space-x-6 items-center" id="main-menu">
-        <a href="{% url 'home:home' %}" class="hover:text-indigo-600 dark:hover:text-indigo-400">Начало</a>
-        <a href="{% url 'home:home' %}#services" class="hover:text-indigo-600 dark:hover:text-indigo-400">Услуги</a>
-        <a href="{% url 'products:product_list' %}" class="hover:text-indigo-600 dark:hover:text-indigo-400">Продукти</a>
-        <a href="{% url 'home:home' %}#contact" class="hover:text-indigo-600 dark:hover:text-indigo-400">Контакт</a>
-  
-        {% if user.is_authenticated %}
-          <a href="{% url 'profile' %}" class="hover:text-indigo-600 dark:hover:text-indigo-400">Профил</a>
-        {% else %}
-          <a href="{% url 'login' %}" class="hover:text-indigo-600 dark:hover:text-indigo-400">Вход</a>
-          <a href="{% url 'register' %}" class="hover:text-indigo-600 dark:hover:text-indigo-400">Регистрация</a>
-        {% endif %}
-  
-        <button
-          id="open-cart"
-          class="relative hover:text-indigo-600 dark:hover:text-indigo-400"
-          title="Количка"
-        >
-          <svg
-            id="cart-icon"
-            xmlns="http://www.w3.org/2000/svg"
-            class="h-6 w-6 inline"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-1.6 8h11.2L17 13M9 21a1 1 0 11-2 0 1 1 0 012 0zm8 0a1 1 0 11-2 0 1 1 0 012 0z"
-            />
-          </svg>
-          <span id="cart-count" class="hidden"></span>
-        </button>
-  
-        <button
-          id="theme-toggle"
-          class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition"
-        >
-          <svg
-            id="icon-sun"
-            xmlns="http://www.w3.org/2000/svg"
-            class="h-6 w-6 hidden"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M12 3v1m0 16v1m8.66-8.66h-1M4.34 12H3.33m14.14 6.36l-.7-.7M6.22 6.22l-.7-.7m0 12.96l.7-.7m12.96-12.96l.7.7M12 8a4 4 0 100 8 4 4 0 000-8z"
-            />
-          </svg>
-          <svg
-            id="icon-moon"
-            xmlns="http://www.w3.org/2000/svg"
-            class="h-6 w-6 hidden"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M21 12.79A9 9 0 1111.21 3a7 7 0 009.79 9.79z"
-            />
-          </svg>
-        </button>
-      </nav>
-    </div>
-  </header>
+
+   <header class="bg-white dark:bg-gray-800 shadow-md sticky top-0 z-50">
+     <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+       <!-- Logo -->
+       <a href="{% url 'home:home' %}" class="flex-shrink-0">
+         <img
+           src="{% static 'images/logo3.png' %}"
+           alt="3D Print Studio"
+           class="h-10 sm:h-12 md:h-14 lg:h-16 w-auto object-contain"
+         />
+       </a>
+   
+       <!-- Mobile menu button -->
+       <div class="md:hidden">
+         <button id="menu-toggle" class="text-gray-600 dark:text-gray-300">
+           <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+           </svg>
+         </button>
+       </div>
+   
+       <!-- Navigation for desktop -->
+       <nav id="main-menu" class="hidden md:flex space-x-4 lg:space-x-6 items-center">
+         <a href="{% url 'home:home' %}" class="text-sm lg:text-base hover:text-indigo-600 dark:hover:text-indigo-400">Начало</a>
+         <a href="{% url 'home:home' %}#services" class="text-sm lg:text-base hover:text-indigo-600 dark:hover:text-indigo-400">Услуги</a>
+         <a href="{% url 'products:product_list' %}" class="text-sm lg:text-base hover:text-indigo-600 dark:hover:text-indigo-400">Продукти</a>
+         <a href="{% url 'home:home' %}#contact" class="text-sm lg:text-base hover:text-indigo-600 dark:hover:text-indigo-400">Контакт</a>
+         <a href="{% url 'blog:article_list' %}" class="text-sm lg:text-base hover:text-indigo-600 dark:hover:text-indigo-400">Блог</a>
+         {% if user.is_authenticated %}
+           <a href="{% url 'profile' %}" class="text-sm lg:text-base hover:text-indigo-600 dark:hover:text-indigo-400">Профил</a>
+         {% else %}
+           <a href="{% url 'login' %}" class="text-sm lg:text-base hover:text-indigo-600 dark:hover:text-indigo-400">Вход</a>
+           <a href="{% url 'register' %}" class="text-sm lg:text-base hover:text-indigo-600 dark:hover:text-indigo-400">Регистрация</a>
+         {% endif %}
+         <button id="open-cart" class="relative hover:text-indigo-600 dark:hover:text-indigo-400" title="Количка">
+           <svg id="cart-icon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-1.6 8h11.2L17 13M9 21a1 1 0 11-2 0 1 1 0 012 0zm8 0a1 1 0 11-2 0 1 1 0 012 0z" />
+           </svg>
+           <span id="cart-count" class="hidden"></span>
+         </button>
+         <button id="theme-toggle" class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition">
+           <svg id="icon-sun" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m8.66-8.66h-1M4.34 12H3.33m14.14 6.36l-.7-.7M6.22 6.22l-.7-.7m0 12.96l.7-.7m12.96-12.96l.7.7M12 8a4 4 0 100 8 4 4 0 000-8z" />
+           </svg>
+           <svg id="icon-moon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12.79A9 9 0 1111.21 3a7 7 0 009.79 9.79z" />
+           </svg>
+         </button>
+       </nav>
+     </div>
+   
+     <!-- Mobile menu -->
+     <div id="mobile-menu" class="md:hidden hidden flex flex-col items-center text-center space-y-2 px-4 pb-4">
+       <a href="{% url 'home:home' %}" class="block text-sm py-2 hover:text-indigo-600 dark:hover:text-indigo-400">Начало</a>
+       <a href="{% url 'home:home' %}#services" class="block text-sm py-2 hover:text-indigo-600 dark:hover:text-indigo-400">Услуги</a>
+       <a href="{% url 'products:product_list' %}" class="block text-sm py-2 hover:text-indigo-600 dark:hover:text-indigo-400">Продукти</a>
+       <a href="{% url 'home:home' %}#contact" class="block text-sm py-2 hover:text-indigo-600 dark:hover:text-indigo-400">Контакт</a>
+       <a href="{% url 'blog:article_list' %}" class="block text-sm py-2 hover:text-indigo-600 dark:hover:text-indigo-400">Блог</a>
+       {% if user.is_authenticated %}
+         <a href="{% url 'profile' %}" class="block text-sm py-2 hover:text-indigo-600 dark:hover:text-indigo-400">Профил</a>
+       {% else %}
+         <a href="{% url 'login' %}" class="block text-sm py-2 hover:text-indigo-600 dark:hover:text-indigo-400">Вход</a>
+         <a href="{% url 'register' %}" class="block text-sm py-2 hover:text-indigo-600 dark:hover:text-indigo-400">Регистрация</a>
+       {% endif %}
+       <button onclick="document.getElementById('open-cart')?.click()" class="block text-sm py-2 hover:text-indigo-600 dark:hover:text-indigo-400">Количка</button>
+       <button onclick="document.getElementById('theme-toggle')?.click()" class="block text-sm py-2 hover:text-indigo-600 dark:hover:text-indigo-400"> Смяна на тема</button>
+     </div>
+   </header>
+
+   
+<script>
+  const toggleBtn = document.getElementById('menu-toggle');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const iconPath = document.getElementById('menu-path');
+
+  function toggleMenu() {
+    const isHidden = mobileMenu.classList.contains('hidden');
+    mobileMenu.classList.toggle('hidden');
+    toggleBtn.setAttribute('aria-expanded', isHidden ? 'true' : 'false');
+    iconPath.setAttribute('d',
+      isHidden
+        ? 'M6 18L18 6M6 6l12 12'
+        : 'M4 6h16M4 12h16M4 18h16'
+    );
+  }
+
+  toggleBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    toggleMenu();
+  });
+
+  document.addEventListener('click', (e) => {
+    const isClickInside = mobileMenu.contains(e.target) || toggleBtn.contains(e.target);
+    if (!isClickInside && !mobileMenu.classList.contains('hidden')) {
+      mobileMenu.classList.add('hidden');
+      toggleBtn.setAttribute('aria-expanded', 'false');
+      iconPath.setAttribute('d', 'M4 6h16M4 12h16M4 18h16');
+    }
+  });
+</script>

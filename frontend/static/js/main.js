@@ -244,17 +244,35 @@ function flyToCart(imgElement) {
     const modalContent = modalOverlay.querySelector("[id^='modal-content-']");
     if (!modalContent) return;
   
-    // Ако кликът е извън съдържанието на модала, затваряме
-    if (!modalContent.contains(event.target)) {
-      const productId = modalOverlay.dataset.modalId;
-      closeModal(productId);
-    }
-  });
 
   document.getElementById('menu-toggle').addEventListener('click', function () {
     const menu = document.getElementById('mobile-menu');
     menu.classList.toggle('hidden');
   });
+
+
+  
+  document.addEventListener("DOMContentLoaded", function () {
+    const toggleButton = document.getElementById("menu-toggle");
+    const mobileMenu = document.getElementById("mobile-menu");
+
+    if (!toggleButton || !mobileMenu) return;
+
+    toggleButton.addEventListener("click", function (e) {
+      e.stopPropagation();
+      mobileMenu.classList.toggle("hidden");
+    });
+
+    document.addEventListener("click", function (e) {
+      const isClickInside = mobileMenu.contains(e.target) || toggleButton.contains(e.target);
+      if (!isClickInside) {
+        mobileMenu.classList.add("hidden");
+      }
+    });
+  });
+
+  
+
 
 
   

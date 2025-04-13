@@ -1,4 +1,6 @@
-    <!-- Toast известие -->
+{% load static %}
+   
+<!-- Toast известие -->
     <div id="toast" class="fixed top-[80px] right-6 z-50 hidden bg-green-600 text-white px-6 py-4 rounded-lg shadow-lg flex items-center gap-3 opacity-0 scale-95 transition-all duration-300">
       <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
@@ -134,7 +136,9 @@
   </div>
 </div>
 
-<script>
+<script src="{% static 'js/product.js' %}" defer></script> 
+
+{% comment %} <script>
   function increaseQty(id) {
     const input = document.getElementById(id);
     input.value = parseInt(input.value || 1) + 1;
@@ -285,4 +289,7 @@
         closeModal(productId);
       }
     });
-</script>
+</script> {% endcomment %}
+
+
+
