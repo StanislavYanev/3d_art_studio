@@ -1,0 +1,48 @@
+<div id="cookie-banner" class="fixed bottom-6 left-1/2 transform -translate-x-1/2 z-50 bg-white dark:bg-gray-800 text-sm text-gray-800 dark:text-white border border-gray-300 dark:border-gray-600 rounded-lg shadow-lg p-5 max-w-lg w-full hidden">
+    <div class="flex items-start gap-4">
+      <div class="flex-shrink-0">
+        <svg class="w-6 h-6 text-indigo-600 dark:text-indigo-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 3a6.75 6.75 0 00-6.32 4.5A6.75 6.75 0 009.75 21a6.75 6.75 0 006.75-6.75c0-1.383-.47-2.651-1.25-3.675M15 9h.008v.008H15V9z" />
+        </svg>
+      </div>
+      <div class="flex-1">
+        <p class="mb-2">Използваме бисквитки, за да подобрим Вашето преживяване. Можеш да приемеш всички или само най-необходимите.</p>
+        <div class="flex gap-2 mt-2">
+          <button onclick="acceptAllCookies()" class="px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700 text-sm">Приемам всички</button>
+          <button onclick="acceptNecessaryCookies()" class="px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white rounded hover:bg-gray-300 dark:hover:bg-gray-600 text-sm">Само необходими</button>
+          <a href="{% url 'home:privacy_policy' %}" class="underline text-sm text-indigo-600 dark:text-indigo-400 ml-auto">Политика</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function acceptAllCookies() {
+      localStorage.setItem("cookieConsent", "all");
+      enableAnalytics();
+      document.getElementById("cookie-banner").classList.add("hidden");
+    }
+  
+    function acceptNecessaryCookies() {
+      localStorage.setItem("cookieConsent", "necessary");
+      document.getElementById("cookie-banner").classList.add("hidden");
+    }
+  
+    function enableAnalytics() {
+      // Инициализира Google Analytics само при съгласие
+      if (typeof gtag === 'function') {
+        gtag('consent', 'update', {
+          analytics_storage: 'granted'
+        });
+      }
+    }
+  
+    window.addEventListener("DOMContentLoaded", () => {
+      const consent = localStorage.getItem("cookieConsent");
+      if (!consent) {
+        document.getElementById("cookie-banner").classList.remove("hidden");
+      } else if (consent === "all") {
+        enableAnalytics();
+      }
+    });
+  </script>
