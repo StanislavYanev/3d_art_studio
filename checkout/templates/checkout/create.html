@@ -1,245 +1,179 @@
-{% extends "base.html" %} {% load static %} {% block title %}Потвърди и завърши
-поръчката | 3D Print Studio{% endblock %} {% block content %}
-<section
-  class="flex justify-center items-start min-h-[80vh] bg-surface dark:bg-surface-dark px-4 py-12"
->
-  <div
-    class="w-full max-w-2xl bg-surface dark:bg-surface-dark p-8 rounded-xl shadow-md border border-border dark:border-border-dark"
-  >
-    <h1
-      class="text-2xl font-bold text-text-base dark:text-text-dark mb-2 text-center"
-    >
-      Последна стъпка от твоята поръчка
-    </h1>
-    <p class="text-center text-text-muted dark:text-text-muted mb-6">
-      Моля, попълни информацията по-долу, за да завършим твоята поръчка.
-    </p>
+{% extends "base.html" %}
 
-    <form method="post" class="space-y-6">
-      {% csrf_token %}
-
-      <!-- Form fields -->
-      <div class="space-y-6">
-        <!-- Име -->
-        <div>
-          <label
-            for="id_first_name"
-            class="block text-sm text-text-base dark:text-text-dark mb-1"
-          >
-            Име
-          </label>
-          <input
-            type="text"
-            name="first_name"
-            id="id_first_name"
-            value="{{ form.first_name.value|default_if_none:'' }}"
-            class="w-full px-4 py-3 rounded-xl border border-border dark:border-border-dark bg-white dark:bg-gray-800 text-text-base dark:text-text-dark"
-            placeholder="Въведи име"
-            required
-          />
-          {% if form.first_name.errors %}
-          <p class="text-sm text-red-600 mt-1">
-            {{ form.first_name.errors.0 }}
-          </p>
-          {% endif %}
+  {% block title %}Поръчка | 3D Print Studio{% endblock %}
+  
+  {% block content %}
+  <section class="py-16 px-4 max-w-3xl mx-auto">
+    <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-8 space-y-6 border border-gray-200 dark:border-gray-700">
+      <h1 class="text-3xl font-bold text-gray-900 dark:text-white text-center">Завършване на поръчка</h1>
+  
+      <form method="post" novalidate class="space-y-5">
+        {% csrf_token %}
+  
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label for="id_first_name" class="form-label">Име</label>
+            {{ form.first_name }}
+            {% if form.first_name.errors %}
+            <div class="text-red-500 text-sm mt-1">{{ form.first_name.errors.0 }}</div>
+            {% endif %}
+          </div>
+          <div>
+            <label for="id_last_name" class="form-label">Фамилия</label>
+            {{ form.last_name }}
+            {% if form.last_name.errors %}
+            <div class="text-red-500 text-sm mt-1">{{ form.last_name.errors.0 }}</div>
+            {% endif %}
+          </div>
+          <div>
+            <label for="id_email" class="form-label">Имейл</label>
+            {{ form.email }}
+            {% if form.email.errors %}
+            <div class="text-red-500 text-sm mt-1">{{ form.email.errors.0 }}</div>
+            {% endif %}
+          </div>
+          <div>
+            <label for="id_phone_number" class="form-label">Телефон</label>
+            {{ form.phone_number }}
+            {% if form.phone_number.errors %}
+            <div class="text-red-500 text-sm mt-1">{{ form.phone_number.errors.0 }}</div>
+            {% endif %}
+          </div>
+          <div class="sm:col-span-2">
+            <label for="id_address" class="form-label">Адрес</label>
+            {{ form.address }}
+            {% if form.address.errors %}
+            <div class="text-red-500 text-sm mt-1">{{ form.address.errors.0 }}</div>
+            {% endif %}
+          </div>
+          <div>
+            <label for="id_city" class="form-label">Град</label>
+            {{ form.city }}
+            {% if form.city.errors %}
+            <div class="text-red-500 text-sm mt-1">{{ form.city.errors.0 }}</div>
+            {% endif %}
+          </div>
+          <div>
+            <label for="id_courier" class="form-label">Куриер</label>
+            {{ form.courier }}
+            {% if form.courier.errors %}
+            <div class="text-red-500 text-sm mt-1">{{ form.courier.errors.0 }}</div>
+            {% endif %}
+          </div>
+          <div>
+            <label for="id_delivery_type" class="form-label">Тип доставка</label>
+            {{ form.delivery_type }}
+          </div>
+          <div class="sm:col-span-2" id="delivery-details-group">
+            <label for="id_delivery_details" class="form-label">Адрес/офис</label>
+            {{ form.delivery_details }}
+            {% if form.delivery_details.errors %}
+            <div class="text-red-500 text-sm mt-1">{{ form.delivery_details.errors.0 }}</div>
+            {% endif %}
+          </div>
+          <div class="sm:col-span-2">
+            <label for="id_comment" class="form-label">Бележка към поръчката</label>
+            {{ form.comment }}
+          </div>
         </div>
 
-        <!-- Фамилия -->
-        <div>
-          <label
-            for="id_last_name"
-            class="block text-sm text-text-base dark:text-text-dark mb-1"
-          >
-            Фамилия
+        <div class="mt-6 bg-gray-50 dark:bg-gray-900 p-4 rounded-xl border border-gray-200 dark:border-gray-700 flex items-center gap-3">
+          <input type="checkbox" id="id_accept_terms" name="accept_terms"
+                 class="w-5 h-5 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded dark:bg-gray-800 dark:border-gray-600 dark:text-indigo-400"
+                 required>
+        
+          <label for="id_accept_terms" class="text-sm leading-relaxed text-gray-700 dark:text-gray-300">
+            Съгласен съм с
+            <a href="{% url 'home:terms' %}" target="_blank"
+               class="underline text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300 transition">
+              Общите условия
+            </a> и потвърждавам, че съм запознат с тях.
           </label>
-          <input
-            type="text"
-            name="last_name"
-            id="id_last_name"
-            value="{{ form.last_name.value|default_if_none:'' }}"
-            class="w-full px-4 py-3 rounded-xl border border-border dark:border-border-dark bg-white dark:bg-gray-800 text-text-base dark:text-text-dark"
-            placeholder="Въведи фамилия"
-            required
-          />
-          {% if form.last_name.errors %}
-          <p class="text-sm text-red-600 mt-1">{{ form.last_name.errors.0 }}</p>
-          {% endif %}
+          {% if form.accept_terms.errors %}
+          <div class="text-red-500 text-sm mt-1">{{ form.accept_terms.errors.0 }}</div>
+        {% endif %}
         </div>
 
-        <!-- Имейл -->
-        <div>
-          <label
-            for="id_email"
-            class="block text-sm text-text-base dark:text-text-dark mb-1"
-          >
-            Имейл
-          </label>
-          <input
-            type="email"
-            name="email"
-            id="id_email"
-            value="{{ form.email.value|default_if_none:'' }}"
-            class="w-full px-4 py-3 rounded-xl border border-border dark:border-border-dark bg-white dark:bg-gray-800 text-text-base dark:text-text-dark"
-            placeholder="Въведи имейл"
-            required
-          />
-          {% if form.email.errors %}
-          <p class="text-sm text-red-600 mt-1">{{ form.email.errors.0 }}</p>
-          {% endif %}
+
+        <div class="text-center">
+          <button type="submit" class="mt-6 px-6 py-3 bg-indigo-600 text-white font-medium rounded-xl hover:bg-indigo-700 shadow transition">
+            Потвърди поръчката
+          </button>
         </div>
+      </form>
+    </div>
+  </section>
+  
+  <style>
+    .form-label {
+      color: #374151;
+  
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      color: #374151;
+    }
+  
+    input, select, textarea {
+      width: 100%;
+      padding: 0.6rem;
+      border-radius: 0.5rem;
+      border: 1px solid #d1d5db;
+      background-color: #f9fafb;
+      color: #111827;
+      font-size: 1rem;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+  
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: #6366f1;
+      box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+      background-color: #fff;
+    }
+  
+    .dark .form-label {
+      color: #e5e7eb;
+  }
+  
+  .dark input, .dark select, .dark textarea {
+      background-color: #1f2937;
+      color: #f3f4f6;
+      border-color: #374151;
+    }
+  
+    .dark input:focus, .dark select:focus, .dark textarea:focus {
+      border-color: #6366f1;
+      box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.3);
+    }
+  </style>
+  
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const typeField = document.getElementById("id_delivery_type");
+      const detailsLabel = document.querySelector("label[for='id_delivery_details']");
+      const detailsInput = document.getElementById("id_delivery_details");
+  
+      function updateLabel() {
+        if (typeField.value === "office") {
+          detailsLabel.innerText = "Офис за доставка";
+          detailsInput.placeholder = "Офис Еконт / Speedy...";
+        } else {
+          detailsLabel.innerText = "Адрес за доставка";
+          detailsInput.placeholder = "ул. Примерна 1, вх. А...";
+        }
+      }
+  
+      if (typeField) {
+        typeField.addEventListener("change", updateLabel);
+        updateLabel();
+      }
+    });
+  </script>
+  {% endblock %}
 
-        <!-- Адрес за доставка -->
-        <div>
-          <label
-            for="id_address"
-            class="block text-sm text-text-base dark:text-text-dark mb-1"
-          >
-            Адрес за доставка
-          </label>
-          <input
-            type="text"
-            name="address"
-            id="id_address"
-            value="{{ form.address.value|default_if_none:'' }}"
-            class="w-full px-4 py-3 rounded-xl border border-border dark:border-border-dark bg-white dark:bg-gray-800 text-text-base dark:text-text-dark"
-            placeholder="Въведи адрес"
-            required
-          />
-          {% if form.address.errors %}
-          <p class="text-sm text-red-600 mt-1">{{ form.address.errors.0 }}</p>
-          {% endif %}
-        </div>
 
-        <!-- Телефон -->
-        <div>
-          <label
-            for="id_phone_number"
-            class="block text-sm text-text-base dark:text-text-dark mb-1"
-          >
-            Телефон
-          </label>
-          <input
-            type="text"
-            name="phone_number"
-            id="id_phone_number"
-            value="{{ form.phone_number.value|default_if_none:'' }}"
-            class="w-full px-4 py-3 rounded-xl border border-border dark:border-border-dark bg-white dark:bg-gray-800 text-text-base dark:text-text-dark"
-            placeholder="Въведи телефонен номер"
-            required
-          />
-          {% if form.phone_number.errors %}
-          <p class="text-sm text-red-600 mt-1">
-            {{ form.phone_number.errors.0 }}
-          </p>
-          {% endif %}
-        </div>
-        <!-- Пощенски код -->
-        <div>
-          <label
-            for="id_postal_code"
-            class="block text-sm text-text-base dark:text-text-dark mb-1"
-          >
-            Пощенски код
-          </label>
-          <input
-            type="text"
-            name="postal_code"
-            id="id_postal_code"
-            value="{{ form.postal_code.value|default_if_none:'' }}"
-            class="w-full px-4 py-3 rounded-xl border border-border dark:border-border-dark bg-white dark:bg-gray-800 text-text-base dark:text-text-dark"
-            placeholder="Въведи пощенски код"
-            required
-          />
-          {% if form.postal_code.errors %}
-          <p class="text-sm text-red-600 mt-1">
-            {{ form.postal_code.errors.0 }}
-          </p>
-          {% endif %}
-        </div>
 
-        <!-- Град -->
-        <div>
-          <label
-            for="id_city"
-            class="block text-sm text-text-base dark:text-text-dark mb-1"
-          >
-            Град
-          </label>
-          <input
-            type="text"
-            name="city"
-            id="id_city"
-            value="{{ form.city.value|default_if_none:'' }}"
-            class="w-full px-4 py-3 rounded-xl border border-border dark:border-border-dark bg-white dark:bg-gray-800 text-text-base dark:text-text-dark"
-            placeholder="Въведи град"
-            required
-          />
-          {% if form.city.errors %}
-          <p class="text-sm text-red-600 mt-1">{{ form.city.errors.0 }}</p>
-          {% endif %}
-        </div>
-        <!-- Коментар (по избор) -->
-        <div>
-          <label
-            for="id_comment"
-            class="block text-sm text-text-base dark:text-text-dark mb-1"
-          >
-            Бележка към поръчката (по избор)
-          </label>
-          <textarea
-            name="comment"
-            id="id_comment"
-            rows="4"
-            class="w-full px-4 py-3 rounded-xl border border-border dark:border-border-dark bg-white dark:bg-gray-800 text-text-base dark:text-text-dark"
-            placeholder="Въведи бележки ако има нужда"
-          >
-{{ form.comment.value|default_if_none:'' }}</textarea
-          >
 
-          {% if form.comment.errors %}
-          <p class="text-sm text-red-600 mt-1">{{ form.comment.errors.0 }}</p>
-          {% endif %}
-        </div>
-      </div>
 
-      <!-- Количка -->
-      <div class="pt-4 border-t border-border dark:border-border-dark">
-        <h2
-          class="text-lg font-semibold text-text-base dark:text-text-dark mb-2"
-        >
-          Детайли на поръчката
-        </h2>
-        <ul class="text-sm text-text-muted dark:text-text-muted space-y-1">
-          {% for item in cart %}
-          <li>
-            {{ item.product.name }} — {{ item.quantity }} бр. —
-            <strong>{{ item.total_price }} лв.</strong>
-          </li>
-          {% endfor %}
-        </ul>
-        <p
-          class="mt-4 font-semibold text-accent dark:text-accent-dark text-right"
-        >
-          Обща сума: {{ cart.get_total_price }} лв.
-        </p>
-      </div>
 
-      {% comment %}
-      <button
-        type="submit"
-        class="w-full bg-primary hover:bg-primary-hover text-white py-3 rounded-lg transition text-lg font-medium"
-      >
-        ✅ Потвърди и създай поръчка
-      </button>
-      {% endcomment %}
-
-      <button
-        type="submit"
-        class="w-full bg-indigo-600 text-white py-2 rounded-lg hover:bg-indigo-700 transition"
-      >
-        Потвърди и създай поръчка
-      </button>
-    </form>
-  </div>
-</section>
-{% endblock %}
