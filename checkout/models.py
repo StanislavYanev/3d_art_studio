@@ -25,9 +25,9 @@ class Order(models.Model):
     courier = models.CharField("Куриер", max_length=20, choices=COURIER_CHOICES, default='speedy')
     delivery_type = models.CharField("Тип доставка", max_length=20, choices=DELIVERY_TYPE_CHOICES, default='office')
     delivery_details = models.CharField("Офис или адрес", max_length=255)
+    is_shipped = models.BooleanField(default=False, verbose_name="Изпратена доставка")
+    is_delivered = models.BooleanField(default=False, verbose_name="Получена доставка")
     
-
-
     def __str__(self):
         return f"Поръчка #{self.id}"
 

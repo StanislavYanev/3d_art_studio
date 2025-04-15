@@ -1,0 +1,113 @@
+
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9fafb;
+      color: #1f2937;
+      padding: 20px;
+    }
+    .container {
+      background-color: #ffffff;
+      border-radius: 12px;
+      max-width: 600px;
+      margin: auto;
+      padding: 30px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    }
+    .header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .header img {
+      max-width: 120px;
+      margin-bottom: 10px;
+    }
+    .title {
+      font-size: 24px;
+      font-weight: bold;
+      color: #4f46e5;
+    }
+    .content {
+      font-size: 16px;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+    .products-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    .products-table th,
+    .products-table td {
+      border: 1px solid #e5e7eb;
+      padding: 10px;
+      text-align: left;
+    }
+    .products-table th {
+      background-color: #f3f4f6;
+      color: #374151;
+    }
+    .footer {
+      text-align: center;
+      font-size: 14px;
+      color: #6b7280;
+      margin-top: 30px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <img src="{{ logo_url }}" alt="3D Print Studio Logo"/>
+      <div class="title">Благодарим Ви за поръчката!</div>
+    </div>
+    <div class="content">
+      Здравейте {{ order.first_name }},<br><br>
+
+      Вашата поръчка беше приета успешно!<br>
+      Ще се свържем с Вас, когато бъде изпратена.<br><br>
+
+      <strong>Детайли на поръчката:</strong><br>
+
+      <table class="products-table">
+        <thead>
+          <tr>
+            <th>Продукт</th>
+            <th>Брой</th>
+            <th>Цена</th>
+            <th>Общо</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in cart %}
+          <tr>
+            <td>{{ item.product.name }}</td>
+            <td>{{ item.quantity }}</td>
+            <td>{{ item.price }} лв.</td>
+            <td>{{ item.total_price }} лв.</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+      <p style="margin-top: 20px;">
+        <strong>Крайна сума:</strong> {{ cart.get_total_price }} лв.
+      </p>
+
+      <p>
+        Ще получите информация за доставката на имейл или телефон: <strong>{{ order.email }}</strong>.
+      </p>
+
+      <p>Благодарим Ви, че избрахте 3D Print Studio!</p>
+    </div>
+    <div class="footer">
+      Това е автоматичен имейл. Моля, не отговаряйте на него.
+    </div>
+  </div>
+</body>
+</html>

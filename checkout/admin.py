@@ -7,3 +7,6 @@ class OrderAdmin(admin.ModelAdmin):
     list_filter = ('created', 'updated', 'city')
     search_fields = ('first_name', 'last_name', 'email', 'phone_number')
     ordering = ('-created',)
+
+
+admin.site.unregister(Order)
