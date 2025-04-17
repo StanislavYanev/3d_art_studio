@@ -1,0 +1,106 @@
+
+{% extends "base.html" %}
+
+{% block title %}Галерия | 3D Print Studio{% endblock %}
+
+{% block content %}
+<section x-data="galleryModal()" class="py-16 px-4 max-w-7xl mx-auto">
+
+  <h1 class="text-3xl sm:text-4xl font-bold text-center mb-10 text-gray-800 dark:text-white">Галерия</h1>
+
+  <!-- Desktop Grid -->
+  <div id="gallery" class="hidden md:grid grid-cols-4 auto-rows-[200px] gap-4 [grid-auto-flow:dense]">
+    {% for item in images %}
+      <div class="overflow-hidden rounded-xl shadow-md hover:shadow-lg transition {{ item.class }}">
+        <img src="{{ item.image.image.url }}"
+             alt="{{ item.image.title|default:'3D принтирано изделие' }}"
+             data-full="{{ item.image.image.url }}"
+             @click="show({{ forloop.counter0 }})"
+             class="cursor-pointer w-full h-full object-cover hover:scale-105 transition duration-300 rounded-xl">
+      </div>
+    {% endfor %}
+  </div>
+
+  <!-- Mobile Columns -->
+  <div class="md:hidden columns-1 sm:columns-2 gap-4 space-y-4">
+    {% for item in images %}
+      <div class="aspect-square break-inside-avoid overflow-hidden rounded-xl shadow-md hover:shadow-lg transition">
+        <img src="{{ item.image.image.url }}"
+             alt="{{ item.image.title|default:'3D принтирано изделие' }}"
+             data-full="{{ item.image.image.url }}"
+             @click="show({{ forloop.counter0 }})"
+             class="cursor-pointer w-full h-full object-cover hover:scale-105 transition duration-300 rounded-xl">
+      </div>
+    {% endfor %}
+  </div>
+
+  <!-- Pagination -->
+  {% if is_paginated %}
+    <div class="mt-10 flex justify-center text-center">
+      <nav class="flex flex-wrap gap-2 text-sm">
+        {% if page_obj.has_previous %}
+          <a href="?page={{ page_obj.previous_page_number }}" class="px-3 py-1 bg-gray-200 dark:bg-gray-700 rounded">« Назад</a>
+        {% endif %}
+
+        {% for num in page_obj.paginator.page_range %}
+          {% if num == page_obj.number %}
+            <span class="px-3 py-1 bg-indigo-600 text-white rounded">{{ num }}</span>
+          {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+            <a href="?page={{ num }}" class="px-3 py-1 bg-gray-200 dark:bg-gray-700 rounded hover:bg-indigo-100">{{ num }}</a>
+          {% endif %}
+        {% endfor %}
+
+        {% if page_obj.has_next %}
+          <a href="?page={{ page_obj.next_page_number }}" class="px-3 py-1 bg-gray-200 dark:bg-gray-700 rounded">Напред »</a>
+        {% endif %}
+      </nav>
+    </div>
+  {% endif %}
+
+  <!-- Модал -->
+  <div x-show="open"
+       x-transition
+       @click.self="close"
+       @keydown.window.escape="close"
+       class="hidden md:flex fixed inset-0 z-50 items-center justify-center bg-black bg-opacity-80"
+       style="display: none;">
+    <div class="relative max-w-3xl w-full p-4">
+      <button @click="close" class="absolute top-4 right-4 text-white text-5xl font-bold bg-black bg-opacity-50 rounded-full px-2 py-1 hover:bg-opacity-70 transition">&times;</button>
+      <img :src="currentImage"
+           class="w-full h-auto max-h-[80vh] object-contain rounded-xl shadow-lg">
+      <button @click="prev" class="absolute left-2 top-1/2 transform -translate-y-1/2 text-white text-4xl px-4">&#10094;</button>
+      <button @click="next" class="absolute right-2 top-1/2 transform -translate-y-1/2 text-white text-4xl px-4">&#10095;</button>
+    </div>
+  </div>
+
+</section>
+
+<!-- Alpine.js -->
+<script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+<script>
+  function galleryModal() {
+    return {
+      open: false,
+      index: 0,
+      images: [],
+      get currentImage() {
+        return this.images[this.index];
+      },
+      show(i) {
+        this.images = Array.from(document.querySelectorAll('[data-full]')).map(el => el.dataset.full);
+        this.index = i;
+        this.open = true;
+      },
+      close() {
+        this.open = false;
+      },
+      next() {
+        this.index = (this.index + 1) % this.images.length;
+      },
+      prev() {
+        this.index = (this.index - 1 + this.images.length) % this.images.length;
+      }
+    }
+  }
+</script>
+{% endblock %}

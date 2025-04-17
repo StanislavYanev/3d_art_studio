@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'cart',
     'checkout',
     'blog' ,
+    'gallery',
 
 ]
 
@@ -173,3 +174,4 @@ DEFAULT_FROM_EMAIL = 'noreply@3dprintstudio.bg'
 
 
 TAILWIND_APP_NAME = 'theme'
+
