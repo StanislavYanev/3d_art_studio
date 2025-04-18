@@ -6,6 +6,7 @@ from django.shortcuts import render, redirect
 from .forms import ContactForm
 from django.contrib import messages
 from .models import ContactMessage
+from django.views.generic import TemplateView
 
 def home(request):
     products = list(Product.objects.filter(in_stock=True))
@@ -48,3 +49,5 @@ def home(request):
     )
 
 
+class AboutView(TemplateView):
+    template_name = "about.html"

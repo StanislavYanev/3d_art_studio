@@ -34,15 +34,17 @@
   <div class="max-w-screen-xl mx-auto px-4 sm:px-6 relative z-0">
     <!-- Заглавие и филтри -->
     <div class="flex flex-col gap-4 sm:gap-6 md:flex-row md:items-center md:justify-between mb-8">
-      <h1 class="text-2xl sm:text-3xl font-bold text-gray-800 dark:text-white flex items-center gap-2">
-        🛍 Каталог продукти
+      <h1 class="text-2xl sm:text-3xl font-bold text-gray-800 dark:text-white flex items-center gap-2 font-josefin">
+        Каталог продукти
       </h1>
       <form method="GET" class="flex flex-col sm:flex-row flex-wrap items-stretch gap-3 sm:gap-4">
         <select name="category" class="min-w-[180px] h-11 px-3 py-2 rounded-lg border dark:bg-gray-800 dark:text-white dark:border-gray-700 text-sm sm:text-base">
           <option value="">Всички категории</option>
-          <option value="accessories">Аксесоари</option>
-          <option value="figurines">Фигурки</option>
-          <option value="tools">Инструменти</option>
+          {% for category in categories %}
+            <option value="{{ category.slug }}" {% if request.GET.category == category.slug %}selected{% endif %}>
+              {{ category.name }}
+            </option>
+          {% endfor %}
         </select>
         <select name="sort" class="min-w-[160px] h-11 px-3 py-2 rounded-lg border dark:bg-gray-800 dark:text-white dark:border-gray-700 text-sm sm:text-base">
           <option value="">Сортирай по...</option>

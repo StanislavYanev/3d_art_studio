@@ -11,8 +11,8 @@ class ContactMessageAdmin(admin.ModelAdmin):
 
 admin.site.unregister(ContactMessage)
 
-admin.site.unregister(SocialAccount)
-admin.site.unregister(SocialApp)
-admin.site.unregister(SocialToken)
+# admin.site.unregister(SocialAccount)
+# admin.site.unregister(SocialApp)
+# admin.site.unregister(SocialToken)
 
 admin.site.unregister(Site)

@@ -26,7 +26,12 @@ tailwind.config = {
             dark: '#374151',
           },
         },
+        fontFamily: {
+          josefin: ['"Josefin Sans"', 'sans-serif'],
+        },
+        
       },
+      
     },
   };
   

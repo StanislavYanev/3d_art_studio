@@ -9,7 +9,7 @@ def product_list(request):
     # --- Филтриране ---
     category = request.GET.get('category')
     if category:
-        products = products.filter(category__name__iexact=category)
+        products = products.filter(category__slug=category)
 
     price_min = request.GET.get('price_min')
     if price_min:
@@ -37,6 +37,7 @@ def product_list(request):
     context = {
         'products': page_obj.object_list,
         'page_obj': page_obj,
+        'categories': Category.objects.all(),
     }
     return render(request, 'products/product_list.html', context)
 

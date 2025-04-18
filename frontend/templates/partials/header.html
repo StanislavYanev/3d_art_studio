@@ -31,7 +31,6 @@
            <a href="{% url 'profile' %}" class="text-sm lg:text-base hover:text-indigo-600 dark:hover:text-indigo-400">Профил</a>
          {% else %}
            <a href="{% url 'login' %}" class="text-sm lg:text-base hover:text-indigo-600 dark:hover:text-indigo-400">Вход</a>
-           <a href="{% url 'register' %}" class="text-sm lg:text-base hover:text-indigo-600 dark:hover:text-indigo-400">Регистрация</a>
          {% endif %}
          <button id="open-cart" class="relative hover:text-indigo-600 dark:hover:text-indigo-400" title="Количка">
            <svg id="cart-icon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -61,7 +60,6 @@
          <a href="{% url 'profile' %}" class="block text-sm py-2 hover:text-indigo-600 dark:hover:text-indigo-400">Профил</a>
        {% else %}
          <a href="{% url 'login' %}" class="block text-sm py-2 hover:text-indigo-600 dark:hover:text-indigo-400">Вход</a>
-         <a href="{% url 'register' %}" class="block text-sm py-2 hover:text-indigo-600 dark:hover:text-indigo-400">Регистрация</a>
        {% endif %}
        <button onclick="document.getElementById('open-cart')?.click()" class="block text-sm py-2 hover:text-indigo-600 dark:hover:text-indigo-400">Количка</button>
        <button onclick="document.getElementById('theme-toggle')?.click()" class="block text-sm py-2 hover:text-indigo-600 dark:hover:text-indigo-400"> Смяна на тема</button>

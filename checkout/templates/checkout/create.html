@@ -39,13 +39,13 @@
             <div class="text-red-500 text-sm mt-1">{{ form.phone_number.errors.0 }}</div>
             {% endif %}
           </div>
-          <div class="sm:col-span-2">
+          {% comment %} <div class="sm:col-span-2">
             <label for="id_address" class="form-label">Адрес</label>
             {{ form.address }}
             {% if form.address.errors %}
             <div class="text-red-500 text-sm mt-1">{{ form.address.errors.0 }}</div>
             {% endif %}
-          </div>
+          </div> {% endcomment %}
           <div>
             <label for="id_city" class="form-label">Град</label>
             {{ form.city }}

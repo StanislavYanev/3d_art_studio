@@ -11,7 +11,8 @@
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="{{ request.build_absolute_uri }}">
     <link rel="icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;600;700&family=Quicksand:wght@400;500;600&display=swap" rel="stylesheet">
+
     <!-- Open Graph (Facebook, LinkedIn) -->
     <meta property="og:title" content="3D Print Studio">
     <meta property="og:description" content="Професионални услуги за 3D моделиране и печат.">
@@ -25,11 +26,21 @@
     <meta name="twitter:description" content="Професионални услуги за 3D моделиране и печат.">
     <meta name="twitter:image" content="{% static 'images/og-preview.jpg' %}">
 
-
+    
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-      tailwind.config = { darkMode: "class" };
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            fontFamily: {
+              josefin: ['"Josefin Sans"', 'sans-serif'],
+              quicksand: ['"Quicksand"', 'sans-serif'],
+            }
+          }
+        }
+      };
     </script>
 
   </head>

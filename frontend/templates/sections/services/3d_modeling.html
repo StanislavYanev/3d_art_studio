@@ -1,3 +1,4 @@
+<a href="{% if user.is_authenticated %}{% url 'profile' %}{% else %}{% url 'login' %}{% endif %}" class="block">
 <div
   class="bg-white dark:bg-gray-700 p-4 sm:p-6 rounded-xl shadow transform transition duration-300 hover:scale-105 text-center"
 >
@@ -23,8 +24,9 @@
       />
     </svg>
   </div>
-  <h3 class="text-lg sm:text-xl font-bold mb-1 sm:mb-2">3D Моделиране</h3>
-  <p class="text-sm sm:text-base text-gray-700 dark:text-gray-300">
+  <h3 class="text-lg sm:text-xl font-bold mb-1 sm:mb-2 font-josefin">3D Моделиране</h3>
+  <p class="text-sm sm:text-base text-gray-700 dark:text-gray-300 font-quicksand">
     Създаваме 3D модели по ваша идея или чертеж.
   </p>
 </div>
+</a>
