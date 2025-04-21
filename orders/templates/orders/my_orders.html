@@ -1,9 +1,10 @@
 {% extends "accounts/profile_base.html" %}
+{% load i18n %}
 
-{% block title %}Моите поръчки | 3D Print Studio{% endblock %}
+{% block title %}{%trans 'Моите поръчки'%} | 3D Print Studio{% endblock %}
 
 {% block dashboard_content %}
-<h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-6">Моите поръчки</h2>
+<h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-6">{%trans 'Моите поръчки'%}</h2>
 
 {% if orders %}
   <div class="space-y-6">
@@ -14,12 +15,12 @@
         </h3>
 
         <p class="text-sm text-gray-600 dark:text-gray-300">
-          Статус:
+          {%trans 'Статус:'%}
           <span class="font-medium">{{ order.get_status_display }}</span><br>
-          Дата: {{ order.created_at|date:"d.m.Y H:i" }}<br>
-          {% if order.price %}Цена: {{ order.price }} лв.<br>{% endif %}
+          {%trans 'Дата: '%}{{ order.created_at|date:"d.m.Y H:i" }}<br>
+          {% if order.price %}{{ order.price }}{%trans ' лв.'%}<br>{% endif %}
           {% if order.comment %}
-            <span class="italic text-gray-500 dark:text-gray-400">Инструкции: {{ order.comment }}</span><br>
+            <span class="italic text-gray-500 dark:text-gray-400">{%trans 'Инструкции: '%}{{ order.comment }}</span><br>
           {% endif %}
         </p>
 
@@ -28,7 +29,7 @@
             {% csrf_token %}
             <button type="submit"
                     class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 text-sm">
-              Откажи поръчка
+                    {%trans 'Откажи поръчка'%}
             </button>
           </form>
         {% endif %}
@@ -36,6 +37,6 @@
     {% endfor %}
   </div>
 {% else %}
-  <p class="text-gray-500 dark:text-gray-400">Нямате активни поръчки.</p>
+  <p class="text-gray-500 dark:text-gray-400">{%trans 'Нямате активни поръчки.'%}</p>
 {% endif %}
 {% endblock %}

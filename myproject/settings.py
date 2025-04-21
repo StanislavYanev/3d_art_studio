@@ -52,6 +52,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    'django.middleware.locale.LocaleMiddleware',
     # "django.contrib.flatpages.middleware.FlatpageFallbackMiddleware",
 ]
 
@@ -175,3 +176,20 @@ DEFAULT_FROM_EMAIL = 'noreply@3dprintstudio.bg'
 
 TAILWIND_APP_NAME = 'theme'
 
+# По подразбиране език – български
+LANGUAGE_CODE = 'bg'
+
+# Активиране на многоезичност
+USE_I18N = True
+USE_L10N = True
+USE_TZ = True
+
+# Поддържани езици
+LANGUAGES = [
+    ('bg', 'Български'),
+    ('en', 'English'),
+]
+
+# Локация на преводите (.po файлове)
+
+LOCALE_PATHS = [Path(BASE_DIR) / 'locale']

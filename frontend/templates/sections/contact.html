@@ -1,7 +1,10 @@
+{% load i18n %}
+
 <section id="contact" class="bg-white dark:bg-gray-900 py-12 sm:py-16">
   <div class="max-w-xl sm:max-w-2xl mx-auto px-4 sm:px-6">
     <h2 class="text-2xl sm:text-3xl font-semibold text-center mb-6 sm:mb-8 font-josefin">
-      Свържи се с нас
+      {%trans 'Свържи се с нас'%}
+
     </h2>
     <form method="post" class="space-y-4">
       {% csrf_token %} {{ form.non_field_errors }}
@@ -9,7 +12,7 @@
       <input
         type="text"
         name="name"
-        placeholder="Вашето име"
+        placeholder="{%trans 'Вашето име'%}"
         value="{{ form.name.value|default_if_none:'' }}"
         class="w-full border border-gray-300 dark:border-gray-700 rounded-xl px-4 py-2.5 sm:py-3 text-sm sm:text-base dark:bg-gray-800 dark:text-white"
         required
@@ -21,7 +24,7 @@
       <input
         type="email"
         name="email"
-        placeholder="Имейл"
+        placeholder="{%trans 'Имейл'%}"
         value="{{ form.email.value|default_if_none:'' }}"
         class="w-full border border-gray-300 dark:border-gray-700 rounded-xl px-4 py-2.5 sm:py-3 text-sm sm:text-base dark:bg-gray-800 dark:text-white"
         required
@@ -33,7 +36,7 @@
       <textarea
         name="message"
         rows="4"
-        placeholder="Съобщение"
+        placeholder="{%trans 'Съобщение'%}"
         class="w-full border border-gray-300 dark:border-gray-700 rounded-xl px-4 py-2.5 sm:py-3 text-sm sm:text-base dark:bg-gray-800 dark:text-white"
         required
       >{{ form.message.value|default_if_none:'' }}</textarea>
@@ -46,7 +49,7 @@
           type="submit"
           class="bg-indigo-600 text-white px-5 sm:px-6 py-2.5 sm:py-3 rounded-xl hover:bg-indigo-700 transition text-sm sm:text-base font-medium"
         >
-          Изпрати съобщение
+        {%trans 'Изпрати съобщение'%}
         </button>
       </div>
     </form>

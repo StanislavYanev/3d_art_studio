@@ -1,17 +1,19 @@
+{% load i18n %}
+
 <section id="hero" class="bg-white dark:bg-gray-900 py-16 sm:py-20">
   <div class="max-w-screen-xl mx-auto px-4 text-center">
     <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-4 sm:mb-6 font-josefin">
-      Вашата идея.
-      <span class="text-indigo-600 dark:text-indigo-400">Нашият 3D принт.</span>
+      {%trans 'Вашата идея.'%}
+      <span class="text-indigo-600 dark:text-indigo-400">{%trans 'Нашият 3D принт.'%}</span>
     </h1>
     <p class="text-base sm:text-lg mb-6 sm:mb-8 text-gray-600 dark:text-gray-300 font-quicksand">
-      Персонализирани решения за 3D принтиране и дизайн.
+      {%trans 'Персонализирани решения за 3D принтиране и дизайн.'%}
     </p>
     <a
       href="#services"
       class="inline-block bg-indigo-600 text-white px-5 sm:px-6 py-2.5 sm:py-3 rounded-xl hover:bg-indigo-700 transition text-sm sm:text-base font-medium font-quicksand"
     >
-      Виж нашите услуги
+    {%trans 'Виж нашите услуги'%}
     </a>
   </div>
 </section>

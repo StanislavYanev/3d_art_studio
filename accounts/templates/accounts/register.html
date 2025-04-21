@@ -1,13 +1,16 @@
 {% extends "base.html" %}
 {% load static %}
 {% load socialaccount %}
+{% load i18n %}
 
-{% block title %}Регистрация | 3D Print Studio{% endblock %}
+{% block title %}{%trans 'Регистрация'%}
+ | 3D Print Studio{% endblock %}
 
 {% block content %}
 <section class="flex justify-center items-center min-h-[80vh] bg-white dark:bg-gray-900 px-4">
   <div class="w-full max-w-md bg-gray-50 dark:bg-gray-800 p-8 rounded-xl shadow-md">
-    <h2 class="text-2xl font-bold text-center text-gray-800 dark:text-white mb-6">Регистрация</h2>
+    <h2 class="text-2xl font-bold text-center text-gray-800 dark:text-white mb-6">{%trans 'Регистрация'%}
+      </h2>
 
     {% if form.errors %}
       <div class="bg-red-100 text-red-700 p-3 mb-4 rounded-lg text-sm">
@@ -29,42 +32,43 @@
 
       <!-- Username -->
       <div>
-        <label for="id_username" class="block text-sm text-gray-600 dark:text-gray-300 mb-1">Въведи потребителско име</label>
-        <input type="text" name="username" id="id_username" placeholder="Въведи потребителско име" required
+        <label for="id_username" class="block text-sm text-gray-600 dark:text-gray-300 mb-1">{%trans 'Въведи потребителско име'%}
+          </label>
+        <input type="text" name="username" id="id_username" placeholder="{%trans 'Въведи потребителско име'%}" required
                class="w-full px-4 py-2 border rounded-lg dark:bg-gray-700 dark:text-white dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-500">
       </div>
 
       <!-- Email -->
       <div>
-        <label for="id_email" class="block text-sm text-gray-600 dark:text-gray-300 mb-1">Въведи имейл</label>
-        <input type="email" name="email" id="id_email" placeholder="Въведи имейл" required
+        <label for="id_email" class="block text-sm text-gray-600 dark:text-gray-300 mb-1">{%trans 'Въведи имейл'%}</label>
+        <input type="email" name="email" id="id_email" placeholder="{%trans 'Въведи имейл'%}" required
                class="w-full px-4 py-2 border rounded-lg dark:bg-gray-700 dark:text-white dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-500">
       </div>
 
       <!-- Password1 -->
       <div>
-        <label for="id_password1" class="block text-sm text-gray-600 dark:text-gray-300 mb-1">Въведи парола</label>
-        <input type="password" name="password1" id="id_password1" placeholder="Въведи парола" required
+        <label for="id_password1" class="block text-sm text-gray-600 dark:text-gray-300 mb-1">{%trans 'Въведи парола'%}</label>
+        <input type="password" name="password1" id="id_password1" placeholder="{%trans 'Въведи парола'%}" required
                class="w-full px-4 py-2 border rounded-lg dark:bg-gray-700 dark:text-white dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-500">
       </div>
 
       <!-- Password2 -->
       <div>
-        <label for="id_password2" class="block text-sm text-gray-600 dark:text-gray-300 mb-1">Повтори паролата</label>
-        <input type="password" name="password2" id="id_password2" placeholder="Повтори паролата" required
+        <label for="id_password2" class="block text-sm text-gray-600 dark:text-gray-300 mb-1">{%trans 'Повтори паролата'%}</label>
+        <input type="password" name="password2" id="id_password2" placeholder="{%trans 'Повтори паролата'%}" required
                class="w-full px-4 py-2 border rounded-lg dark:bg-gray-700 dark:text-white dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-500">
       </div>
 
       <!-- Submit Button -->
       <button type="submit"
               class="w-full bg-indigo-600 text-white py-2 rounded-lg hover:bg-indigo-700 transition">
-        Регистрирай се
+              {%trans 'Регистрирай се'%}
       </button>
     </form>
 
     <!-- Социална регистрация -->
     <div class="text-center mt-6">
-      <p class="text-sm text-gray-600 dark:text-gray-300 mb-2">или се регистрирай чрез:</p>
+      <p class="text-sm text-gray-600 dark:text-gray-300 mb-2">{%trans 'или се регистрирай чрез:'%}</p>
       <div class="flex flex-col gap-2">
         <!-- Google Button -->
         <a href="{% provider_login_url 'google' %}"

@@ -1,5 +1,7 @@
 {% extends "base.html" %}
-{% block title %}Начало | 3D Print Studio{% endblock %}
+{% load i18n %}
+
+{% block title %}{%trans 'Начало'%} | 3D Print Studio{% endblock %}
 {% block content %}
 
    {% include "sections/hero.html" %}

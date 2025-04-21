@@ -1,12 +1,16 @@
 
 {% extends "base.html" %}
+{% load i18n %}
 
-{% block title %}Галерия | 3D Print Studio{% endblock %}
+
+{% block title %}{%trans 'Галерия'%}
+ | 3D Print Studio{% endblock %}
 
 {% block content %}
 <section x-data="galleryModal()" class="py-16 px-4 max-w-7xl mx-auto">
 
-  <h1 class="text-3xl sm:text-4xl font-bold text-center mb-10 text-gray-800 dark:text-white">Галерия</h1>
+  <h1 class="text-3xl sm:text-4xl font-bold text-center mb-10 text-gray-800 dark:text-white">{%trans 'Галерия'%}
+    </h1>
 
   <!-- Desktop Grid -->
   <div id="gallery" class="hidden md:grid grid-cols-4 auto-rows-[200px] gap-4 [grid-auto-flow:dense]">
@@ -39,7 +43,8 @@
     <div class="mt-10 flex justify-center text-center">
       <nav class="flex flex-wrap gap-2 text-sm">
         {% if page_obj.has_previous %}
-          <a href="?page={{ page_obj.previous_page_number }}" class="px-3 py-1 bg-gray-200 dark:bg-gray-700 rounded">« Назад</a>
+          <a href="?page={{ page_obj.previous_page_number }}" class="px-3 py-1 bg-gray-200 dark:bg-gray-700 rounded">{%trans '« Назад'%}
+            </a>
         {% endif %}
 
         {% for num in page_obj.paginator.page_range %}
@@ -51,7 +56,8 @@
         {% endfor %}
 
         {% if page_obj.has_next %}
-          <a href="?page={{ page_obj.next_page_number }}" class="px-3 py-1 bg-gray-200 dark:bg-gray-700 rounded">Напред »</a>
+          <a href="?page={{ page_obj.next_page_number }}" class="px-3 py-1 bg-gray-200 dark:bg-gray-700 rounded">{%trans 'Напред »'%}
+            </a>
         {% endif %}
       </nav>
     </div>

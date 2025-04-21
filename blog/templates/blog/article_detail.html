@@ -7,8 +7,8 @@
     {% if article.image %}
       <img src="{{ article.image.url }}" class="w-full h-auto rounded-lg mb-6">
     {% endif %}
-    <h1 class="text-4xl font-bold mb-4">{{ article.title }}</h1>
-    <p class="text-gray-600 dark:text-gray-300">{{ article.content }}</p>
+    <h1 class="text-4xl font-bold mb-4">{{ article.translated_title }}</h1>
+    <p class="text-gray-600 dark:text-gray-300">{{ article.translated_content }}</p>
   </div>
 </section>
 <script type="application/ld+json">

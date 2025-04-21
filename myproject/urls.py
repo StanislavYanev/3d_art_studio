@@ -35,7 +35,7 @@ urlpatterns = [
     path('checkout/', include('checkout.urls', namespace='checkout')),
     path('blog/', include('blog.urls')),
     path("gallery/", include("gallery.urls")),
-
+    path("i18n/", include("django.conf.urls.i18n")),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

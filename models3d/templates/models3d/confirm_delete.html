@@ -1,14 +1,19 @@
 {% extends "accounts/profile_base.html" %}
+{% load i18n %}
 
-{% block dashboard_content %}
+{% block
+dashboard_content %}
 <div class="confirm-delete">
-  <h2>Потвърди изтриване</h2>
-  <p>Сигурни ли сте, че искате да изтриете модела <strong>{{ model.title }}</strong>?</p>
+  <h2>{%trans 'Потвърди изтриване'%}</h2>
+  <p>
+    {%trans 'Сигурни ли сте, че искате да изтриете модела'%}
+    <strong>{{ model.title }}</strong>?
+  </p>
 
-  <form method="post" style="margin-top: 20px;">
+  <form method="post" style="margin-top: 20px">
     {% csrf_token %}
-    <button type="submit" class="btn danger">🗑️ Изтрий</button>
-    <a href="{% url 'models3d:my_models' %}" class="btn">Отказ</a>
+    <button type="submit" class="btn danger">🗑️ {%trans 'Изтрий'%}</button>
+    <a href="{% url 'models3d:my_models' %}" class="btn">{%trans 'Отказ'%} </a>
   </form>
 </div>
 {% endblock %}

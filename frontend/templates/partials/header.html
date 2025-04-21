@@ -1,4 +1,5 @@
 {% load static %}
+{% load i18n %}
 
    <header class="bg-white dark:bg-gray-800 shadow-md sticky top-0 z-50">
      <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
@@ -22,15 +23,15 @@
    
        <!-- Navigation for desktop -->
        <nav id="main-menu" class="hidden md:flex space-x-4 lg:space-x-6 items-center">
-         <a href="{% url 'home:home' %}" class="text-sm lg:text-base hover:text-indigo-600 dark:hover:text-indigo-400">Начало</a>
-         <a href="{% url 'home:home' %}#services" class="text-sm lg:text-base hover:text-indigo-600 dark:hover:text-indigo-400">Услуги</a>
-         <a href="{% url 'products:product_list' %}" class="text-sm lg:text-base hover:text-indigo-600 dark:hover:text-indigo-400">Продукти</a>
-         <a href="{% url 'home:home' %}#contact" class="text-sm lg:text-base hover:text-indigo-600 dark:hover:text-indigo-400">Контакт</a>
-         <a href="{% url 'blog:article_list' %}" class="text-sm lg:text-base hover:text-indigo-600 dark:hover:text-indigo-400">Блог</a>
+         <a href="{% url 'home:home' %}" class="text-sm lg:text-base hover:text-indigo-600 dark:hover:text-indigo-400">{% trans "Начало" %}</a>
+         <a href="{% url 'home:home' %}#services" class="text-sm lg:text-base hover:text-indigo-600 dark:hover:text-indigo-400">{% trans "Услуги" %}</a>
+         <a href="{% url 'products:product_list' %}" class="text-sm lg:text-base hover:text-indigo-600 dark:hover:text-indigo-400">{% trans "Продукти" %}</a>
+         <a href="{% url 'home:home' %}#contact" class="text-sm lg:text-base hover:text-indigo-600 dark:hover:text-indigo-400">{% trans "Контакт" %}</a>
+         <a href="{% url 'blog:article_list' %}" class="text-sm lg:text-base hover:text-indigo-600 dark:hover:text-indigo-400">{% trans "Блог" %}</a>
          {% if user.is_authenticated %}
-           <a href="{% url 'profile' %}" class="text-sm lg:text-base hover:text-indigo-600 dark:hover:text-indigo-400">Профил</a>
+           <a href="{% url 'profile' %}" class="text-sm lg:text-base hover:text-indigo-600 dark:hover:text-indigo-400">{% trans "Профил" %}</a>
          {% else %}
-           <a href="{% url 'login' %}" class="text-sm lg:text-base hover:text-indigo-600 dark:hover:text-indigo-400">Вход</a>
+           <a href="{% url 'login' %}" class="text-sm lg:text-base hover:text-indigo-600 dark:hover:text-indigo-400">{% trans "Вход" %}</a>
          {% endif %}
          <button id="open-cart" class="relative hover:text-indigo-600 dark:hover:text-indigo-400" title="Количка">
            <svg id="cart-icon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -51,17 +52,17 @@
    
      <!-- Mobile menu -->
      <div id="mobile-menu" class="md:hidden hidden flex flex-col items-center text-center space-y-2 px-4 pb-4">
-       <a href="{% url 'home:home' %}" class="block text-sm py-2 hover:text-indigo-600 dark:hover:text-indigo-400">Начало</a>
-       <a href="{% url 'home:home' %}#services" class="block text-sm py-2 hover:text-indigo-600 dark:hover:text-indigo-400">Услуги</a>
-       <a href="{% url 'products:product_list' %}" class="block text-sm py-2 hover:text-indigo-600 dark:hover:text-indigo-400">Продукти</a>
-       <a href="{% url 'home:home' %}#contact" class="block text-sm py-2 hover:text-indigo-600 dark:hover:text-indigo-400">Контакт</a>
-       <a href="{% url 'blog:article_list' %}" class="block text-sm py-2 hover:text-indigo-600 dark:hover:text-indigo-400">Блог</a>
+       <a href="{% url 'home:home' %}" class="block text-sm py-2 hover:text-indigo-600 dark:hover:text-indigo-400">{% trans "Начало" %}</a>
+       <a href="{% url 'home:home' %}#services" class="block text-sm py-2 hover:text-indigo-600 dark:hover:text-indigo-400">{% trans "Услуги" %}</a>
+       <a href="{% url 'products:product_list' %}" class="block text-sm py-2 hover:text-indigo-600 dark:hover:text-indigo-400">{% trans "Продукти" %}</a>
+       <a href="{% url 'home:home' %}#contact" class="block text-sm py-2 hover:text-indigo-600 dark:hover:text-indigo-400">{% trans "Контакт" %}</a>
+       <a href="{% url 'blog:article_list' %}" class="block text-sm py-2 hover:text-indigo-600 dark:hover:text-indigo-400">{% trans "Блог" %}</a>
        {% if user.is_authenticated %}
-         <a href="{% url 'profile' %}" class="block text-sm py-2 hover:text-indigo-600 dark:hover:text-indigo-400">Профил</a>
+         <a href="{% url 'profile' %}" class="block text-sm py-2 hover:text-indigo-600 dark:hover:text-indigo-400">{% trans "Профил" %}</a>
        {% else %}
-         <a href="{% url 'login' %}" class="block text-sm py-2 hover:text-indigo-600 dark:hover:text-indigo-400">Вход</a>
+         <a href="{% url 'login' %}" class="block text-sm py-2 hover:text-indigo-600 dark:hover:text-indigo-400">{% trans "Вход" %}</a>
        {% endif %}
-       <button onclick="document.getElementById('open-cart')?.click()" class="block text-sm py-2 hover:text-indigo-600 dark:hover:text-indigo-400">Количка</button>
+       <button onclick="document.getElementById('open-cart')?.click()" class="block text-sm py-2 hover:text-indigo-600 dark:hover:text-indigo-400">{% trans "Количка" %}</button>
        <button onclick="document.getElementById('theme-toggle')?.click()" class="block text-sm py-2 hover:text-indigo-600 dark:hover:text-indigo-400"> Смяна на тема</button>
      </div>
    </header>

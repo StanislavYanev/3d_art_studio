@@ -1,4 +1,5 @@
 {% load static %}
+{% load i18n %}
 <meta name="csrf-token" content="{{ csrf_token }}">
 
 {% block title %}{% endblock %}
@@ -8,7 +9,8 @@
   <div class="max-w-screen-xl mx-auto px-4 sm:px-6">
 
     {% if cart|length == 0 %}
-      <p class="text-center text-gray-500 dark:text-gray-400">Количката ви е празна.</p>
+      <p class="text-center text-gray-500 dark:text-gray-400">{%trans 'Количката ви е празна.'%}
+        </p>
     {% else %}
       
 {% if not is_mobile %}
@@ -17,10 +19,14 @@
   <table class="min-w-full table-auto bg-white dark:bg-gray-800 text-sm sm:text-base">
     <thead class="bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 uppercase">
       <tr>
-        <th class="px-3 sm:px-4 py-3 text-left whitespace-nowrap">Продукт</th>
-        <th class="px-3 sm:px-4 py-3 text-center">Брой</th>
-        <th class="px-3 sm:px-4 py-3 text-right">Ед. цена</th>
-        <th class="px-3 sm:px-4 py-3 text-right">Общо</th>
+        <th class="px-3 sm:px-4 py-3 text-left whitespace-nowrap">{%trans 'Продукт'%}
+          </th>
+        <th class="px-3 sm:px-4 py-3 text-center">{%trans 'Брой'%}
+          </th>
+        <th class="px-3 sm:px-4 py-3 text-right">{%trans ' Ед. цена'%}
+         </th>
+        <th class="px-3 sm:px-4 py-3 text-right">{%trans 'Общо'%}
+          </th>
         <th class="px-3 sm:px-4 py-3 text-right"></th>
       </tr>
     </thead>
@@ -35,7 +41,7 @@
             {% else %}
               <div class="w-12 h-12 bg-gray-200 flex items-center justify-center text-gray-400 text-xs">Без снимка</div>
             {% endif %}
-            <span class="font-medium">{{ item.product.name }}</span>
+            <span class="font-medium">{{ item.product.translated_name }}</span>
           </td>
           <td class="px-3 sm:px-4 py-3 text-center">
 <div class="flex items-center gap-2">
@@ -55,7 +61,8 @@
               <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
               </svg>
-              <span class="text-sm">Премахни</span>
+              <span class="text-sm">{%trans 'Премахни'%}
+                </span>
             </button>
           </td>
         </tr>
@@ -82,7 +89,7 @@
         {% endif %}
 
         <div>
-          <p class="font-medium text-gray-800 dark:text-white">{{ item.product.name }}</p>
+          <p class="font-medium text-gray-800 dark:text-white">{{ item.product.translated_name }}</p>
 
           <div class="flex items-center gap-2 mt-1">
             <button onclick="updateQuantity('{{ item.product.id }}', {{ item.quantity|add:'-1' }})"
@@ -94,7 +101,8 @@
                     class="px-2 py-1 bg-gray-200 rounded hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600">+</button>
           </div>
 
-          <p class="text-sm text-gray-500 dark:text-gray-400 mt-2">{{ item.total_price }} лв.</p>
+          <p class="text-sm text-gray-500 dark:text-gray-400 mt-2">{{ item.total_price }}{%trans 'лв.'%}
+            </p>
         </div>
       </div>
 
@@ -111,11 +119,11 @@
 <!-- Total & Checkout for larger screens -->
       <div class="mt-8 hidden sm:flex justify-between items-center gap-4">
         <p class="text-lg sm:text-xl font-semibold text-gray-800 dark:text-white">
-          Общо: {{ cart.get_total_price }} лв.
+          {%trans 'Общо:'%} {{ cart.get_total_price }} {%trans 'лв.'%}
         </p>
         <a href="{% url 'checkout:order_create' %}"
            class="bg-indigo-600 text-white px-5 sm:px-6 py-2.5 sm:py-3 rounded-lg hover:bg-indigo-700 transition text-sm sm:text-base">
-           Завърши поръчка
+           {%trans 'Завърши поръчка'%}
         </a>
       </div>
     {% endif %}
@@ -127,7 +135,7 @@
   <div class="fixed bottom-0 inset-x-0 bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700 p-4 sm:hidden z-50">
     <a href="{% url 'checkout:order_create' %}"
        class="block w-full text-center bg-indigo-600 text-white py-3 rounded-xl font-semibold hover:bg-indigo-700 transition">
-      Завърши поръчка – {{ cart.get_total_price }} лв.
+       {%trans 'Завърши поръчка'%} – {{ cart.get_total_price }} {%trans 'лв.'%}
     </a>
   </div>
 {% endif %}

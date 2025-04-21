@@ -1,3 +1,5 @@
+{% load i18n %}
+
 <div id="cookie-banner" class="fixed bottom-6 left-1/2 transform -translate-x-1/2 z-50 bg-white dark:bg-gray-800 text-sm text-gray-800 dark:text-white border border-gray-300 dark:border-gray-600 rounded-lg shadow-lg p-5 max-w-lg w-full hidden">
     <div class="flex items-start gap-4">
       <div class="flex-shrink-0">
@@ -6,11 +8,15 @@
         </svg>
       </div>
       <div class="flex-1">
-        <p class="mb-2">Използваме бисквитки, за да подобрим Вашето преживяване. Можеш да приемеш всички или само най-необходимите.</p>
+        <p class="mb-2">{%trans 'Използваме бисквитки, за да подобрим Вашето преживяване. Можеш да приемеш всички или само най-необходимите.'%}
+          </p>
         <div class="flex gap-2 mt-2">
-          <button onclick="acceptAllCookies()" class="px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700 text-sm">Приемам всички</button>
-          <button onclick="acceptNecessaryCookies()" class="px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white rounded hover:bg-gray-300 dark:hover:bg-gray-600 text-sm">Само необходими</button>
-          <a href="{% url 'home:privacy_policy' %}" class="underline text-sm text-indigo-600 dark:text-indigo-400 ml-auto">Политика</a>
+          <button onclick="acceptAllCookies()" class="px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700 text-sm">{%trans 'Приемам всички'%}
+            </button>
+          <button onclick="acceptNecessaryCookies()" class="px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white rounded hover:bg-gray-300 dark:hover:bg-gray-600 text-sm">{%trans 'Само необходими'%}
+            </button>
+          <a href="{% url 'home:privacy_policy' %}" class="underline text-sm text-indigo-600 dark:text-indigo-400 ml-auto">{%trans 'Политика'%}
+            </a>
         </div>
       </div>
     </div>

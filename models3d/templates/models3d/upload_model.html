@@ -1,8 +1,10 @@
 {% extends "accounts/profile_base.html" %}
 {% load static %}
+{% load i18n %}
 
 {% block dashboard_content %}
-<h2 class="form-title">Качи нов 3D модел</h2>
+<h2 class="form-title">{%trans 'Качи нов 3D модел'%}
+  </h2>
 
 {% if messages %}
   <ul class="messages">
@@ -41,7 +43,8 @@
       {{ form.preview_image }}
     </div>
 
-    <button type="submit" class="btn">📤 Качи модел</button>
+    <button type="submit" class="btn">📤{%trans 'Качи модел'%}
+      </button>
   </form>
 </div>
 {% endblock %}

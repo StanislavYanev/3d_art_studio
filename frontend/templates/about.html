@@ -1,6 +1,8 @@
 {% extends "base.html" %}
+{% load i18n %}
 
-{% block title %}Мисия и визия | 3D Print Studio{% endblock %}
+
+{% block title %}{%trans 'Мисия и визия'%} | 3D Print Studio{% endblock %}
 
 {% block content %}
 <section class="py-16 px-4 max-w-6xl mx-auto space-y-24">
@@ -9,9 +11,9 @@
   <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8 md:p-12 ">
     <div class="grid md:grid-cols-2 gap-12 items-center">
       <div class="text-gray-800 dark:text-gray-200">
-        <h2 class="text-2xl sm:text-3xl font-bold mb-4 font-josefin">Нашата мисия</h2>
-        <p class="text-lg leading-relaxed font-quicksand">Създаваме нестандартни и уникални 3D модели за лични подаръци, които не само радват с външния си вид, но и носят смисъл. Подаръкът не трябва да бъде просто предмет – той трябва да бъде преживяване, спомен, израз на внимание.</p>
-        <p class="mt-4 text-lg leading-relaxed font-quicksand">Всеки модел е индивидуален, с идея, съобразена с човека, за когото е предназначен.</p>
+        <h2 class="text-2xl sm:text-3xl font-bold mb-4 font-josefin">{%trans 'Нашата мисия'%}</h2>
+        <p class="text-lg leading-relaxed font-quicksand">{%trans 'Създаваме нестандартни и уникални 3D модели за лични подаръци, които не само радват с външния си вид, но и носят смисъл. Подаръкът не трябва да бъде просто предмет – той трябва да бъде преживяване, спомен, израз на внимание.'%}</p>
+        <p class="mt-4 text-lg leading-relaxed font-quicksand">{%trans 'Всеки модел е индивидуален, с идея, съобразена с човека, за когото е предназначен.'%}</p>
       </div>
       <img src="/static/images/mission.jpg" alt="Мисия на студиото" class="w-full max-w-xl h-auto rounded-xl shadow-md mx-auto">
     </div>
@@ -25,9 +27,9 @@
   
       <!-- Текст вдясно -->
       <div class="text-gray-800 dark:text-gray-200">
-        <h2 class="text-2xl sm:text-3xl font-bold mb-4 font-josefin">Нашата визия</h2>
-        <p class="text-lg leading-relaxed font-quicksand">Вярваме в бъдеще, в което креативността и технологиите работят в хармония с природата и обществото. Нашите модели се създават с грижа към околната среда.</p>
-        <p class="mt-4 text-lg leading-relaxed font-quicksand">Използваме биоразградим PLA, рециклирани нишки и се стремим към минимизиране на отпадъка при печат. Красотата и устойчивостта могат да вървят ръка за ръка.</p>
+        <h2 class="text-2xl sm:text-3xl font-bold mb-4 font-josefin">{%trans 'Нашата визия'%}</h2>
+        <p class="text-lg leading-relaxed font-quicksand">{%trans 'Вярваме в бъдеще, в което креативността и технологиите работят в хармония с природата и обществото. Нашите модели се създават с грижа към околната среда.'%}</p>
+        <p class="mt-4 text-lg leading-relaxed font-quicksand">{%trans 'Използваме биоразградим PLA, рециклирани нишки и се стремим към минимизиране на отпадъка при печат. Красотата и устойчивостта могат да вървят ръка за ръка.'%}</p>
       </div>
     </div>
   </div>
@@ -37,8 +39,8 @@
   <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8 md:p-12">
     <div class="grid md:grid-cols-2 gap-12 items-center">
       <div class="text-gray-800 dark:text-gray-200">
-        <h2 class="text-2xl sm:text-3xl font-bold mb-4 font-josefin">Вдъхновението зад проекта</h2>
-        <p class="text-lg leading-relaxed font-quicksand">Най-ценните подаръци са тези, които показват мисъл, внимание и отношение. Стандартните решения често не носят нужната емоция, затова създаваме персонализирани 3D модели, които разказват история – чрез символика, форма или вложено послание.</p>
+        <h2 class="text-2xl sm:text-3xl font-bold mb-4 font-josefin">{%trans 'Вдъхновението зад проекта'%}</h2>
+        <p class="text-lg leading-relaxed font-quicksand">{%trans 'Най-ценните подаръци са тези, които показват мисъл, внимание и отношение. Стандартните решения често не носят нужната емоция, затова създаваме персонализирани 3D модели, които разказват история – чрез символика, форма или вложено послание.'%}</p>
       </div>
       <img src="/static/images/inspiration.jpg" alt="Вдъхновение" class="w-full max-w-xl h-auto rounded-xl shadow-md mx-auto">
     </div>
@@ -52,8 +54,8 @@
   
       <!-- Текст вдясно -->
       <div class="text-gray-800 dark:text-gray-200">
-        <h2 class="text-2xl sm:text-3xl font-bold mb-4 font-josefin">Социална мисия</h2>
-        <p class="text-lg leading-relaxed font-quicksand">С малко ресурси и много въображение можем да създаваме неща, които правят хората щастливи. В бъдеще планираме съвместни работилници с млади хора и деца – за да предадем вдъхновението нататък и да ги насърчим да мислят творчески и отговорно.</p>
+        <h2 class="text-2xl sm:text-3xl font-bold mb-4 font-josefin">{%trans 'Социална мисия'%}Социална мисия</h2>
+        <p class="text-lg leading-relaxed font-quicksand">{%trans 'С малко ресурси и много въображение можем да създаваме неща, които правят хората щастливи. В бъдеще планираме съвместни работилници с млади хора и деца – за да предадем вдъхновението нататък и да ги насърчим да мислят творчески и отговорно.'%}</p>
       </div>
     </div>
   </div>

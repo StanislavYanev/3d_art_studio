@@ -1,3 +1,5 @@
+{% load i18n %}
+
 <a href="{% url 'gallery:gallery' %}" class="block">
   <div
     class="bg-white dark:bg-gray-700 p-4 sm:p-6 rounded-xl shadow transform transition duration-300 hover:scale-105 text-center cursor-pointer"
@@ -18,9 +20,11 @@
         />
       </svg>
     </div>
-    <h3 class="text-lg sm:text-xl font-bold mb-1 sm:mb-2 font-josefin">Галерия</h3>
+    <h3 class="text-lg sm:text-xl font-bold mb-1 sm:mb-2 font-josefin">{%trans 'Галерия'%}
+      </h3>
     <p class="text-sm sm:text-base text-gray-700 dark:text-gray-300 font-quicksand">
-      Тук ще откриете селекция от завършени 3D проекти
+      {%trans 'Тук ще откриете селекция от завършени 3D проекти'%}
+
     </p>
   </div>
 </a>

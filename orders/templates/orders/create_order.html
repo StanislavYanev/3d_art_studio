@@ -1,10 +1,11 @@
 {% extends "accounts/profile_base.html" %}
+{% load i18n %}
 
-{% block title %}Заяви принтиране | 3D Print Studio{% endblock %}
+{% block title %}{%trans 'Заяви принтиране'%} | 3D Print Studio{% endblock %}
 
 {% block dashboard_content %}
 <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-6">
-  Заяви принтиране на "{{ model.title }}"
+  {%trans 'Заяви принтиране на'%}  "{{ model.title }}"
 </h2>
 
 <form method="post" class="space-y-6">
@@ -21,11 +22,11 @@
 
   <button type="submit"
           class="bg-indigo-600 text-white px-6 py-2 rounded-lg hover:bg-indigo-700 transition">
-    Изпрати поръчка
+          {%trans 'Изпрати поръчка'%}
   </button>
 </form>
 
 <a href="{% url 'orders:my_orders' %}" class="inline-block mt-6 text-indigo-600 hover:underline text-sm">
-  ⟵ Назад към моите поръчки
+  ⟵ {%trans 'Назад към моите поръчки'%}
 </a>
 {% endblock %}

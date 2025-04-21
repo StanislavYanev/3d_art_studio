@@ -1,19 +1,21 @@
 {% extends 'base.html' %}
 {% block title %}Блог{% endblock %}
+{% load i18n %}
 
 {% block content %}
 <section class="py-16">
   <div class="container mx-auto px-4">
-    <h1 class="text-3xl font-bold mb-6">Статии</h1>
+    <h1 class="text-3xl font-bold mb-6">{%trans 'Статии'%}
+      </h1>
     <div class="grid md:grid-cols-2 gap-6">
       {% for article in articles %}
       <div class="bg-white dark:bg-gray-700 p-6 rounded-xl shadow hover:shadow-lg transition">
         {% if article.image %}
           <img src="{{ article.image.url }}" class="w-full h-64 object-cover rounded-lg mb-4" />
         {% endif %}
-        <h2 class="text-xl font-bold">{{ article.title }}</h2>
-        <p class="text-gray-600 dark:text-gray-300">{{ article.content|truncatechars:150 }}</p>
-        <a href="{% url 'blog:article_detail' article.slug %}" class="text-indigo-600 dark:text-indigo-400 font-medium mt-2 inline-block">Прочети още</a>
+        <h2 class="text-xl font-bold">{{ article.translated_title }}</h2>
+        <p class="text-gray-600 dark:text-gray-300">{{ article.translated_content|truncatechars:150 }}</p>
+        <a href="{% url 'blog:article_detail' article.slug %}" class="text-indigo-600 dark:text-indigo-400 font-medium mt-2 inline-block">{%trans 'Прочети още'%}</a>
       </div>
       {% endfor %}
     </div>

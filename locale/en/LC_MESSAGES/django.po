@@ -1,0 +1,1115 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-04-19 00:00+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+"POT-Creation-Date: 2025-04-20 20:11+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: accounts/templates/accounts/change_password.html:4
+#: accounts/templates/accounts/change_password.html:7
+msgid "Смяна на парола"
+msgstr "Change password"
+
+#: accounts/templates/accounts/change_password.html:24
+msgid "Стара парола"
+msgstr "Old password"
+
+#: accounts/templates/accounts/change_password.html:31
+#: accounts/templates/accounts/password_reset_confirm.html:4
+#: accounts/templates/accounts/password_reset_confirm.html:16
+msgid "Нова парола"
+msgstr "New password"
+
+#: accounts/templates/accounts/change_password.html:38
+#: accounts/templates/accounts/password_reset_confirm.html:23
+msgid "Потвърди новата парола"
+msgstr "Confirm new password"
+
+#: accounts/templates/accounts/change_password.html:46
+msgid "Промени паролата"
+msgstr "Change password"
+
+#: accounts/templates/accounts/edit_profile.html:4
+#: accounts/templates/accounts/edit_profile.html:7
+msgid "Редакция на профил"
+msgstr "Profile editing"
+
+#: accounts/templates/accounts/edit_profile.html:24
+#: accounts/templates/accounts/login.html:33
+msgid "Потребителско име"
+msgstr "Username"
+
+#: accounts/templates/accounts/edit_profile.html:31
+#: accounts/templates/accounts/password_reset.html:17
+#: checkout/templates/checkout/create.html:33
+#: frontend/templates/sections/contact.html:27
+msgid "Имейл"
+msgstr "Email"
+
+#: accounts/templates/accounts/edit_profile.html:38
+msgid "Снимка (по избор)"
+msgstr "Photo (optional)"
+
+#: accounts/templates/accounts/edit_profile.html:51
+msgid "Няма избран файл"
+msgstr "No file selected"
+
+#: accounts/templates/accounts/edit_profile.html:56
+msgid "Биография"
+msgstr "Biography"
+
+#: accounts/templates/accounts/login.html:5
+#: accounts/templates/accounts/login.html:16
+#: accounts/templates/accounts/login.html:65
+#: accounts/templates/accounts/password_reset_complete.html:20
+#: frontend/templates/partials/header.html:34
+#: frontend/templates/partials/header.html:63
+msgid "Вход"
+msgstr "Login"
+
+#: accounts/templates/accounts/login.html:41
+#: accounts/templates/accounts/register.html:35
+#: accounts/templates/accounts/register.html:37
+msgid "Въведи потребителско име"
+msgstr "Enter username"
+
+#: accounts/templates/accounts/login.html:49
+msgid "Парола"
+msgstr "Password"
+
+#: accounts/templates/accounts/login.html:57
+#: accounts/templates/accounts/register.html:50
+#: accounts/templates/accounts/register.html:51
+msgid "Въведи парола"
+msgstr "Enter password"
+
+#: accounts/templates/accounts/login.html:74
+msgid "Забравена парола?"
+msgstr "Forgot password?"
+
+#: accounts/templates/accounts/login.html:79
+msgid "Нямаш акаунт?"
+msgstr "Don't have an account?"
+
+#: accounts/templates/accounts/login.html:85
+#: accounts/templates/accounts/register.html:6
+#: accounts/templates/accounts/register.html:12
+msgid "Регистрация"
+msgstr "Registration"
+
+#: accounts/templates/accounts/login.html:90
+msgid "или влез чрез:"
+msgstr "or log in via:"
+
+#: accounts/templates/accounts/login.html:115
+msgid "Вход с Google"
+msgstr "Sign in with Google"
+
+#: accounts/templates/accounts/login.html:136
+msgid "Вход с Facebook"
+msgstr "Sign in with Facebook"
+
+#: accounts/templates/accounts/password_reset.html:5
+#: accounts/templates/accounts/password_reset.html:10
+msgid "Забравена парола"
+msgstr "Forgotten password"
+
+#: accounts/templates/accounts/password_reset.html:24
+msgid "Изпрати линк"
+msgstr "Send link"
+
+#: accounts/templates/accounts/password_reset_complete.html:4
+msgid "Паролата е сменена"
+msgstr "Password changed"
+
+#: accounts/templates/accounts/password_reset_complete.html:16
+msgid "Паролата е сменена успешно"
+msgstr "Password changed successfully"
+
+#: accounts/templates/accounts/password_reset_complete.html:17
+msgid "Можеш вече да влезеш с новата си парола."
+msgstr "You can now log in with your new password."
+
+#: accounts/templates/accounts/password_reset_confirm.html:9
+msgid "Задай нова парола"
+msgstr "Set a new password"
+
+#: accounts/templates/accounts/password_reset_confirm.html:31
+msgid "Запази паролата"
+msgstr "Save password"
+
+#: accounts/templates/accounts/password_reset_done.html:3
+msgid "Потвърждение"
+msgstr "Confirmation"
+
+#: accounts/templates/accounts/password_reset_done.html:17
+msgid "Линкът е изпратен"
+msgstr "Link sent"
+
+#: accounts/templates/accounts/password_reset_done.html:19
+msgid ""
+"Ако съществува акаунт с този имейл, ще получиш съобщение с инструкции за "
+"нулиране на паролата."
+msgstr ""
+"If an account with this email address exists, you will receive a message with instructions for "
+"resetting the password."
+
+#: accounts/templates/accounts/password_reset_done.html:25
+msgid "⟵ Върни се към вход"
+msgstr "⟵ Return to login"
+
+#: accounts/templates/accounts/profile.html:5
+#: accounts/templates/accounts/profile_base.html:24
+msgid "Моят профил"
+msgstr "My profile"
+
+#: accounts/templates/accounts/profile.html:9
+msgid "Здравей, "
+msgstr "Hello,"
+
+#: accounts/templates/accounts/profile.html:15
+msgid "Имейл:"
+msgstr "Email:"
+
+#: accounts/templates/accounts/profile.html:16
+msgid "Дата на регистрация:"
+msgstr "Registration date:"
+
+#: accounts/templates/accounts/profile.html:25
+msgid "Брой качени модели:"
+msgstr "Number of models uploaded:"
+
+#: accounts/templates/accounts/profile.html:34
+msgid "Активни поръчки:"
+msgstr "Active orders:"
+
+#: accounts/templates/accounts/profile.html:43
+msgid "Известия:"
+msgstr "Notifications:"
+
+#: accounts/templates/accounts/profile_base.html:6
+#: frontend/templates/partials/header.html:32
+#: frontend/templates/partials/header.html:61
+msgid "Профил"
+msgstr "Profile"
+
+#: accounts/templates/accounts/profile_base.html:16
+msgid "☰ Меню"
+msgstr "☰ Menu"
+
+#: accounts/templates/accounts/profile_base.html:29
+msgid "🏠 Начало"
+msgstr "🏠 Home"
+
+#: accounts/templates/accounts/profile_base.html:31
+msgid "📁 Моите 3D модели"
+msgstr "📁 My 3D models"
+
+#: accounts/templates/accounts/profile_base.html:33
+msgid "🧾 Моите поръчки"
+msgstr "🧾 My orders"
+
+#: accounts/templates/accounts/profile_base.html:35
+msgid "⚙️ Настройки на профила"
+msgstr "⚙️ Account Settings"
+
+#: accounts/templates/accounts/profile_base.html:37
+msgid "🚪 Изход"
+msgstr "🚪 Exit"
+
+#: accounts/templates/accounts/register.html:43
+#: accounts/templates/accounts/register.html:44
+msgid "Въведи имейл"
+msgstr "Enter email"
+
+#: accounts/templates/accounts/register.html:57
+#: accounts/templates/accounts/register.html:58
+msgid "Повтори паролата"
+msgstr "Repeat password"
+
+#: accounts/templates/accounts/register.html:65
+msgid "Регистрирай се"
+msgstr "Register"
+
+#: accounts/templates/accounts/register.html:71
+msgid "или се регистрирай чрез:"
+msgstr "or register via:"
+
+#: blog/templates/blog/article_list.html:8
+msgid "Статии"
+msgstr "Articles"
+
+#: blog/templates/blog/article_list.html:18
+msgid "Прочети още"
+msgstr "Read more"
+
+#: cart/templates/cart/detail.html:12
+msgid "Количката ви е празна."
+msgstr "Your cart is empty."
+
+#: cart/templates/cart/detail.html:22
+msgid "Продукт"
+msgstr "Product"
+
+#: cart/templates/cart/detail.html:24
+msgid "Брой"
+msgstr "Number"
+
+#: cart/templates/cart/detail.html:26
+msgid " Ед. цена"
+msgstr " Unit price"
+
+#: cart/templates/cart/detail.html:28
+msgid "Общо"
+msgstr "Total"
+
+#: cart/templates/cart/detail.html:64
+msgid "Премахни"
+msgstr "Remove"
+
+#: cart/templates/cart/detail.html:104 cart/templates/cart/detail.html:122
+#: cart/templates/cart/detail.html:138
+msgid "лв."
+msgstr "BGN"
+
+#: cart/templates/cart/detail.html:122
+msgid "Общо:"
+msgstr "Total:"
+
+#: cart/templates/cart/detail.html:126 cart/templates/cart/detail.html:138
+msgid "Завърши поръчка"
+msgstr "Complete order"
+
+#: checkout/templates/checkout/create.html:5
+msgid "Поръчка"
+msgstr "Order"
+
+#: checkout/templates/checkout/create.html:10
+msgid "Завършване на поръчка"
+msgstr "Completing an order"
+
+#: checkout/templates/checkout/create.html:18
+#: products/templates/products/product_list.html:55
+msgid "Име"
+msgstr "Name"
+
+#: checkout/templates/checkout/create.html:26
+msgid "Фамилия"
+msgstr "Last name"
+
+#: checkout/templates/checkout/create.html:40
+msgid "Телефон"
+msgstr "Phone"
+
+#: checkout/templates/checkout/create.html:55
+msgid "Град"
+msgstr "City"
+
+#: checkout/templates/checkout/create.html:62
+msgid "Куриер"
+msgstr "Courier"
+
+#: checkout/templates/checkout/create.html:69
+msgid "Тип доставка"
+msgstr "Delivery type"
+
+#: checkout/templates/checkout/create.html:73
+msgid "Адрес/офис"
+msgstr "Address/office"
+
+#: checkout/templates/checkout/create.html:80
+msgid "Бележка към поръчката"
+msgstr "Order note"
+
+#: checkout/templates/checkout/create.html:91
+msgid "Съгласен съм с"
+msgstr "I agree with"
+
+#: checkout/templates/checkout/create.html:94
+msgid "Общите условия"
+msgstr "General terms and conditions"
+
+#: checkout/templates/checkout/create.html:95
+msgid "и потвърждавам, че съм запознат с тях."
+msgstr "and I confirm that I am familiar with them."
+
+#: checkout/templates/checkout/create.html:105
+msgid " Потвърди поръчката"
+msgstr " Confirm order"
+
+#: checkout/templates/checkout/created.html:5
+#: checkout/templates/checkout/created.html:18
+msgid "Благодарим!"
+msgstr "Thank you!"
+
+#: checkout/templates/checkout/created.html:22
+msgid "Вашата поръчка"
+msgstr "Your order"
+
+#: checkout/templates/checkout/created.html:22
+msgid "беше приета успешно"
+msgstr "was successfully accepted"
+
+#: checkout/templates/checkout/created.html:27
+msgid "Обратно към продуктите"
+msgstr "Back to products"
+
+#: frontend/templates/about.html:5 frontend/templates/sections/services/3d
+#: mission.html:24
+msgid "Мисия и визия"
+msgstr "Mission and vision"
+
+#: frontend/templates/about.html:14
+msgid "Нашата мисия"
+msgstr "Our mission"
+
+#: frontend/templates/about.html:15
+msgid ""
+"Създаваме нестандартни и уникални 3D модели за лични подаръци, които не само "
+"радват с външния си вид, но и носят смисъл. Подаръкът не трябва да бъде "
+"просто предмет – той трябва да бъде преживяване, спомен, израз на внимание."
+msgstr ""
+"We create unconventional and unique 3D models for personal gifts that not only "
+"delight with their appearance, but also carry meaning. A gift should not be "
+"just an object – it should be an experience, a memory, an expression of attention."
+
+#: frontend/templates/about.html:16
+msgid ""
+"Всеки модел е индивидуален, с идея, съобразена с човека, за когото е "
+"предназначен."
+msgstr ""
+"Each model is individual, with an idea tailored to the person for whom it is "
+"intended."
+
+
+#: frontend/templates/about.html:30
+msgid "Нашата визия"
+msgstr "Our vision"
+
+#: frontend/templates/about.html:31
+msgid ""
+"Вярваме в бъдеще, в което креативността и технологиите работят в хармония с "
+"природата и обществото. Нашите модели се създават с грижа към околната среда."
+msgstr ""
+"We believe in a future where creativity and technology work in harmony with "
+"nature and society. Our models are created with care for the environment."
+
+#: frontend/templates/about.html:32
+msgid ""
+"Използваме биоразградим PLA, рециклирани нишки и се стремим към минимизиране "
+"на отпадъка при печат. Красотата и устойчивостта могат да вървят ръка за "
+"ръка."
+msgstr ""
+"We use biodegradable PLA, recycled filaments, and strive to minimize "
+"waste when printing. Beauty and sustainability can go hand in hand."
+
+#: frontend/templates/about.html:42
+msgid "Вдъхновението зад проекта"
+msgstr "The inspiration behind the project"
+
+#: frontend/templates/about.html:43
+msgid ""
+"Най-ценните подаръци са тези, които показват мисъл, внимание и отношение. "
+"Стандартните решения често не носят нужната емоция, затова създаваме "
+"персонализирани 3D модели, които разказват история – чрез символика, форма "
+"или вложено послание."
+msgstr ""
+"The most valuable gifts are those that show thought, attention, and attitude. "
+"Standard solutions often don't convey the necessary emotion, so we create "
+"personalized 3D models that tell a story – through symbolism, form, "
+"or embedded message."
+
+#: frontend/templates/about.html:57
+msgid "Социална мисия"
+msgstr "Social mission"
+
+#: frontend/templates/about.html:58
+msgid ""
+"С малко ресурси и много въображение можем да създаваме неща, които правят "
+"хората щастливи. В бъдеще планираме съвместни работилници с млади хора и "
+"деца – за да предадем вдъхновението нататък и да ги насърчим да мислят "
+"творчески и отговорно."
+msgstr ""
+"With few resources and a lot of imagination, we can create things that make "
+"people happy. In the future, we are planning joint workshops with young people and "
+"children - to pass on the inspiration and encourage them to think "
+"creatively and responsibly."
+
+#: frontend/templates/cookie-banner.html:11
+msgid ""
+"Използваме бисквитки, за да подобрим Вашето преживяване. Можеш да приемеш "
+"всички или само най-необходимите."
+msgstr ""
+"We use cookies to improve your experience. You can accept "
+"all or only the most necessary ones."
+
+#: frontend/templates/cookie-banner.html:14
+msgid "Приемам всички"
+msgstr "I accept all"
+
+#: frontend/templates/cookie-banner.html:16
+msgid "Само необходими"
+msgstr "Only necessary"
+
+#: frontend/templates/cookie-banner.html:18
+msgid "Политика"
+msgstr "Politics"
+
+#: frontend/templates/home.html:4 frontend/templates/partials/header.html:26
+#: frontend/templates/partials/header.html:55
+msgid "Начало"
+msgstr "Home"
+
+#: frontend/templates/partials/cart_modal.html:17
+msgid "Вашата количка"
+msgstr "Your cart"
+
+#: frontend/templates/partials/cart_modal.html:21
+msgid "Зареждане..."
+msgstr "Loading..."
+
+#: frontend/templates/partials/footer.html:5
+msgid "© 2025 3D Print Studio • Всички права запазени • BG | EN"
+msgstr "© 2025 3D Print Studio • All rights reserved • BG | EN"
+
+#: frontend/templates/partials/header.html:27
+#: frontend/templates/partials/header.html:56
+msgid "Услуги"
+msgstr "Services"
+
+#: frontend/templates/partials/header.html:28
+#: frontend/templates/partials/header.html:57
+msgid "Продукти"
+msgstr "Products"
+
+#: frontend/templates/partials/header.html:29
+#: frontend/templates/partials/header.html:58
+msgid "Контакт"
+msgstr "Contact"
+
+#: frontend/templates/partials/header.html:30
+#: frontend/templates/partials/header.html:59
+msgid "Блог"
+msgstr "Blog"
+
+#: frontend/templates/partials/header.html:65
+msgid "Количка"
+msgstr "Cart"
+
+#: frontend/templates/privacy_policy.html:4
+msgid "Политика за поверителност"
+msgstr "Privacy Policy"
+
+#: frontend/templates/privacy_policy.html:9
+msgid "Политика за поверителност и бисквитки"
+msgstr "Privacy and Cookies Policy"
+
+#: frontend/templates/privacy_policy.html:12
+msgid ""
+"Настоящата политика за поверителност описва как 3D Print Studio събира, "
+"използва и защитава личната информация, предоставена от потребителите на "
+"нашия уебсайт. Ние уважаваме правото Ви на личен живот и се стремим да "
+"осигурим сигурна среда при използване на нашите услуги."
+msgstr ""
+"This privacy policy describes how 3D Print Studio collects, "
+"uses and protects the personal information provided by users of "
+"our website. We respect your right to privacy and strive to "
+"provide a safe environment when using our services."
+
+#: frontend/templates/privacy_policy.html:15
+msgid "1. Събиране на информация"
+msgstr "1. Information collection"
+
+#: frontend/templates/privacy_policy.html:17
+msgid "Можем да събираме следната информация:"
+msgstr "We may collect the following information:"
+
+#: frontend/templates/privacy_policy.html:20
+msgid "Име и контактни данни, предоставени чрез контактни форми"
+msgstr "Name and contact details provided through contact forms"
+
+#: frontend/templates/privacy_policy.html:22
+msgid "Информация за използване на сайта чрез бисквитки и Google Analytics"
+msgstr "Information about website usage through cookies and Google Analytics"
+
+#: frontend/templates/privacy_policy.html:24
+msgid "IP адреси, вид на браузъра и други технически данни"
+msgstr "IP addresses, browser type and other technical data"
+
+#: frontend/templates/privacy_policy.html:28
+msgid "2. Използване на информацията"
+msgstr "2. Use of information"
+
+#: frontend/templates/privacy_policy.html:30
+msgid "Събраната информация може да бъде използвана за:"
+msgstr "The information collected may be used to:"
+
+#: frontend/templates/privacy_policy.html:33
+msgid "Подобряване на функционалността и съдържанието на сайта"
+msgstr "Improving the functionality and content of the site"
+
+#: frontend/templates/privacy_policy.html:35
+msgid "Анализ на трафика и поведението на потребителите"
+msgstr "Traffic and user behavior analysis"
+
+#: frontend/templates/privacy_policy.html:37
+msgid "Осъществяване на комуникация с потребителите по тяхно искане"
+msgstr "Communicating with users at their request"
+
+#: frontend/templates/privacy_policy.html:41
+msgid "3. Бисквитки"
+msgstr "3. Cookies"
+
+#: frontend/templates/privacy_policy.html:43
+msgid ""
+"Използваме бисквитки, за да персонализираме съдържанието и анализираме "
+"трафика. Потребителите могат да избират дали да приемат всички бисквитки или "
+"само необходимите."
+msgstr ""
+"We use cookies to personalize content and analyze "
+"traffic. Users can choose whether to accept all cookies or only "
+"necessary ones."
+
+#: frontend/templates/privacy_policy.html:46
+msgid "4. Сигурност на данните"
+msgstr "4. Data security"
+
+#: frontend/templates/privacy_policy.html:48
+msgid ""
+"Полагаме разумни технически и организационни мерки за защита на личната Ви "
+"информация от неоторизиран достъп, разкриване или загуба."
+msgstr "We take reasonable technical and organizational measures to protect your personal "
+"information from unauthorized access, disclosure, or loss."
+
+#: frontend/templates/privacy_policy.html:51
+msgid "5. Вашите права"
+msgstr "5. Your rights"
+
+#: frontend/templates/privacy_policy.html:54
+msgid "Право на достъп до личните Ви данни"
+msgstr ""
+
+#: frontend/templates/privacy_policy.html:56
+msgid "Право на коригиране или изтриване"
+msgstr "Right of access to your personal data"
+
+#: frontend/templates/privacy_policy.html:58
+msgid "Право на ограничаване на обработката"
+msgstr "Right to restriction of processing"
+
+#: frontend/templates/privacy_policy.html:60
+msgid "Право на възражение срещу използване на данни"
+msgstr "Right to object to data use"
+
+#: frontend/templates/privacy_policy.html:64
+msgid "Можете да упражните правата си, като се свържете с нас на"
+msgstr "You can exercise your rights by contacting us at"
+
+#: frontend/templates/privacy_policy.html:67
+msgid "6. Промени в политиката"
+msgstr "6. Policy changes"
+
+#: frontend/templates/privacy_policy.html:69
+msgid ""
+"Запазваме правото си да актуализираме тази политика. Всички промени ще бъдат "
+"публикувани на тази страница."
+msgstr ""
+"We reserve the right to update this policy. Any changes will be "
+"posted on this page."
+
+#: frontend/templates/privacy_policy.html:72
+msgid "Последна актуализация: Април 2025 г."
+msgstr "Last updated: April 2025"
+
+#: frontend/templates/sections/contact.html:6
+msgid "Свържи се с нас"
+msgstr "Contact us"
+
+#: frontend/templates/sections/contact.html:15
+msgid "Вашето име"
+msgstr "Your name"
+
+#: frontend/templates/sections/contact.html:39
+msgid "Съобщение"
+msgstr "Message"
+
+#: frontend/templates/sections/contact.html:52
+msgid "Изпрати съобщение"
+msgstr "Send message"
+
+#: frontend/templates/sections/featured_products.html:6
+msgid "Избрани продукти"
+msgstr "Selected products"
+
+#: frontend/templates/sections/hero.html:6
+msgid "Вашата идея."
+msgstr "Your idea."
+
+#: frontend/templates/sections/hero.html:7
+msgid "Нашият 3D принт."
+msgstr "Our 3D print."
+
+#: frontend/templates/sections/hero.html:10
+msgid "Персонализирани решения за 3D принтиране и дизайн."
+msgstr "Customized 3D printing and design solutions."
+
+#: frontend/templates/sections/hero.html:16
+msgid "Виж нашите услуги"
+msgstr "See our services"
+
+#: frontend/templates/sections/services.html:5
+msgid "Нашите услуги"
+msgstr "Our services"
+
+#: frontend/templates/sections/services/3d mission.html:26
+msgid "Принтираме с висока прецизност и качествени материали."
+msgstr "We print with high precision and quality materials."
+
+#: frontend/templates/sections/services/3d_modeling.html:29
+msgid "3D Моделиране"
+msgstr "3D Modeling"
+
+#: frontend/templates/sections/services/3d_modeling.html:32
+msgid "Създаваме 3D модели по ваша идея или чертеж."
+msgstr "We create 3D models based on your idea or drawing."
+
+#: frontend/templates/sections/services/gallery.html:23
+#: gallery/templates/gallery/gallery.html:6
+#: gallery/templates/gallery/gallery.html:12
+msgid "Галерия"
+msgstr "Gallery"
+
+#: frontend/templates/sections/services/gallery.html:26
+msgid "Тук ще откриете селекция от завършени 3D проекти"
+msgstr "Here you will find a selection of completed 3D projects"
+
+#: frontend/templates/terms.html:5
+msgid "Общи условия"
+msgstr "General terms and conditions"
+
+#: frontend/templates/terms.html:10
+msgid "Общи условия за ползване на онлайн магазин "
+msgstr "General terms and conditions for using the online store"
+
+#: frontend/templates/terms.html:11
+msgid ""
+"Настоящите Общи условия уреждат отношенията между Mivelle, наричан по-долу "
+"„Продавачът“, и потребителите, наричани по-долу „Клиенти“, при покупка на "
+"продукти чрез онлайн магазина на адрес:"
+msgstr ""
+"These General Terms and Conditions govern the relationship between Mivelle, hereinafter referred to as "
+
+#: frontend/templates/terms.html:14
+msgid "1. Общи положения"
+msgstr "1. General provisions"
+
+#: frontend/templates/terms.html:17
+msgid ""
+"1.1 Онлайн магазинът предлага за продажба 3D принтирани модели – "
+"декоративни, функционални или персонализирани изделия, създадени с помощта "
+"на 3D принтер."
+msgstr ""
+"1.1 The online store offers for sale 3D printed models – "
+"decorative, functional or personalized products created using a "
+"3D printer."
+
+#: frontend/templates/terms.html:19
+msgid "1.2 С използването на сайта Клиентът приема настоящите Общи условия."
+msgstr "1.2 By using the site, the Client accepts these General Terms and Conditions."
+
+#: frontend/templates/terms.html:21
+msgid ""
+"1.3 Продавачът си запазва правото да променя настоящите условия без "
+"предварително уведомление."
+msgstr ""
+"1.3 The Seller reserves the right to change these terms and conditions without "
+"prior notice."
+
+#: frontend/templates/terms.html:25
+msgid "2. Регистрация и поръчка"
+msgstr "2. Registration and ordering"
+
+#: frontend/templates/terms.html:28
+msgid "2.1 Поръчки могат да се правят с или без регистрация."
+msgstr "2.1 Orders can be placed with or without registration."
+
+#: frontend/templates/terms.html:30
+msgid ""
+"2.2 Клиентът носи отговорност за достоверността на предоставената информация "
+"при поръчка."
+msgstr ""
+"2.2 The customer is responsible for the accuracy of the information provided "
+"when ordering."
+
+#: frontend/templates/terms.html:32
+msgid "2.3 След направена поръчка, клиентът получава потвърждение по имейл."
+msgstr "2.3 After placing an order, the customer receives a confirmation via email."
+
+#: frontend/templates/terms.html:36
+msgid "3. Цени и плащане"
+msgstr "3. Prices and payment"
+
+#: frontend/templates/terms.html:39
+msgid ""
+"3.1 Всички цени са в BGN и включват ДДС, освен ако не е посочено друго. "
+"Цените не включват такси за доставка, освен ако изрично не е посочено друго."
+msgstr ""
+"3.1 All prices are in BGN and include VAT unless otherwise stated. "
+"Prices do not include delivery charges unless expressly stated otherwise."
+
+#: frontend/templates/terms.html:41
+msgid "3.2 Плащането може да се извърши чрез:"
+msgstr "3.2 Payment can be made via:"
+
+#: frontend/templates/terms.html:44
+msgid "Наложен платеж при доставка"
+msgstr "Cash on delivery"
+
+#: frontend/templates/terms.html:50
+msgid "4. Изработка и доставка"
+msgstr "4. Manufacturing and delivery"
+
+#: frontend/templates/terms.html:53
+msgid ""
+"4.1 Времето за изработка на моделите е от 2 до 5 работни дни в зависимост от "
+"сложността и натовареността."
+msgstr ""
+"4.1 The time for making models is from 2 to 5 working days depending on the "
+"complexity and workload."
+
+#: frontend/templates/terms.html:55
+msgid ""
+"4.2 Доставките се извършват чрез Speedy и Еконт в срок от 3 работни дни след "
+"изработка."
+msgstr ""
+"4.2 Deliveries are made via Speedy and Econt within 3 business days after "
+"production."
+
+#: frontend/templates/terms.html:57
+msgid ""
+"4.3 Разходите по доставка са за сметка на Клиента, освен ако не е договорено "
+"друго."
+msgstr ""
+"4.3 Delivery costs are at the expense of the Customer, unless otherwise agreed."
+
+#: frontend/templates/terms.html:61
+msgid "5. Отказ и връщане"
+msgstr "5. Cancellation and return"
+
+#: frontend/templates/terms.html:64
+msgid ""
+"5.1 Клиентът има право да върне или замени продукт в срок от 14 дни, "
+"съгласно Закона за защита на потребителите, когато продуктът не е "
+"персонализиран."
+msgstr ""
+"5.1 The customer has the right to return or exchange a product within 14 days, "
+"according to the Consumer Protection Act, when the product is not "
+"personalized."
+
+#: frontend/templates/terms.html:66
+msgid ""
+"5.2 За продукти, изработени по индивидуална поръчка (персонализирани "
+"модели), правото на отказ не важи, освен при фабричен дефект. Това включва "
+"продукти с уникални размери, цветове, надписи или клиентски дизайн."
+msgstr ""
+"5.2 For products made to individual order (personalized "
+"models), the right of withdrawal does not apply, except in the case of a manufacturing defect. This includes "
+"products with unique sizes, colors, inscriptions or customer designs."
+
+#: frontend/templates/terms.html:68
+msgid ""
+"5.3 Връщането става след предварително уведомление и за сметка на клиента."
+msgstr ""
+"5.3 Returns are made after prior notification and at the customer's expense."
+
+#: frontend/templates/terms.html:72
+msgid "6. Гаранция и рекламации"
+msgstr "6. Warranty and complaints"
+
+#: frontend/templates/terms.html:75
+msgid ""
+"6.1 Продавачът гарантира, че продуктите са нови и съответстват на описанията "
+"в сайта."
+msgstr ""
+"6.1 The seller guarantees that the products are new and correspond to the descriptions "
+
+#: frontend/templates/terms.html:77
+msgid ""
+"6.2 Рекламации се приемат при дефекти, възникнали при изработка или "
+"транспортиране."
+msgstr ""
+"6.2 Complaints are accepted for defects that occurred during manufacturing or "
+"transportation."
+
+#: frontend/templates/terms.html:79
+msgid ""
+"6.3 При основателна рекламация, Продавачът замества дефектния продукт или "
+"възстановява заплатената сума."
+msgstr ""
+"6.3 In the event of a justified complaint, the Seller shall replace the defective product or "
+"refund the amount paid."
+
+#: frontend/templates/terms.html:83
+msgid "7. Лични данни"
+msgstr "7. Personal data"
+
+#: frontend/templates/terms.html:86
+msgid "7.1 Събирането и обработката на лични данни се извършва съгласно"
+msgstr "7.1 The collection and processing of personal data is carried out in accordance with"
+
+#: frontend/templates/terms.html:87
+msgid "Политиката за поверителност"
+msgstr "Privacy Policy"
+
+#: frontend/templates/terms.html:87
+msgid "и действащото законодателство "
+msgstr "and current legislation"
+
+#: frontend/templates/terms.html:88
+msgid ""
+"7.2 Данните се използват само с цел изпълнение на поръчки и комуникация с "
+"Клиента."
+msgstr ""
+"7.2 The data is used only for the purpose of fulfilling orders and communicating with the "
+"Customer."
+
+#: frontend/templates/terms.html:92
+msgid "8. Авторски права"
+msgstr "8. Copyright"
+
+#: frontend/templates/terms.html:95
+msgid ""
+"8.1 Всички 3D модели, публикувани на сайта, са авторска собственост на "
+"Mivelle, освен ако не е посочено друго."
+msgstr ""
+"8.1 All 3D models published on the site are the copyright of "
+"Mivelle, unless otherwise stated."
+
+#: frontend/templates/terms.html:97
+msgid "8.2 Копирането и използването на модели без разрешение е забранено."
+msgstr "8.2 Copying and using models without permission is prohibited."
+
+#: frontend/templates/terms.html:101
+msgid "9. Заключителни разпоредби"
+msgstr "9. Final provisions"
+
+#: frontend/templates/terms.html:104
+msgid ""
+"9.1 Настоящите Общи условия са в сила от 01.05.2025 и се прилагат към всички "
+"поръчки, направени след тази дата."
+msgstr ""
+"9.1 These General Terms and Conditions are effective from 01.05.2025 and apply to all "
+"orders placed after this date."
+
+#: frontend/templates/terms.html:106
+msgid ""
+"9.2 За всички неуредени въпроси се прилагат разпоредбите на българското "
+"законодателство."
+msgstr ""
+"9.2 The provisions of Bulgarian "
+"legislation shall apply to all unresolved issues."
+
+#: gallery/templates/gallery/gallery.html:46
+msgid "« Назад"
+msgstr "« Back"
+
+#: gallery/templates/gallery/gallery.html:59
+msgid "Напред »"
+msgstr "Next »"
+
+#: models3d/templates/models3d/confirm_delete.html:7
+msgid "Потвърди изтриване"
+msgstr "Confirm deletion"
+
+#: models3d/templates/models3d/confirm_delete.html:9
+msgid "Сигурни ли сте, че искате да изтриете модела"
+msgstr "Are you sure you want to delete the model?"
+
+#: models3d/templates/models3d/confirm_delete.html:15
+#: models3d/templates/models3d/my_models.html:53
+msgid "Изтрий"
+msgstr "Delete"
+
+#: models3d/templates/models3d/confirm_delete.html:16
+msgid "Отказ"
+msgstr "Cancellation"
+
+#: models3d/templates/models3d/my_models.html:7
+msgid "Моите 3D модели"
+msgstr "My 3D models"
+
+#: models3d/templates/models3d/my_models.html:11
+msgid "Качи нов модел"
+msgstr "Upload a new model"
+
+#: models3d/templates/models3d/my_models.html:18
+msgid "Категория:"
+msgstr "Category:"
+
+#: models3d/templates/models3d/my_models.html:30
+#: products/templates/products/product_detail.html:114
+msgid "Цена:"
+msgstr "Price:"
+
+#: models3d/templates/models3d/my_models.html:31
+msgid "лв/бр"
+msgstr "BGN/pcs"
+
+#: models3d/templates/models3d/my_models.html:40
+msgid "Изтегли"
+msgstr "Download"
+
+#: models3d/templates/models3d/my_models.html:43
+#: orders/templates/orders/create_order.html:4
+msgid "Заяви принтиране"
+msgstr "Request printing"
+
+#: models3d/templates/models3d/my_models.html:47
+msgid "Редактирай"
+msgstr "Edit"
+
+#: models3d/templates/models3d/my_models.html:58
+msgid "Нямате качени 3D модели."
+msgstr "You have no 3D models uploaded."
+
+#: models3d/templates/models3d/upload_model.html:6
+msgid "Качи нов 3D модел"
+msgstr "Upload a new 3D model"
+
+#: models3d/templates/models3d/upload_model.html:46
+msgid "Качи модел"
+msgstr "Upload model"
+
+#: orders/templates/orders/create_order.html:8
+msgid "Заяви принтиране на"
+msgstr "Request printing of"
+
+#: orders/templates/orders/create_order.html:25
+msgid "Изпрати поръчка"
+msgstr "Send order"
+
+#: orders/templates/orders/create_order.html:30
+msgid "Назад към моите поръчки"
+msgstr "Back to my orders"
+
+#: orders/templates/orders/my_orders.html:4
+#: orders/templates/orders/my_orders.html:7
+msgid "Моите поръчки"
+msgstr "My orders"
+
+#: orders/templates/orders/my_orders.html:18
+msgid "Статус:"
+msgstr "Status:"
+
+#: orders/templates/orders/my_orders.html:20
+msgid "Дата: "
+msgstr "Date: "
+
+#: orders/templates/orders/my_orders.html:21
+#: products/templates/products/product_detail.html:114
+msgid " лв."
+msgstr " BGN"
+
+#: orders/templates/orders/my_orders.html:23
+msgid "Инструкции: "
+msgstr "Instructions: "
+
+#: orders/templates/orders/my_orders.html:32
+msgid "Откажи поръчка"
+msgstr "Cancel order"
+
+#: orders/templates/orders/my_orders.html:40
+msgid "Нямате активни поръчки."
+msgstr "You have no active orders."
+
+#: products/templates/products/product_detail.html:9
+msgid "Продуктът е добавен!"
+msgstr "Product added!"
+
+#: products/templates/products/product_detail.html:16
+msgid "НОВО"
+msgstr "NEW"
+
+#: products/templates/products/product_detail.html:34
+msgid "Без изображение"
+msgstr "No image"
+
+#: products/templates/products/product_detail.html:44
+#: products/templates/products/product_detail.html:118
+msgid "В наличност "
+msgstr "In stock"
+
+#: products/templates/products/product_detail.html:44
+msgid "Изчерпан "
+msgstr "Out of stock"
+
+#: products/templates/products/product_detail.html:50
+msgid "Количество"
+msgstr "Quantity"
+
+#: products/templates/products/product_detail.html:61
+#: products/templates/products/product_detail.html:131
+msgid "Добави в количката"
+msgstr "Add to cart"
+
+#: products/templates/products/product_detail.html:65
+msgid "Виж детайли"
+msgstr "See details"
+
+#: products/templates/products/product_detail.html:116
+msgid "Наличност:"
+msgstr "Availability:"
+
+#: products/templates/products/product_detail.html:118
+msgid "Изчерпан"
+msgstr "Out of stock"
+
+#: products/templates/products/product_list.html:6
+msgid "Каталог продукти"
+msgstr "Product catalog"
+
+#: products/templates/products/product_list.html:44
+msgid "Всички категории"
+msgstr "All categories"
+
+#: products/templates/products/product_list.html:52
+msgid "Сортирай по..."
+msgstr "Sort by..."
+
+#: products/templates/products/product_list.html:53
+msgid "Цена ↑"
+msgstr "Price ↑"
+
+#: products/templates/products/product_list.html:54
+msgid "Цена ↓"
+msgstr "Price ↓"
+
+#: products/templates/products/product_list.html:56
+msgid "Най-нови"
+msgstr "Newest"
+
+#: products/templates/products/product_list.html:59
+msgid "Филтрирай"
+msgstr "Filter"
+
+#: products/templates/products/product_list.html:71
+msgid "Няма налични продукти."
+msgstr "No products available."
+
+
