@@ -28,7 +28,8 @@
 
     
     <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    {% comment %} <link href="{% static 'css/output.css' %}" rel="stylesheet"> {% endcomment %}
+<script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
         darkMode: 'class',
@@ -41,7 +42,7 @@
           }
         }
       };
-    </script>
+    </script>  
 
   </head>
   {% include "cookie-banner.html" %}
