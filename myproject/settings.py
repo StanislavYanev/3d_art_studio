@@ -47,6 +47,7 @@ MIDDLEWARE = [
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",  # render.com
     "allauth.account.middleware.AccountMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -199,3 +200,11 @@ LANGUAGES = [
 # Локация на преводите (.po файлове)
 
 LOCALE_PATHS = [Path(BASE_DIR) / 'locale']
+
+
+RENDER_HOSTNAME = os.getenv("RENDER_EXTERNAL_HOSTNAME")    # render.com
+if RENDER_HOSTNAME:
+    ALLOWED_HOSTS.append(RENDER_HOSTNAME)
+
+
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"   # render.com
