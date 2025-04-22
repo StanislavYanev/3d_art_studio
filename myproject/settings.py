@@ -6,10 +6,11 @@ import os
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
-SECRET_KEY = "django-insecure-#hq5&#s#p142ol36h6-de2f%@(v92ym1jxj_bf-)e^wnhfq7u#"
+#SECRET_KEY = "django-insecure-#hq5&#s#p142ol36h6-de2f%@(v92ym1jxj_bf-)e^wnhfq7u#"
+SECRET_KEY = os.getenv("SECRET_KEY", "django-insecure-#hq5&#s#p142ol36h6-de2f%@(v92ym1jxj_bf-)e^wnhfq7u#")
 
-
-DEBUG = True
+#DEBUG = True
+DEBUG = os.getenv("DEBUG", "False") == "True"
 
 ALLOWED_HOSTS = []
 
