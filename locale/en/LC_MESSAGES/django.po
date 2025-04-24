@@ -476,6 +476,10 @@ msgstr "Politics"
 msgid "Начало"
 msgstr "Home"
 
+#: frontend/templates/partials/header.html:66
+msgid "Смяна на тема"
+msgstr "Change mode"
+
 #: frontend/templates/partials/cart_modal.html:17
 msgid "Вашата количка"
 msgstr "Your cart"
@@ -485,8 +489,8 @@ msgid "Зареждане..."
 msgstr "Loading..."
 
 #: frontend/templates/partials/footer.html:5
-msgid "© 2025 3D Print Studio • Всички права запазени • BG | EN"
-msgstr "© 2025 3D Print Studio • All rights reserved • BG | EN"
+msgid "Всички права запазени"
+msgstr "All rights reserved"
 
 #: frontend/templates/partials/header.html:27
 #: frontend/templates/partials/header.html:56

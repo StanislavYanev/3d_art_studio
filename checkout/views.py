@@ -19,6 +19,7 @@ def order_create(request):
                     product=item["product"],
                     price=item["price"],
                     quantity=item["quantity"],
+                    personal_text=item.get("personal_text", ""),
                 )
 
             # Изпращане на имейл до клиента

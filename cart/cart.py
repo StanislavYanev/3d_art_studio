@@ -10,14 +10,19 @@ class Cart:
             cart = self.session['cart'] = {}
         self.cart = cart
 
-    def add(self, product, quantity=1, override_quantity=False):
+    def add(self, product, quantity=1,personal_text=None, override_quantity=False):
         product_id = str(product.id)
         if product_id not in self.cart:
-            self.cart[product_id] = {'quantity': 0, 'price': str(product.price)}
+            self.cart[product_id] = {'quantity': 0,
+                                     'price': str(product.price),
+                                     'personal_text': personal_text or ''
+                                     }
         if override_quantity:
             self.cart[product_id]['quantity'] = quantity
         else:
             self.cart[product_id]['quantity'] += quantity
+        if personal_text:
+            self.cart[product_id]['personal_text'] = personal_text
         self.save()
 
     def save(self):

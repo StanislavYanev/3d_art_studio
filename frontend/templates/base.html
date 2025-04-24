@@ -28,8 +28,8 @@
 
     
     <!-- Tailwind CSS -->
-    {% comment %} <link href="{% static 'css/output.css' %}" rel="stylesheet"> {% endcomment %}
-<script src="https://cdn.tailwindcss.com"></script>
+    <link href="{% static 'css/output.css' %}" rel="stylesheet">
+{% comment %} <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
         darkMode: 'class',
@@ -42,7 +42,7 @@
           }
         }
       };
-    </script>  
+    </script>   {% endcomment %}
 <style>
   input[type=number]::-webkit-inner-spin-button,
   input[type=number]::-webkit-outer-spin-button {

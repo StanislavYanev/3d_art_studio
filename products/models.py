@@ -35,6 +35,7 @@ class Product(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, blank=True)
     tags = models.ManyToManyField(Tag, blank=True)
+    allow_personalization = models.BooleanField(default=False)
 
     def translated_name(self):
         if get_language() == 'en' and self.name_en:

@@ -17,6 +17,8 @@ class Order(models.Model):
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='pending')
     created_at = models.DateTimeField(auto_now_add=True)
     price = models.DecimalField(max_digits=7, decimal_places=2, null=True, blank=True)
- 
+    
+    personal_text = models.TextField(blank=True, null=True)
+
     def __str__(self):
         return f"{self.model} – {self.status} – {self.user}"

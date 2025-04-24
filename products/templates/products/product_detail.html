@@ -2,66 +2,88 @@
 {% load i18n %}
 
 <!-- Toast известие -->
-    <div id="toast" class="fixed top-[80px] right-6 z-50 hidden bg-green-600 text-white px-6 py-4 rounded-lg shadow-lg flex items-center gap-3 opacity-0 scale-95 transition-all duration-300">
-      <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-      </svg>
-      <span id="toast-message" class="font-medium">{%trans 'Продуктът е добавен!'%}</span>
-      <button onclick="hideToast()" class="ml-auto text-xl font-bold text-white hover:text-gray-200">&times;</button>
-    </div>
+<div id="toast" class="fixed top-[80px] right-6 z-50 hidden bg-green-600 text-white px-6 py-4 rounded-lg shadow-lg flex items-center gap-3 opacity-0 scale-95 transition-all duration-300">
+  <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+  </svg>
+  <span id="toast-message" class="font-medium">{%trans 'Продуктът е добавен!'%}</span>
+  <button onclick="hideToast()" class="ml-auto text-xl font-bold text-white hover:text-gray-200">&times;</button>
+</div>
 
-
-<div class="w-full aspect-[4/3] bg-white dark:bg-gray-700 p-2 relative rounded-2xl shadow-md dark:shadow-none">
+<!-- Карта на продукта с фиксирана минимална височина и подравнени бутони -->
+<div class="w-full min-h-[520px] bg-white dark:bg-gray-700 p-2 relative rounded-2xl shadow-md dark:shadow-none flex flex-col justify-between">
   {% if product.is_new %}
     <span class="absolute top-2 right-2 bg-green-500 text-white text-xs px-2 py-1 rounded-full shadow z-10">{%trans 'НОВО'%}</span>
   {% endif %}
 
   <div class="w-full aspect-[4/3] p-2 cursor-pointer" onclick="openModal({{ product.id }})">
     {% if product.images.all %}
-          <div class="relative w-full overflow-hidden rounded-md">
-            <div class="flex gap-2 overflow-x-auto snap-x scroll-smooth">
-              <div class="w-full h-48 overflow-hidden rounded-lg bg-gray-100">
-                <img 
-                  src="{{ product.images.first.image.url }}" 
-                  alt="{{ product.name }}" 
-                  class="w-full h-full object-cover transition duration-300 hover:scale-105" />
-              </div>
-            </div>
+      <div class="relative w-full overflow-hidden rounded-md">
+        <div class="flex gap-2 overflow-x-auto snap-x scroll-smooth">
+          <div class="w-full h-48 overflow-hidden rounded-lg bg-gray-100">
+            <img 
+              src="{{ product.images.first.image.url }}" 
+              alt="{{ product.name }}" 
+              class="w-full h-full object-cover transition duration-300 hover:scale-105" />
           </div>
-        {% elif product.image %}
-          <img src="{{ product.image.url }}" alt="{{ product.name }}" class="w-full h-auto object-cover rounded">
-        {% else %} 
-          <div class="w-full h-64 bg-gray-200 dark:bg-gray-700 flex items-center justify-center text-gray-400 dark:text-gray-500">{%trans 'Без изображение'%}</div>
-        {% endif %}
+        </div>
+      </div>
+    {% elif product.image %}
+      <img src="{{ product.image.url }}" alt="{{ product.name }}" class="w-full h-auto object-cover rounded">
+    {% else %} 
+      <div class="w-full h-64 bg-gray-200 dark:bg-gray-700 flex items-center justify-center text-gray-400 dark:text-gray-500">{%trans 'Без изображение'%}</div>
+    {% endif %}
   </div>
 
   <div class="p-4 flex-1 flex flex-col justify-between">
     <div>
-      <h3 class="text-lg font-semibold text-gray-800 dark:text-white mb-1">{{ product.translated_name|truncatechars:20 }}</h3>
+      <h3 class="text-lg font-semibold text-gray-800 dark:text-white mb-1 line-clamp-1">{{ product.translated_name|truncatechars:20 }}</h3>
       <p class="text-sm text-gray-600 dark:text-gray-300 mb-2 line-clamp-2">{{ product.translated_description|truncatechars:80 }}</p>
       <p class="text-indigo-600 dark:text-indigo-400 font-bold text-lg mb-2 text-center">{{ product.price }} лв.</p>
       <p class="text-sm text-center {{ product.in_stock|yesno:'text-green-500,text-red-500' }}">
         {% if product.in_stock %} {%trans 'В наличност '%}{% else %} {%trans 'Изчерпан '%}{% endif %}
       </p>
     </div>
-    <form method="post" action="{% url 'cart:cart_add' product.pk %}" class="space-y-2" onsubmit="return submitCartForm(event, this)">
+
+    <form method="post" action="{% url 'cart:cart_add' product.pk %}" class="flex flex-col justify-between flex-1 mt-4" onsubmit="return submitCartForm(event, this)">
       {% csrf_token %}
-      <div class="flex items-center justify-center gap-2">
-        <label for="quantity-{{ product.id }}" class="sr-only">{%trans 'Количество'%}</label>
-        <div class="flex items-center border rounded-lg overflow-hidden w-28 dark:border-gray-700">
-          <button type="button" onclick="decreaseQty('quantity-{{ product.id }}')" class="px-2 text-gray-500 hover:text-indigo-600">−</button>
-          <input id="quantity-{{ product.id }}" name="quantity" type="number" min="1" value="1" class="w-12 text-center bg-transparent outline-none dark:bg-gray-800 text-sm text-gray-700 dark:text-white">
-          <button type="button" onclick="increaseQty('quantity-{{ product.id }}')" class="px-2 text-gray-500 hover:text-indigo-600">+</button>
-        </div>
+      <div class="space-y-4">
+        
+
+        <div class="flex items-center justify-center gap-2">
+          <label for="quantity-{{ product.id }}" class="sr-only">{%trans 'Количество'%}</label>
+          <div class="flex items-center border rounded-lg overflow-hidden w-28 dark:border-gray-700">
+            <button type="button" onclick="decreaseQty('quantity-{{ product.id }}')" class="px-2 text-gray-500 hover:text-indigo-600">−</button>
+            <input id="quantity-{{ product.id }}" name="quantity" type="number" min="1" value="1" class="w-12 text-center bg-transparent outline-none dark:bg-gray-800 text-sm text-gray-700 dark:text-white">
+            <button type="button" onclick="increaseQty('quantity-{{ product.id }}')" class="px-2 text-gray-500 hover:text-indigo-600">+</button>
+          </div>
+        </div> 
+
+        {% if product.allow_personalization %}
+          <div class="px-4">
+            <input
+              type="text"
+              name="personal_text"
+              id="personal_text"
+              class="mt-1 block w-full px-3 py-2 border border-gray-00 dark:border-gray-600 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:bg-gray-800 dark:text-white"
+              placeholder="{%trans 'Текст за персонализация' %}"
+            >
+          </div>
+        {% endif %}
+
       </div>
-      <button type="submit" class="w-full bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition flex items-center justify-center gap-2">
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4" />
-        </svg>
-        {%trans 'Добави в количката'%}
-      </button>
+      <div class="mt-4">
+        <button type="submit" class="w-full bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition flex items-center justify-center gap-2">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4" />
+          </svg>
+          {%trans 'Добави в количката'%}
+        </button>
+      </div>
     </form>
-    <button type="button" onclick="openModal({{ product.id }})" class="mt-3 w-full bg-white dark:bg-gray-700 border border-indigo-500 text-indigo-600 dark:text-indigo-400 hover:bg-indigo-100 dark:hover:bg-gray-800 font-medium py-2 px-4 rounded-lg transition text-center">
+
+    <button type="button" onclick="openModal({{ product.id }})" 
+    class="mt-3 w-full bg-white dark:bg-gray-700 border border-indigo-500 text-indigo-600 dark:text-indigo-400 hover:bg-indigo-100 dark:hover:bg-gray-800 font-medium py-2 px-4 rounded-lg transition text-center">
       {%trans 'Виж детайли'%}
     </button>
   </div>
@@ -118,6 +140,7 @@
             {% if product.in_stock %}{%trans 'В наличност '%} {% else %}{%trans 'Изчерпан'%}  {% endif %}
           </span>
         </p>
+        
         <form method="post" action="{% url 'cart:cart_add' product.pk %}" onsubmit="return submitCartForm(event, this)">
           {% csrf_token %}
           <div class="flex items-center gap-4 mb-4">
@@ -127,6 +150,17 @@
               <button type="button" onclick="increaseQty('modal-quantity-featured-{{ product.id }}')" class="px-2 text-gray-500 hover:text-indigo-600">+</button>
             </div>
           </div>
+          {% if product.allow_personalization %}
+          <div class="px-4">
+            <input
+              type="text"
+              name="personal_text"
+              id="personal_text"
+              class="mt-1 block w-full px-3 py-2 border border-gray-00 dark:border-gray-600 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:bg-gray-800 dark:text-white"
+              placeholder="{%trans 'Текст за персонализация' %}"
+            >
+          </div>
+        {% endif %}
           <button type="submit" class="mt-10 w-full bg-indigo-600 text-white px-6 py-3 rounded-lg hover:bg-indigo-700 transition font-medium">
             {%trans 'Добави в количката'%}
           </button>

@@ -40,7 +40,7 @@ class OrderItem(models.Model):
     product = models.ForeignKey("products.Product", on_delete=models.CASCADE)
     price = models.DecimalField("Цена", max_digits=10, decimal_places=2)
     quantity = models.PositiveIntegerField("Количество", default=1)
-
+    personal_text = models.TextField(blank=True, null=True)
     def __str__(self):
         return f"{self.product.name} x {self.quantity}"
 

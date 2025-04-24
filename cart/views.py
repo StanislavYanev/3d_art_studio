@@ -20,7 +20,8 @@ def cart_add(request, product_id):
     cart = Cart(request)
     
     quantity = int(request.POST.get('quantity', 1))
-    cart.add(product=product, quantity=quantity)
+    personal_text = request.POST.get('personal_text', '')
+    cart.add(product=product, quantity=quantity,personal_text=personal_text)
 
     if request.headers.get('x-requested-with') == 'XMLHttpRequest':
         return JsonResponse({
