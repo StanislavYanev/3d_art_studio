@@ -36,6 +36,16 @@ class Product(models.Model):
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, blank=True)
     tags = models.ManyToManyField(Tag, blank=True)
     allow_personalization = models.BooleanField(default=False)
+    require_image_upload = models.BooleanField(
+        default=False,
+        verbose_name="Изисква изображение от потребителя"
+    )
+    personal_image = models.ImageField(
+        upload_to='personal_uploads/',
+        blank=True,
+        null=True,
+        verbose_name='Качено изображение'
+    )
 
     def translated_name(self):
         if get_language() == 'en' and self.name_en:

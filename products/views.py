@@ -1,7 +1,7 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from .models import Product, Category
 from django.core.paginator import Paginator
-
+from .forms import ProductImageForm
 
 def product_list(request):
     products = Product.objects.all()
@@ -44,4 +44,30 @@ def product_list(request):
 
 def product_detail(request, pk):
     product = get_object_or_404(Product, pk=pk)
-    return render(request, 'products/product_detail.html', {'product': product})
+    
+    if request.method == 'POST':
+        form = ProductImageForm(request.POST, request.FILES, instance=product)
+        if form.is_valid():
+            form.save()
+            # можеш да пренасочиш, или да покажеш съобщение
+    else:
+        form = ProductImageForm(instance=product)
+
+    return render(request, 'products/product_detail.html', {
+        'product': product,
+        'form': form,
+    })
+
+def upload_image(request, pk):
+    product = get_object_or_404(Product, pk=pk)
+
+    if request.method == 'POST':
+        form = ProductImageForm(request.POST, request.FILES, instance=product)
+        if form.is_valid():
+            form.save()
+            return redirect('products:product_list')
+
+    else:
+        form = ProductImageForm(instance=product)
+
+    return render(request, 'products/product_detail.html', {'form': form, 'product': product})
